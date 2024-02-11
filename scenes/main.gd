@@ -2,7 +2,7 @@ extends Node3D
 
 const arena = preload("res://scenes/arena_1.tscn")
 const player = preload("res://scenes/player.tscn")
-const gun = preload("res://scenes/paintgun.tscn")
+const gun = preload("res://scenes/weapons/paintgun.tscn")
 
 var new_arena
 
