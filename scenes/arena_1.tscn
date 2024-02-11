@@ -1,5 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnukaufdapog1"]
+[gd_scene load_steps=11 format=3 uid="uid://cnukaufdapog1"]
 
 [ext_resource type="PackedScene" uid="uid://bdm460ryvknw5" path="res://models/arena_1.glb" id="1_timmj"]
+[ext_resource type="Texture2D" uid="uid://b6o5qmxfylrqf" path="res://addons/kenney_prototype_textures/red/texture_01.png" id="2_vd28g"]
+[ext_resource type="Texture2D" uid="uid://mx14n6sdmtgv" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="3_cwnn4"]
+[ext_resource type="Texture2D" uid="uid://bxab1y7gbgja4" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_mno3v"]
+[ext_resource type="Texture2D" uid="uid://do56k6o4341ku" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="5_du1gj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7sngm"]
+albedo_texture = ExtResource("2_vd28g")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6ng1"]
+albedo_texture = ExtResource("3_cwnn4")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0axlc"]
+albedo_texture = ExtResource("3_cwnn4")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bnl8"]
+albedo_texture = ExtResource("4_mno3v")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pgn5"]
+albedo_texture = ExtResource("5_du1gj")
+uv1_triplanar = true
 
 [node name="arena_1" instance=ExtResource("1_timmj")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7sngm")
+
+[node name="Cube" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m6ng1")
+
+[node name="Cube_001" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0axlc")
+
+[node name="Cube_002" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6bnl8")
+
+[node name="Cube_003" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6bnl8")
+
+[node name="Cube_004" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6bnl8")
+
+[node name="Cube_005" parent="." index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6bnl8")
+
+[node name="Cube_006" parent="." index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6bnl8")
+
+[node name="Cube_007" parent="." index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6bnl8")
+
+[node name="Plane_001" parent="." index="9"]
+material_override = SubResource("StandardMaterial3D_8pgn5")
