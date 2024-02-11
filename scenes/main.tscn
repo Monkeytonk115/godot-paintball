@@ -8,11 +8,11 @@ script = ExtResource("1_5s3o4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="CanvasLayer" instance=ExtResource("2_pc3wx")]
+[node name="mainMenu" parent="CanvasLayer" instance=ExtResource("2_pc3wx")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/humanoid.tscn")
 spawn_path = NodePath("..")
 
-[connection signal="hostGame" from="CanvasLayer/Control" to="." method="_on_control_host_game"]
-[connection signal="joinGame" from="CanvasLayer/Control" to="." method="_on_control_join_game"]
+[connection signal="hostGame" from="CanvasLayer/mainMenu" to="." method="_on_control_host_game"]
+[connection signal="joinGame" from="CanvasLayer/mainMenu" to="." method="_on_control_join_game"]
