@@ -1,6 +1,6 @@
-[gd_scene load_steps=32 format=3 uid="uid://u4mn8e72vxkc"]
+[gd_scene load_steps=32 format=3 uid="uid://h8dy883vishh"]
 
-[ext_resource type="PackedScene" uid="uid://df6iaw0shd3ak" path="res://models/arena_2.glb" id="1_0cdxq"]
+[ext_resource type="PackedScene" uid="uid://cdqixyjyqlo56" path="res://models/arena_2.glb" id="1_0cdxq"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
 [ext_resource type="Texture2D" uid="uid://1u8gasqegplp" path="res://addons/kenney_prototype_textures/orange/texture_02.png" id="3_5ys0b"]
 [ext_resource type="Texture2D" uid="uid://dqirwf4akvfwd" path="res://addons/kenney_prototype_textures/purple/texture_02.png" id="4_ej5tm"]
