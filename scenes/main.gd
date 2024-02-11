@@ -10,7 +10,7 @@ var new_arena
 var enet_peer = ENetMultiplayerPeer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_arena = arena2.instantiate()
+	new_arena = arena.instantiate()
 	add_child(new_arena)
 
 

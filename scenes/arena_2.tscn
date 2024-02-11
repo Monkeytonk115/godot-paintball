@@ -83,6 +83,10 @@ size = Vector3(65, 15, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 2, 0)
 
 [node name="spawnPoint" type="Marker3D" parent="purpleSpawn" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.87327)
+
+[node name="spawnPoint2" type="Marker3D" parent="purpleSpawn" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.74655)
 
 [node name="greenSpawn" type="Node3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 2, 0)
