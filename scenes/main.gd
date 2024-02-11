@@ -4,6 +4,7 @@ const arena = preload("res://scenes/arena_1.tscn")
 const arena2 = preload("res://scenes/arena_2.tscn")
 const player = preload("res://scenes/player.tscn")
 const gun = preload("res://scenes/weapons/paintgun.tscn")
+const bullet = preload("res://scenes/weapons/paintball.tscn")
 
 var new_arena
 
@@ -37,11 +38,22 @@ func add_player(peer_id):
 	print("add player ", peer_id) 
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
-	new_player.equip(gun)
+	
+	var new_gun = gun.instantiate()
+	new_gun.shoot_bullet.connect(shoot_bullet)
+	new_player.equip(new_gun)
 	var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
-	new_player.global_transform = spawnPoint.global_transform
 	add_child(new_player)
+	new_player.global_transform = spawnPoint.global_transform
 
 
 func remove_player(peer_id):
 	pass
+
+
+#@rpc
+func shoot_bullet(origin : Transform3D, velocity : Vector3):
+	var new_bullet = bullet.instantiate()
+	new_bullet.global_transform = origin
+	new_bullet.linear_velocity = velocity
+	$bullets.add_child(new_bullet, true)

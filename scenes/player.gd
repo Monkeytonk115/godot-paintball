@@ -65,7 +65,8 @@ func _physics_process(delta):
 			equipped_weapon.PrimaryFire()
 
 
-func equip(wep : PackedScene):
-	equipped_weapon = wep.instantiate()
+#@rpc("any_peer", "call_local")
+func equip(wep : Node):
+	equipped_weapon = wep
 	$humanoid/hand_right.add_child(equipped_weapon)
 	equipped_weapon.transform = equipped_weapon.find_child("attachment_0").transform.inverse()
