@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7veshyatxwfd"]
+
+[ext_resource type="PackedScene" uid="uid://d0e1xtbi1tb45" path="res://models/paintgun.glb" id="1_uarvb"]
+[ext_resource type="Script" path="res://scenes/weapons/paintgun.gd" id="2_2pul5"]
+[ext_resource type="Texture2D" uid="uid://p8y7qt0se123" path="res://addons/kenney_prototype_textures/purple/texture_01.png" id="2_anj0p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1lfa"]
+albedo_texture = ExtResource("2_anj0p")
+uv1_triplanar = true
+
+[node name="PaintGun" instance=ExtResource("1_uarvb")]
+script = ExtResource("2_2pul5")
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m1lfa")
+
+[node name="attachment_0" type="Marker3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.453475, -1.56643, -3.1905)
+
+[node name="attachment_muzzle" type="Marker3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51463, 0, 8.11841)

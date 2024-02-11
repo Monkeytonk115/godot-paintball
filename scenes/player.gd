@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var equipped_weapon
 
 func _enter_tree():
 	# Can only change multiplayer authority from inside _enter_tree()
@@ -16,7 +17,7 @@ func _ready():
 	if not is_multiplayer_authority(): return
 
 	# Hide our own body in multiplayer
-	$humanoid.hide()
+	#$humanoid.hide()
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Camera3D.current = true
@@ -58,3 +59,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	if Input.is_action_just_pressed("primary_fire"):
+		if equipped_weapon:
+			equipped_weapon.PrimaryFire()
+
+
+func equip(wep : PackedScene):
+	equipped_weapon = wep.instantiate()
+	$humanoid/hand_right.add_child(equipped_weapon)
