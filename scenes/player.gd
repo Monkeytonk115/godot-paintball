@@ -60,7 +60,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("primary_fire"):
+	if Input.is_action_pressed("primary_fire"):
 		if equipped_weapon:
 			equipped_weapon.PrimaryFire()
 
