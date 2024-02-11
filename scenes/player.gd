@@ -68,3 +68,4 @@ func _physics_process(delta):
 func equip(wep : PackedScene):
 	equipped_weapon = wep.instantiate()
 	$humanoid/hand_right.add_child(equipped_weapon)
+	equipped_weapon.transform = equipped_weapon.find_child("attachment_0").transform.inverse()

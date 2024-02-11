@@ -16,7 +16,7 @@ transform = Transform3D(2.18557e-09, -0.05, -4.37114e-09, -0.05, -2.18557e-09, 0
 surface_material_override/0 = SubResource("StandardMaterial3D_m1lfa")
 
 [node name="attachment_0" type="Marker3D" parent="." index="1"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0267507, -0.331789, 0.929971)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0267507, -0.331789, 0.929971)
 
 [node name="attachment_muzzle" type="Marker3D" parent="." index="2"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0227967, 0.0021358, -0.711715)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227967, 0.0021358, -0.711715)

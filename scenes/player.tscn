@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c506d8u0j15j2"]
+[gd_scene load_steps=8 format=3 uid="uid://tiiy0f5uvc4i"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_dno3v"]
 [ext_resource type="PackedScene" uid="uid://0r2hqrc77w5h" path="res://scenes/humanoid.tscn" id="2_xk7k8"]
@@ -44,6 +44,6 @@ replication_config = SubResource("SceneReplicationConfig_8xwpn")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98221, 0)
-fov = 110.0
+fov = 90.0
 
 [node name="humanoid" parent="." instance=ExtResource("2_xk7k8")]

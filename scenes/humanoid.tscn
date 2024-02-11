@@ -4,5 +4,23 @@
 
 [node name="humanoid" instance=ExtResource("1_6psq3")]
 
+[node name="head" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83792, 0)
+
+[node name="body" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.936466, 0)
+
+[node name="hand_right" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.194, 0)
+
+[node name="feet_right" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190728, 0.037917, 8.33698e-09)
+
+[node name="feet_left" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190728, 0.037917, -8.33698e-09)
+
+[node name="hand_left" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.194, 0)
+
 [node name="Eye" type="Marker3D" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02247, -0.291351)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84792, 0.00220856)
