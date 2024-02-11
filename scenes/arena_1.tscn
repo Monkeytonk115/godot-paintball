@@ -143,6 +143,13 @@ shape = SubResource("ConcavePolygonShape3D_60gim")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.972285, -8.64457)
 
 [node name="spawnPoint" type="Marker3D" parent="purpleSpawn" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="spawnPoint2" type="Marker3D" parent="purpleSpawn" index="1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.95642, 0, 0)
+
+[node name="spawnPoint3" type="Marker3D" parent="purpleSpawn" index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.19862, 0, 0)
 
 [node name="greenSpawn" type="Node3D" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0423163, 0.796762, 8.55018)

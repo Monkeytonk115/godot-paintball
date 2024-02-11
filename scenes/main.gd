@@ -1,6 +1,7 @@
 extends Node3D
 
 const arena = preload("res://scenes/arena_1.tscn")
+const arena2 = preload("res://models/arena_2.glb")
 const player = preload("res://scenes/player.tscn")
 const gun = preload("res://scenes/paintgun.tscn")
 
@@ -36,7 +37,8 @@ func add_player(peer_id):
 	print("add player ", peer_id) 
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
-	new_player.position = Vector3(0, 1, 0)
+	var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
+	new_player.global_transform = spawnPoint.global_transform
 	add_child(new_player)
 	
 	
