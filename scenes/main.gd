@@ -1,7 +1,7 @@
 extends Node3D
 
 const arena = preload("res://scenes/arena_1.tscn")
-const arena2 = preload("res://models/arena_2.glb")
+const arena2 = preload("res://scenes/arena_2.tscn")
 const player = preload("res://scenes/player.tscn")
 const gun = preload("res://scenes/weapons/paintgun.tscn")
 
@@ -10,7 +10,7 @@ var new_arena
 var enet_peer = ENetMultiplayerPeer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_arena = arena.instantiate()
+	new_arena = arena2.instantiate()
 	add_child(new_arena)
 
 
@@ -41,7 +41,7 @@ func add_player(peer_id):
 	var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
 	new_player.global_transform = spawnPoint.global_transform
 	add_child(new_player)
-	
-	
+
+
 func remove_player(peer_id):
 	pass
