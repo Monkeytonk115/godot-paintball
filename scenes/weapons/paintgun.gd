@@ -2,8 +2,8 @@ extends Node3D
 
 const bullet = preload("res://scenes/weapons/paintball.tscn")
 
-# Fire rate of 15 rounds per second
-const fire_delay = 1.0 / 15.0
+# Fire rate of 3 rounds per second
+const fire_delay = 1.0 / 3.0
 
 
 var _next_fire_time
@@ -19,6 +19,7 @@ func _process(delta):
 
 
 func PrimaryFire():
+	print("PrimaryFire")
 	if _next_fire_time >= Time.get_ticks_msec():
 		# Can't fire right now, need to wait
 		pass
@@ -29,3 +30,5 @@ func PrimaryFire():
 	new_bullet.global_transform = $attachment_muzzle.global_transform
 	new_bullet.linear_velocity = -$attachment_muzzle.global_transform.basis.z * 2
 	add_child(new_bullet)
+	
+	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
