@@ -8,6 +8,22 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
+func _ready():
+	if not is_multiplayer_authority(): return
+
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	$head/Camera3D.current = true
+
+
+func _unhandled_input(event):
+	if not is_multiplayer_authority(): return
+
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x * 0.005)
+		$head/Camera3D.rotate_x(-event.relative.y * 0.005)
+		$head/Camera3D.rotation.x = clamp($head/Camera3D.rotation.x, -PI/2, PI/2)
+
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
