@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c506d8u0j15j2"]
+[gd_scene load_steps=24 format=3 uid="uid://c506d8u0j15j2"]
 
 [ext_resource type="Script" path="res://scenes/humanoid.gd" id="1_770j2"]
 
@@ -390,17 +390,6 @@ _data = {
 "idle": SubResource("Animation_hr676")
 }
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8xwpn"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("head/Camera3D:rotation")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-
 [node name="humanoid" type="CharacterBody3D"]
 script = ExtResource("1_770j2")
 
@@ -446,6 +435,3 @@ shape = SubResource("CylinderShape3D_l300u")
 libraries = {
 "": SubResource("AnimationLibrary_sxtmo")
 }
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_8xwpn")
