@@ -34,6 +34,8 @@ func _on_control_join_game(address):
 
 func add_player(peer_id):
 	print("add player ", peer_id) 
+	var new_player = player.instantiate()
+	add_child(new_player)
 	
 func remove_player(peer_id):
 	pass

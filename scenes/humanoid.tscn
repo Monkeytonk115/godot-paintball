@@ -399,8 +399,8 @@ mesh = SubResource("ArrayMesh_bhpeg")
 skeleton = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="head"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-fov = 110.0
+transform = Transform3D(-1.76622e-07, 0, 4.04063, 0, 5.43446, 0, -4.04063, 0, -1.76622e-07, 0, 0, 0)
+fov = 90.0
 
 [node name="body" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.289522, 0, 0, 0, 0.289522, 0, 0, 0, 0.289522, 0, 1.23491, 0)
@@ -428,7 +428,7 @@ mesh = SubResource("ArrayMesh_vsrru")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08699, 0)
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 4.34436e-09, 1.08699, 8.51495e-09)
 shape = SubResource("CylinderShape3D_l300u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
