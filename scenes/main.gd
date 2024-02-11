@@ -36,6 +36,7 @@ func add_player(peer_id):
 	print("add player ", peer_id) 
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
+	new_player.position = Vector3(0, 1, 0)
 	add_child(new_player)
 	
 	
