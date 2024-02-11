@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cmqucatgwf030"]
+[gd_scene load_steps=2 format=3 uid="uid://cmqucatgwf030"]
+
+[ext_resource type="Script" path="res://scenes/mainMenu.gd" id="1_x01b1"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x01b1")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -48,3 +51,6 @@ text = "join multiplayer"
 layout_mode = 2
 placeholder_text = "enter address to join"
 alignment = 1
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
