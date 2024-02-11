@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://c506d8u0j15j2"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_dno3v"]
+[ext_resource type="PackedScene" uid="uid://0r2hqrc77w5h" path="res://scenes/humanoid.tscn" id="2_xk7k8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_l300u"]
+height = 2.18489
+radius = 0.353998
+
+[sub_resource type="Animation" id="Animation_cxpyk"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_hr676"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxtmo"]
+_data = {
+"RESET": SubResource("Animation_cxpyk"),
+"idle": SubResource("Animation_hr676")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8xwpn"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_dno3v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08699, 0)
+shape = SubResource("CylinderShape3D_l300u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sxtmo")
+}
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8xwpn")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98221, 0)
+fov = 110.0
+
+[node name="humanoid" parent="." instance=ExtResource("2_xk7k8")]

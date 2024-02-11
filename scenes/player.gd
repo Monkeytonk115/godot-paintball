@@ -15,8 +15,16 @@ func _enter_tree():
 func _ready():
 	if not is_multiplayer_authority(): return
 
+	# Hide our own body in multiplayer
+	$humanoid.hide()
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	$head/Camera3D.current = true
+	$Camera3D.current = true
+
+
+func _process(_delta):
+	if not is_multiplayer_authority(): return
+	$Camera3D.transform = $humanoid/Eye.transform
 
 
 func _unhandled_input(event):
@@ -24,8 +32,8 @@ func _unhandled_input(event):
 
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)
-		$head/Camera3D.rotate_x(-event.relative.y * 0.005)
-		$head/Camera3D.rotation.x = clamp($head/Camera3D.rotation.x, -PI/2, PI/2)
+		$humanoid/Eye.rotate_x(-event.relative.y * 0.005)
+		$humanoid/Eye.rotation.x = clamp($humanoid/Eye.rotation.x, -PI/2, PI/2)
 
 
 func _physics_process(delta):
