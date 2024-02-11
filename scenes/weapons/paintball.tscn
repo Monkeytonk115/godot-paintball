@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://eal31l7vkx1k"]
+[gd_scene load_steps=6 format=3 uid="uid://eal31l7vkx1k"]
 
 [ext_resource type="Script" path="res://scenes/weapons/paintball.gd" id="1_lpndq"]
 
@@ -15,6 +15,11 @@ rings = 6
 [sub_resource type="SphereShape3D" id="SphereShape3D_usj5e"]
 radius = 0.05
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mvu8a"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Paintball" type="RigidBody3D"]
 script = ExtResource("1_lpndq")
 
@@ -23,5 +28,8 @@ mesh = SubResource("SphereMesh_s8h1v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_usj5e")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_mvu8a")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

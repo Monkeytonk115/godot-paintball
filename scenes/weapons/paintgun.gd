@@ -29,5 +29,5 @@ func PrimaryFire():
 	var new_bullet = bullet.instantiate()
 	new_bullet.global_transform = $attachment_muzzle.global_transform
 	new_bullet.linear_velocity = -$attachment_muzzle.global_transform.basis.z * 20
-	get_node("/root/Main/bullets").add_child(new_bullet)
+	get_node("/root/Main/bullets").add_child(new_bullet, true)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
