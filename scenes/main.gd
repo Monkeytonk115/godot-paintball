@@ -36,6 +36,7 @@ func add_player(peer_id):
 	print("add player ", peer_id) 
 	var new_player = player.instantiate()
 	add_child(new_player)
+	new_player.set_multiplayer_authority(peer_id)
 	
 func remove_player(peer_id):
 	pass
