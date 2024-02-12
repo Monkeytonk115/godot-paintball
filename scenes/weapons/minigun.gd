@@ -20,7 +20,7 @@ func PrimaryFire():
 	print("PrimaryFire")
 	if _next_fire_time >= Time.get_ticks_msec():
 		# Can't fire right now, need to wait
-		pass
+		return
 	
 	# shoot effects
 	# shoot bullet
