@@ -1,10 +1,7 @@
 extends Node3D
 
-signal shoot_bullet(origin : Transform3D, velocity : Vector3)
-
 # Fire rate of 15 rounds per second
 const fire_delay = 1.0 / 15.0
-
 
 var _next_fire_time
 
@@ -26,5 +23,5 @@ func PrimaryFire():
 	
 	# shoot effects
 	# shoot bullet
-	shoot_bullet.emit($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 10)
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 10)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)

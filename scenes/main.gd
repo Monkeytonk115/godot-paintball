@@ -50,12 +50,6 @@ func remove_player(peer_id):
 	pass
 
 
-func shoot_bullet(origin : Transform3D, velocity : Vector3):
-	print("shoot_bullet")
-	# call on all clients so they spawn a bullet
-	shoot_bullet_client.rpc(origin, velocity)
-
-
 @rpc("any_peer", "call_local")
 func shoot_bullet_client(origin : Transform3D, velocity : Vector3):
 	print("shoot_bullet_client")
