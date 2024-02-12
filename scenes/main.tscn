@@ -16,9 +16,5 @@ spawn_path = NodePath("..")
 
 [node name="bullets" type="Node3D" parent="."]
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="bullets"]
-_spawnable_scenes = PackedStringArray("res://scenes/weapons/paintball.tscn")
-spawn_path = NodePath("..")
-
 [connection signal="hostGame" from="CanvasLayer/mainMenu" to="." method="_on_control_host_game"]
 [connection signal="joinGame" from="CanvasLayer/mainMenu" to="." method="_on_control_join_game"]

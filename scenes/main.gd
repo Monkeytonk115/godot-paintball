@@ -8,6 +8,8 @@ const bullet = preload("res://scenes/weapons/paintball.tscn")
 
 var new_arena
 
+var player_list = {}
+
 var enet_peer = ENetMultiplayerPeer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,8 +53,16 @@ func remove_player(peer_id):
 	pass
 
 
-#@rpc
+
 func shoot_bullet(origin : Transform3D, velocity : Vector3):
+	print("shoot_bullet")
+	# call on all clients so they spawn a bullet
+	shoot_bullet_client.rpc(origin, velocity)
+
+
+@rpc("any_peer", "call_local")
+func shoot_bullet_client(origin : Transform3D, velocity : Vector3):
+	print("shoot_bullet_client")
 	var new_bullet = bullet.instantiate()
 	new_bullet.global_transform = origin
 	new_bullet.linear_velocity = velocity
