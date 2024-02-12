@@ -40,10 +40,7 @@ func add_player(peer_id):
 	print("add player ", peer_id) 
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
-	
-	var new_gun = gun.instantiate()
-	new_gun.shoot_bullet.connect(shoot_bullet)
-	new_player.equip(new_gun)
+	new_player.loadout = ["res://scenes/weapons/paintgun.tscn"]
 	var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
 	add_child(new_player)
 	new_player.global_transform = spawnPoint.global_transform
@@ -51,7 +48,6 @@ func add_player(peer_id):
 
 func remove_player(peer_id):
 	pass
-
 
 
 func shoot_bullet(origin : Transform3D, velocity : Vector3):

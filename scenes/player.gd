@@ -8,6 +8,8 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var equipped_weapon
 
+var loadout = ["res://scenes/weapons/paintgun.tscn"]
+
 func _enter_tree():
 	# Can only change multiplayer authority from inside _enter_tree()
 	set_multiplayer_authority(str(name).to_int())
@@ -21,6 +23,8 @@ func _ready():
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Camera3D.current = true
+	
+	equip.rpc(loadout[0])
 
 
 func _process(_delta):
@@ -65,8 +69,9 @@ func _physics_process(delta):
 			equipped_weapon.PrimaryFire()
 
 
-#@rpc("any_peer", "call_local")
-func equip(wep : Node):
-	equipped_weapon = wep
+@rpc("authority", "call_local")
+func equip(wep : String):
+	print("equipping ", wep)
+	equipped_weapon = load(wep).instantiate()
 	$humanoid/hand_right.add_child(equipped_weapon)
 	equipped_weapon.transform = equipped_weapon.find_child("attachment_0").transform.inverse()
