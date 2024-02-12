@@ -1,7 +1,8 @@
 extends Node3D
 
-# Fire rate of 15 rounds per second
-const fire_delay = 1.0 / 15.0
+# Fire rate of 3 rounds per second
+const fire_delay = 1.0 / 3.0
+const automatic = false
 
 var _next_fire_time
 
@@ -23,5 +24,5 @@ func PrimaryFire():
 	
 	# shoot effects
 	# shoot bullet
-	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 10)
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 35)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)

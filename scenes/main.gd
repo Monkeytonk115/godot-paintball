@@ -42,8 +42,8 @@ func add_player(peer_id):
 	new_player.set_name(str(peer_id))
 	new_player.loadout = ["res://scenes/weapons/paintgun.tscn"]
 	var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
-	add_child(new_player)
 	new_player.global_transform = spawnPoint.global_transform
+	add_child(new_player)
 
 
 func remove_player(peer_id):
