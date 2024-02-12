@@ -2,7 +2,8 @@ extends RigidBody3D
 
 
 func _ready():
-	pass
+	self.contact_monitor = true
+	self.max_contacts_reported = 1
 
 
 func _process(delta):
