@@ -26,3 +26,4 @@ func PrimaryFire():
 	# shoot bullet
 	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 15)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
+	$AnimationPlayer.play("fire", -0.5)
