@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cehikvgai1diw"]
+
+[ext_resource type="PackedScene" uid="uid://h8dy883vishh" path="res://scenes/arena_2.tscn" id="1_du68e"]
+[ext_resource type="PackedScene" uid="uid://0r2hqrc77w5h" path="res://scenes/humanoid.tscn" id="2_2susl"]
+[ext_resource type="PackedScene" uid="uid://c7veshyatxwfd" path="res://scenes/weapons/paintgun.tscn" id="3_oo8uq"]
+[ext_resource type="PackedScene" uid="uid://eal31l7vkx1k" path="res://scenes/weapons/paintball.tscn" id="4_kidai"]
+[ext_resource type="PackedScene" uid="uid://dihbwdbf1b4hm" path="res://models/minigun.glb" id="5_5n7pv"]
+
+[node name="titleScreen" type="Node3D"]
+
+[node name="arena_2" parent="." instance=ExtResource("1_du68e")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.738209, -0.0696032, 0.670971, -0.0878337, 0.976277, 0.19791, -0.668829, -0.205033, 0.714583, -4.78449, 3.59368, 15.0739)
+fov = 65.0
+
+[node name="humanoid" parent="." instance=ExtResource("2_2susl")]
+transform = Transform3D(0.0067195, -3.60291e-10, -0.999977, -0.845904, 0.533305, -0.00568418, 0.533292, 0.845923, 0.00358354, -15.0002, 2.27094, 13.1753)
+
+[node name="PaintGun" parent="." instance=ExtResource("3_oo8uq")]
+transform = Transform3D(0.25882, 0.349134, -0.900621, -0.652316, 0.750833, 0.103605, 0.712387, 0.560675, 0.422077, -14.0985, 2.34861, 14.4094)
+
+[node name="Paintball" parent="." instance=ExtResource("4_kidai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7747, 2.22606, 13.8057)
+
+[node name="Paintball2" parent="." instance=ExtResource("4_kidai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.37146, 3.12192, 9.80833)
+
+[node name="Paintball3" parent="." instance=ExtResource("4_kidai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.06883, 3.12192, 10.386)
+
+[node name="Paintball4" parent="." instance=ExtResource("4_kidai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.86255, 3.12192, 11.0323)
+
+[node name="humanoid2" parent="." instance=ExtResource("2_2susl")]
+transform = Transform3D(-0.439579, 0.271818, 0.856087, 0.266856, 0.949596, -0.164485, -0.857647, 0.156148, -0.489959, -5.73927, 1.0046, 8.75816)
+
+[node name="minigun" parent="." instance=ExtResource("5_5n7pv")]
+transform = Transform3D(0.607883, 0.160684, -0.777598, -0.24796, 0.968749, 0.00634259, 0.754317, 0.188958, 0.62873, -6.15903, 2.93791, 8.75634)
