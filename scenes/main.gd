@@ -49,7 +49,7 @@ func add_player(peer_id):
 	print("add player ", peer_id) 
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
-	new_player.loadout = ["res://scenes/weapons/minigun.tscn"]
+	new_player.loadout = ["res://scenes/weapons/sniper.tscn"]
 	var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
 	new_player.global_transform = spawnPoint.global_transform
 	add_child(new_player)

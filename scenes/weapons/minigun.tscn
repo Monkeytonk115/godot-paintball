@@ -1,7 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgtjfre06aowo"]
+[gd_scene load_steps=19 format=3 uid="uid://bgtjfre06aowo"]
 
 [ext_resource type="PackedScene" uid="uid://dihbwdbf1b4hm" path="res://models/minigun.glb" id="1_1tikw"]
 [ext_resource type="Script" path="res://scenes/weapons/minigun.gd" id="2_2ks6o"]
+[ext_resource type="Texture2D" uid="uid://dwa6rmovhstce" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="3_u2453"]
+[ext_resource type="Texture2D" uid="uid://c60xn2bhfsvjf" path="res://addons/kenney_prototype_textures/red/texture_05.png" id="4_k56sq"]
+[ext_resource type="Texture2D" uid="uid://do56k6o4341ku" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="5_cmdtt"]
+[ext_resource type="Texture2D" uid="uid://ca1igsgmdho27" path="res://addons/kenney_prototype_textures/red/texture_02.png" id="6_nb3ne"]
+[ext_resource type="Texture2D" uid="uid://bxab1y7gbgja4" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="7_jkol6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wognu"]
+albedo_texture = ExtResource("3_u2453")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4id6"]
+albedo_texture = ExtResource("4_k56sq")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o33om"]
+albedo_texture = ExtResource("5_cmdtt")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64lkp"]
+albedo_texture = ExtResource("6_nb3ne")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j80i3"]
+albedo_texture = ExtResource("6_nb3ne")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbd34"]
+albedo_texture = ExtResource("5_cmdtt")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xytem"]
+albedo_texture = ExtResource("5_cmdtt")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74d64"]
+albedo_texture = ExtResource("7_jkol6")
+uv1_triplanar = true
 
 [sub_resource type="Animation" id="Animation_dvty6"]
 length = 0.2
@@ -62,27 +99,35 @@ script = ExtResource("2_2ks6o")
 
 [node name="Cylinder_001" parent="." index="0"]
 transform = Transform3D(0.34, 0, 0, 0, -1.63081e-08, -0.34, 0, 0.373085, -1.48619e-08, 0.0249999, 0, 0.66629)
+surface_material_override/0 = SubResource("StandardMaterial3D_wognu")
 
 [node name="Cube_002" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, -0.390327, -0.434483)
+surface_material_override/0 = SubResource("StandardMaterial3D_d4id6")
 
 [node name="Cylinder_002" parent="." index="2"]
 transform = Transform3D(6.49633e-16, -2.75398e-09, 0.34, -0.34, -2.75398e-09, 0, 1.48619e-08, -0.0630037, -1.48619e-08, 0.025, 0, -0.710385)
+surface_material_override/0 = SubResource("StandardMaterial3D_o33om")
 
 [node name="Cube_003" parent="." index="3"]
 transform = Transform3D(-0.193905, 0, 5.89891e-09, 0, 0.0515758, 0, -1.69517e-08, 0, -0.0674757, 0.0250001, -0.363266, -1.60145)
+surface_material_override/0 = SubResource("StandardMaterial3D_64lkp")
 
 [node name="Cube_004" parent="." index="4"]
 transform = Transform3D(-0.193905, 0, 3.12642e-08, 0, 0.0515758, 0, -1.69517e-08, 0, -0.357621, 0.0249999, -0.363266, 0.66629)
+surface_material_override/0 = SubResource("StandardMaterial3D_j80i3")
 
 [node name="Cube_005" parent="." index="5"]
 transform = Transform3D(-0.0289795, 0, 3.42162e-09, 0, 0.204531, 0, -2.53347e-09, 0, -0.0391388, 0.025, -0.592221, -0.277341)
+surface_material_override/0 = SubResource("StandardMaterial3D_tbd34")
 
 [node name="Cube_006" parent="." index="6"]
 transform = Transform3D(-0.0289795, 0, 3.42162e-09, 0, 0.204531, 0, -2.53347e-09, 0, -0.0391388, -0.0749999, -0.592221, -1.46692)
+surface_material_override/0 = SubResource("StandardMaterial3D_xytem")
 
 [node name="Cube_007" parent="." index="7"]
 transform = Transform3D(-0.0134983, 0, 1.18006e-09, 0, 0.0134983, 0, -1.18006e-09, 0, -0.0134983, 0.025, -0.454231, -0.376842)
+surface_material_override/0 = SubResource("StandardMaterial3D_74d64")
 
 [node name="attachment_0" type="Marker3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0290754, -0.6243, -0.279447)
