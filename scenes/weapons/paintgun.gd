@@ -17,7 +17,7 @@ func _process(delta):
 
 
 func PrimaryFire():
-	print("PrimaryFire")
+	#print("PrimaryFire")
 	if _next_fire_time >= Time.get_ticks_msec():
 		# Can't fire right now, need to wait
 		return
@@ -26,3 +26,6 @@ func PrimaryFire():
 	# shoot bullet
 	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 35)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
+	
+func animation(firing):
+	pass
