@@ -68,9 +68,13 @@ func _physics_process(delta):
 		if equipped_weapon.automatic:
 			if Input.is_action_pressed("primary_fire"):
 				equipped_weapon.PrimaryFire()
+				equipped_weapon.animation(1)
 		else:
 			if Input.is_action_just_pressed("primary_fire"):
 				equipped_weapon.PrimaryFire()
+				equipped_weapon.animation(1)
+		if !Input.is_action_pressed("primary_fire"):
+			equipped_weapon.animation(0)
 
 
 @rpc("authority", "call_local")

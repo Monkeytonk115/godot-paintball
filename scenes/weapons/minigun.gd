@@ -4,7 +4,9 @@ extends Node3D
 const fire_delay = 1.0 / 20.0
 const automatic = true
 
+
 var _next_fire_time
+var firingSpeed = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,13 +19,29 @@ func _process(delta):
 
 
 func PrimaryFire():
-	print("PrimaryFire")
+	#print("PrimaryFire")
 	if _next_fire_time >= Time.get_ticks_msec():
 		# Can't fire right now, need to wait
 		return
 	
 	# shoot effects
 	# shoot bullet
-	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 15)
+	#get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 15)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
-	$AnimationPlayer.play("fire", -0.5)
+	
+func animation(firing):
+	if firing == 1:
+		if !$AnimationPlayer.is_playing():
+			$AnimationPlayer.play("fire", -0.5, firingSpeed)
+			if firingSpeed < 5:
+				firingSpeed = firingSpeed + 0.1
+				#print(firingSpeed)
+	if firing == 0:
+		if !$AnimationPlayer.is_playing():
+			$AnimationPlayer.stop()
+			firingSpeed = 1.0
+
+# for minigun, firing is moved to being called from the animation instead, so that firing is timed to the animation speed
+func animFunction():
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 15)
+

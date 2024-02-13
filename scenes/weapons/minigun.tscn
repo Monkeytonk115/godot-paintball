@@ -3,6 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://dihbwdbf1b4hm" path="res://models/minigun.glb" id="1_1tikw"]
 [ext_resource type="Script" path="res://scenes/weapons/minigun.gd" id="2_2ks6o"]
 
+[sub_resource type="Animation" id="Animation_dvty6"]
+length = 0.2
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cylinder_002:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, -1.5708), Vector3(1.5708, 1.5708, -1.5708)]
+}
+
 [sub_resource type="Animation" id="Animation_ehfol"]
 resource_name = "fire"
 length = 0.2
@@ -19,20 +36,19 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, -1.5708, 1.5708), Vector3(-1.5708, -1.5708, 1.5708)]
 }
-
-[sub_resource type="Animation" id="Animation_dvty6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cylinder_002:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.5708, 3.14159, 0)]
+"values": [{
+"args": [],
+"method": &"animFunction"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_56nyv"]
@@ -45,13 +61,13 @@ _data = {
 script = ExtResource("2_2ks6o")
 
 [node name="Cylinder_001" parent="." index="0"]
-transform = Transform3D(-0.34, 3.26162e-08, 0, 0, 0, -0.34, -2.97237e-08, -0.373085, 0, 0.0249999, 0, 0.66629)
+transform = Transform3D(0.34, 0, 0, 0, -1.63081e-08, -0.34, 0, 0.373085, -1.48619e-08, 0.0249999, 0, 0.66629)
 
 [node name="Cube_002" parent="." index="1"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.025, -0.390327, -0.434483)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, -0.390327, -0.434483)
 
 [node name="Cylinder_002" parent="." index="2"]
-transform = Transform3D(-0.34, 9.51329e-09, -2.24408e-15, 0, -2.75398e-09, -0.34, -5.13386e-08, -0.0630037, 1.48619e-08, 0.025, 0, -0.710385)
+transform = Transform3D(6.49633e-16, -2.75398e-09, 0.34, -0.34, -2.75398e-09, 0, 1.48619e-08, -0.0630037, -1.48619e-08, 0.025, 0, -0.710385)
 
 [node name="Cube_003" parent="." index="3"]
 transform = Transform3D(-0.193905, 0, 5.89891e-09, 0, 0.0515758, 0, -1.69517e-08, 0, -0.0674757, 0.0250001, -0.363266, -1.60145)

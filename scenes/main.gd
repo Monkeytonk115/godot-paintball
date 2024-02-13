@@ -61,7 +61,7 @@ func remove_player(peer_id):
 
 @rpc("any_peer", "call_local")
 func shoot_bullet_client(origin : Transform3D, velocity : Vector3):
-	print("shoot_bullet_client")
+	#print("shoot_bullet_client")
 	var new_bullet = bullet.instantiate()
 	new_bullet.global_transform = origin
 	new_bullet.linear_velocity = velocity
