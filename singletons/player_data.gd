@@ -41,3 +41,10 @@ func get_player_team(peer_id):
 @rpc("any_peer", "call_local")
 func set_player_team(peer_id, team):
 	_teams[peer_id] = team
+
+
+@rpc("any_peer", "call_local")
+func player_disconnect(peer_id):
+	_playerNames.erase(peer_id)
+	_scores.erase(peer_id)
+	_teams.erase(peer_id)

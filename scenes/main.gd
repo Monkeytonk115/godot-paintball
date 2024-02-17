@@ -46,7 +46,7 @@ func _on_control_join_game(address):
 	$CanvasLayer/mainMenu.hide()
 
 func add_player(peer_id):
-	print("add player ", peer_id) 
+	print("add player ", peer_id)
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
 	new_player.loadout = ["res://scenes/weapons/paintgun.tscn"]
@@ -59,7 +59,9 @@ func add_player(peer_id):
 
 
 func remove_player(peer_id):
-	pass
+	PlayerData.player_disconnect.rpc(peer_id)
+	var x = get_node(str(peer_id))
+	x.queue_free()
 
 
 @rpc("any_peer", "call_local")
