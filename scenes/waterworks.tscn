@@ -1,8 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://b51q3qq4a5n0w"]
+[gd_scene load_steps=29 format=3 uid="uid://b51q3qq4a5n0w"]
 
 [ext_resource type="PackedScene" uid="uid://dvq6dtwtqwi5n" path="res://models/waterworks.glb" id="1_g6l76"]
 [ext_resource type="Texture2D" uid="uid://do56k6o4341ku" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_mbxsv"]
-[ext_resource type="PackedScene" uid="uid://c506d8u0j15j2" path="res://scenes/player.tscn" id="3_jlktv"]
 [ext_resource type="Texture2D" uid="uid://cvu4owhnadcxk" path="res://addons/kenney_prototype_textures/green/texture_10.png" id="5_eap8c"]
 [ext_resource type="Texture2D" uid="uid://d3ijkvwwq0pt4" path="res://addons/kenney_prototype_textures/orange/texture_04.png" id="5_vxyy7"]
 
@@ -168,10 +167,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.331, 3.2, -35.444)
 [node name="spawnPoint8" type="Marker3D" parent="greenSpawn" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.331, 3.2, -35.444)
 
-[node name="Player" parent="." index="5" instance=ExtResource("3_jlktv")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.4766, 2.2, -25.1309)
-
-[node name="lights" type="Node3D" parent="." index="6"]
+[node name="lights" type="Node3D" parent="." index="5"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="lights" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.05, 2.8, -0.33)
@@ -254,7 +250,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9474, 8, -3.56692)
 [node name="OmniLight3D27" type="OmniLight3D" parent="lights" index="26"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7914, 8, -3.56692)
 
-[node name="props" type="Node3D" parent="." index="7"]
+[node name="props" type="Node3D" parent="." index="6"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="props" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7621, 1.25, -12.1632)

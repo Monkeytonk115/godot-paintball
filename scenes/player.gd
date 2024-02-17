@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var equipped_weapon
 
 var loadout = ["res://scenes/weapons/paintgun.tscn"]
+var _respawn_point : Vector3
 
 func _enter_tree():
 	# Can only change multiplayer authority from inside _enter_tree()
@@ -43,6 +44,11 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
+	
+	if _respawn_point != Vector3.INF:
+		global_transform.origin = _respawn_point
+		_respawn_point = Vector3.INF
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta

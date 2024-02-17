@@ -47,15 +47,20 @@ func _on_control_join_game(address):
 
 func add_player(peer_id):
 	print("add player ", peer_id)
+	var team = [Team.PURPLE, Team.GREEN][multiplayer.get_peers().size() % 2]
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
 	new_player.loadout = ["res://scenes/weapons/paintgun.tscn"]
-	var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
-	new_player.global_transform = spawnPoint.global_transform
+	if team == Team.GREEN:
+		var spawnPoint = new_arena.find_child("greenSpawn").get_children().pick_random()
+		new_player._respawn_point = spawnPoint.global_transform.origin
+	else:
+		var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
+		new_player._respawn_point = spawnPoint.global_transform.origin
 	add_child(new_player)
 	PlayerData.set_player_name.rpc(peer_id, ["Alfa", "Bravo", "Charlie", "Delta", "Echo"].pick_random())
 	PlayerData.set_player_score.rpc(peer_id, 0)
-	PlayerData.set_player_team.rpc(peer_id, [Team.PURPLE, Team.GREEN][multiplayer.get_peers().size() % 2])
+	PlayerData.set_player_team.rpc(peer_id, team)
 
 
 func remove_player(peer_id):
