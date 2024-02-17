@@ -45,6 +45,19 @@ text = "Scoreboard"
 [node name="PlayerCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="GridContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-columns = 2
+
+[node name="GreenScore" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/GreenScore"]
+layout_mode = 2
+text = "Green"
+
+[node name="PurpleScore" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PurpleScore"]
+layout_mode = 2
+text = "Purple"

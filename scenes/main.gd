@@ -53,6 +53,9 @@ func add_player(peer_id):
 	var spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random()
 	new_player.global_transform = spawnPoint.global_transform
 	add_child(new_player)
+	PlayerData.set_player_name.rpc(peer_id, ["Alfa", "Bravo", "Charlie", "Delta", "Echo"].pick_random())
+	PlayerData.set_player_score.rpc(peer_id, 0)
+	PlayerData.set_player_team.rpc(peer_id, [Team.PURPLE, Team.GREEN][multiplayer.get_peers().size() % 2])
 
 
 func remove_player(peer_id):
