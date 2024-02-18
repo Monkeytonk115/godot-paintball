@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/weapons/sniper.gd" id="2_j3qaf"]
 [ext_resource type="Texture2D" uid="uid://bpyqwfe2qs2m4" path="res://addons/kenney_prototype_textures/dark/texture_06.png" id="3_pqiwl"]
 [ext_resource type="Texture2D" uid="uid://ca1igsgmdho27" path="res://addons/kenney_prototype_textures/red/texture_02.png" id="4_achmg"]
-[ext_resource type="AudioStream" uid="uid://l05y63y6r6wq" path="res://audio/ricochet.wav" id="5_kyrgh"]
+[ext_resource type="AudioStream" uid="uid://cu6df4lvkks14" path="res://audio/gun.ogg" id="5_tqpkl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6m1q"]
 albedo_texture = ExtResource("3_pqiwl")
@@ -274,4 +274,4 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="12"]
-stream = ExtResource("5_kyrgh")
+stream = ExtResource("5_tqpkl")
