@@ -275,3 +275,5 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="12"]
 stream = ExtResource("5_tqpkl")
+max_db = -3.0
+panning_strength = 0.5

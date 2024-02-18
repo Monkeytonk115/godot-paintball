@@ -1,7 +1,7 @@
 extends Node3D
 
 # Fire rate of 3 rounds per second
-const fire_delay = 1.0 / 3.0
+const fire_delay = 1.0 / 4
 const automatic = false
 
 var _next_fire_time
