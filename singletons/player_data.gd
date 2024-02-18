@@ -20,6 +20,8 @@ func add_player_score(peer_id, score):
 
 
 func get_player_name(peer_id):
+	if peer_id == -1:
+		return "<World>"
 	return _playerNames.get(peer_id, "")
 
 

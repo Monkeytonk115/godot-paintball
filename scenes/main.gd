@@ -1,6 +1,6 @@
 extends Node3D
 
-const arena = preload("res://scenes/waterworks.tscn")
+const arena = preload("res://scenes/arena_2.tscn")
 
 const player = preload("res://scenes/player.tscn")
 const gun = preload("res://scenes/weapons/paintgun.tscn")
@@ -87,11 +87,14 @@ func shoot_bullet_client(origin : Transform3D, velocity : Vector3, attacker_id :
 
 
 func player_hit(ply : Node3D, attacker_id : int):
+	var victim_id = ply.name.to_int()
 	print(ply, " was hit by ", attacker_id)
+	$CanvasLayer/KillFeed.add_kill.rpc(attacker_id, victim_id, "")
 	var spawnPoint = Vector3.ZERO
-	if PlayerData.get_player_team(ply.name.to_int()) == Team.GREEN:
+	if PlayerData.get_player_team(victim_id) == Team.GREEN:
 		spawnPoint = new_arena.find_child("greenSpawn").get_children().pick_random().transform.origin
 	else:
 		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
-	PlayerData.add_player_score.rpc(attacker_id, 1)
+	if attacker_id != -1:
+		PlayerData.add_player_score.rpc(attacker_id, 1)
 	ply.respawn.rpc(spawnPoint)

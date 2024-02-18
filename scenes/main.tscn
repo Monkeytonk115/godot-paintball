@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://j8r38w003035"]
+[gd_scene load_steps=5 format=3 uid="uid://j8r38w003035"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_5s3o4"]
 [ext_resource type="PackedScene" uid="uid://cmqucatgwf030" path="res://scenes/mainMenu.tscn" id="2_pc3wx"]
 [ext_resource type="PackedScene" uid="uid://cv6xn7b2qlxfn" path="res://scenes/score_board.tscn" id="3_yq07t"]
+[ext_resource type="PackedScene" uid="uid://bjpjfowj4axh0" path="res://scenes/kill_feed.tscn" id="4_aludu"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_5s3o4")
@@ -12,6 +13,8 @@ script = ExtResource("1_5s3o4")
 [node name="mainMenu" parent="CanvasLayer" instance=ExtResource("2_pc3wx")]
 
 [node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("3_yq07t")]
+
+[node name="KillFeed" parent="CanvasLayer" instance=ExtResource("4_aludu")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
