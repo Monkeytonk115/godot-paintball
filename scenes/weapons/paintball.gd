@@ -7,7 +7,7 @@ func _ready():
 	self.max_contacts_reported = 1
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if position.y <= -10:
 		queue_free()
 

@@ -12,11 +12,6 @@ func _ready():
 	_next_fire_time = Time.get_ticks_msec()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func PrimaryFire():
 	#print("PrimaryFire")
 	if _next_fire_time >= Time.get_ticks_msec():
@@ -28,5 +23,5 @@ func PrimaryFire():
 	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 35, ply_id)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
 	
-func animation(firing):
+func animation(_firing):
 	pass

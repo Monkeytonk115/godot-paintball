@@ -15,11 +15,6 @@ func _ready():
 	_next_fire_time = Time.get_ticks_msec()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func PrimaryFire():
 	#print("PrimaryFire")
 	if _next_fire_time >= Time.get_ticks_msec():

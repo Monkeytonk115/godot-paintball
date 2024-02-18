@@ -17,12 +17,7 @@ func _ready():
 	add_child(new_arena)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("scoreboard"):
 		$CanvasLayer/ScoreBoard.show()
 	else:
