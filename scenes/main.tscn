@@ -13,6 +13,7 @@ script = ExtResource("1_5s3o4")
 [node name="mainMenu" parent="CanvasLayer" instance=ExtResource("2_pc3wx")]
 
 [node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("3_yq07t")]
+visible = false
 
 [node name="KillFeed" parent="CanvasLayer" instance=ExtResource("4_aludu")]
 
