@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-signal player_hit(this : Node)
+signal player_hit(this : Node, attacker_id : int)
 
 
 const SPEED = 5.0
@@ -89,6 +89,7 @@ func equip(wep : String):
 	equipped_weapon = load(wep).instantiate()
 	$humanoid/hand_right.add_child(equipped_weapon)
 	equipped_weapon.transform = equipped_weapon.find_child("attachment_0").transform.inverse()
+	equipped_weapon.ply_id = str(name).to_int()
 
 
 @rpc("any_peer", "call_local")
@@ -97,5 +98,5 @@ func respawn(respawn_point):
 	velocity = Vector3.ZERO
 
 
-func take_damage(_damage : int):
-	player_hit.emit(self)
+func take_damage(_damage : int, attacker_id : int):
+	player_hit.emit(self, attacker_id)

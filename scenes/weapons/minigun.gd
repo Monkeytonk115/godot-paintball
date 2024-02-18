@@ -8,6 +8,8 @@ const automatic = true
 var _next_fire_time
 var firingSpeed = 1.0
 
+var ply_id
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_next_fire_time = Time.get_ticks_msec()
@@ -46,5 +48,5 @@ func animFunction():
 	var aimcone:Transform3D = $attachment_muzzle.global_transform
 	aimcone = aimcone.rotated(aimcone.basis.y, randf_range(-0.05, 0.05))
 	aimcone = aimcone.rotated(aimcone.basis.x, randf_range(-0.05, 0.05))
-	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 20)
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 20, ply_id)
 

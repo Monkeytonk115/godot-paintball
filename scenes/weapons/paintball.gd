@@ -1,5 +1,6 @@
 extends RigidBody3D
 
+var ply_id
 
 func _ready():
 	self.contact_monitor = true
@@ -13,5 +14,5 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body.has_method("take_damage"):
-		body.take_damage(1)
+		body.take_damage(1, ply_id)
 	queue_free()

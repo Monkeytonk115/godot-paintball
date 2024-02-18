@@ -7,6 +7,8 @@ const automatic = false
 var _next_fire_time
 var reloaded
 
+var ply_id
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_next_fire_time = Time.get_ticks_msec()
@@ -42,4 +44,4 @@ func animReload():
 	reloaded = true
 	
 func animFire():
-	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 75)
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 75, ply_id)

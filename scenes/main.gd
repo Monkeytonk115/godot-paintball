@@ -77,19 +77,21 @@ func remove_player(peer_id):
 
 
 @rpc("any_peer", "call_local")
-func shoot_bullet_client(origin : Transform3D, velocity : Vector3):
+func shoot_bullet_client(origin : Transform3D, velocity : Vector3, attacker_id : int):
 	#print("shoot_bullet_client")
 	var new_bullet = bullet.instantiate()
 	new_bullet.global_transform = origin
 	new_bullet.linear_velocity = velocity
+	new_bullet.ply_id = attacker_id
 	$bullets.add_child(new_bullet, true)
 
 
-func player_hit(ply : Node3D):
-	print(ply, " was hit")
+func player_hit(ply : Node3D, attacker_id : int):
+	print(ply, " was hit by ", attacker_id)
 	var spawnPoint = Vector3.ZERO
 	if PlayerData.get_player_team(ply.name.to_int()) == Team.GREEN:
 		spawnPoint = new_arena.find_child("greenSpawn").get_children().pick_random().transform.origin
 	else:
 		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
+	PlayerData.add_player_score.rpc(attacker_id, 1)
 	ply.respawn.rpc(spawnPoint)
