@@ -40,6 +40,8 @@ func _unhandled_input(event):
 		rotate_y(-event.relative.x * 0.005)
 		$humanoid/Eye.rotate_x(-event.relative.y * 0.005)
 		$humanoid/Eye.rotation.x = clamp($humanoid/Eye.rotation.x, -PI/2, PI/2)
+		
+		equipped_weapon.rotation.x = $humanoid/Eye.rotation.x
 
 
 func _physics_process(delta):
