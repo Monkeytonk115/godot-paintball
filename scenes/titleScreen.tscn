@@ -22,15 +22,19 @@ transform = Transform3D(0.25882, 0.349134, -0.900621, -0.652316, 0.750833, 0.103
 
 [node name="Paintball" parent="." instance=ExtResource("4_kidai")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7747, 2.22606, 13.8057)
+freeze = true
 
 [node name="Paintball2" parent="." instance=ExtResource("4_kidai")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.37146, 3.12192, 9.80833)
+freeze = true
 
 [node name="Paintball3" parent="." instance=ExtResource("4_kidai")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.06883, 3.12192, 10.386)
+freeze = true
 
 [node name="Paintball4" parent="." instance=ExtResource("4_kidai")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.86255, 3.12192, 11.0323)
+freeze = true
 
 [node name="humanoid2" parent="." instance=ExtResource("2_2susl")]
 transform = Transform3D(-0.439579, 0.271818, 0.856087, 0.266856, 0.949596, -0.164485, -0.857647, 0.156148, -0.489959, -5.73927, 1.0046, 8.75816)
