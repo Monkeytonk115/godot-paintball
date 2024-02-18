@@ -45,6 +45,11 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
+	# Failsafe if the player goes further than 100m from the origin
+	if position.length_squared() > 100_000:
+		print("too far from origin")
+		take_damage(999, -1)
+
 	if not is_multiplayer_authority(): return
 
 	# Add the gravity.
@@ -79,11 +84,6 @@ func _physics_process(delta):
 				equipped_weapon.animation(1)
 		if !Input.is_action_pressed("primary_fire"):
 			equipped_weapon.animation(0)
-	
-	# Failsafe if the player goes further than 100m from the origin
-	if position.length_squared() > 100_000:
-		print("too far from origin")
-		take_damage(999, -1)
 
 
 @rpc("any_peer", "call_local")
