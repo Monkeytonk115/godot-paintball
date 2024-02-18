@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://gss3tlkwgkoq"]
+[gd_scene load_steps=5 format=3 uid="uid://bdvgvnto5sm4"]
 
 [ext_resource type="AudioStream" uid="uid://cg64ujhvuknk1" path="res://audio/nuke.wav" id="1_256oy"]
 [ext_resource type="Script" path="res://scenes/weapons/rigidNuke.gd" id="1_287ld"]
-[ext_resource type="PackedScene" uid="uid://cav2sdiin6fol" path="res://scenes/weapons/nuke.tscn" id="2_gvq3s"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/nuke.tscn" id="2_gvq3s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yun4l"]
 radius = 2.28121

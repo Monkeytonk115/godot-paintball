@@ -100,7 +100,7 @@ func player_hit(ply : Node3D, attacker_id : int):
 		else:
 			PlayerData.add_player_score.rpc(attacker_id, 1)
 			if PlayerData.get_player_score(attacker_id) >= 25:
-				pass
+				spawn_nuke.rpc(attacker_id)
 	ply.equip.rpc([
 		"res://scenes/weapons/minigun.tscn",
 		"res://scenes/weapons/paintgun.tscn",
@@ -112,7 +112,18 @@ func player_hit(ply : Node3D, attacker_id : int):
 func connect_to_server():
 	# Send our preferred name to all other clients
 	PlayerData.set_player_name.rpc(multiplayer.get_unique_id(), PlayerConfig.get_player_name())
-	
-func spawn_nuke():
-	var new_nuke = load("res://scenes/weapons/rigidNuke.tscn").instantiate
-	pass
+
+
+@rpc("any_peer", "call_local")
+func spawn_nuke(attacker_id : int):
+	$CanvasLayer/GameOver.set_winner(attacker_id)
+	var new_nuke = load("res://scenes/weapons/rigidNuke.tscn").instantiate()
+	new_nuke.transform = new_arena.find_child("nuke_spawn").transform
+	new_nuke.nuked.connect(nuke_over)
+	add_child(new_nuke)
+
+
+func nuke_over():
+	$CanvasLayer/GameOver.show()
+	await get_tree().create_timer(5).timeout
+	get_tree().quit()
