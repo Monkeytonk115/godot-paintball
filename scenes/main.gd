@@ -46,7 +46,6 @@ func add_player(peer_id):
 	var team = [Team.PURPLE, Team.GREEN][multiplayer.get_peers().size() % 2]
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
-	new_player.loadout = ["res://scenes/weapons/minigun.tscn"]
 	var spawnPoint = Vector3.ZERO
 	if team == Team.GREEN:
 		spawnPoint = new_arena.find_child("greenSpawn").get_children().pick_random().transform.origin
@@ -57,13 +56,17 @@ func add_player(peer_id):
 	PlayerData.set_player_name.rpc(peer_id, ["Alfa", "Bravo", "Charlie", "Delta", "Echo"].pick_random())
 	PlayerData.set_player_score.rpc(peer_id, 0)
 	PlayerData.set_player_team.rpc(peer_id, team)
-	
-	new_player.player_hit.connect(player_hit)
-	
-	await get_tree().create_timer(1.0).timeout
-	new_player.respawn.rpc(spawnPoint)
-	
+
 	PlayerData.send_new_player_stats(peer_id)
+
+	new_player.player_hit.connect(player_hit)
+
+	await get_tree().create_timer(1.0).timeout
+	new_player.equip.rpc([
+		"res://scenes/weapons/minigun.tscn",
+		"res://scenes/weapons/paintgun.tscn",
+		"res://scenes/weapons/sniper.tscn"].pick_random())
+	new_player.respawn.rpc(spawnPoint)
 
 
 func remove_player(peer_id):
@@ -93,6 +96,10 @@ func player_hit(ply : Node3D, attacker_id : int):
 		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
 	if attacker_id != -1:
 		PlayerData.add_player_score.rpc(attacker_id, 1)
+	ply.equip.rpc([
+		"res://scenes/weapons/minigun.tscn",
+		"res://scenes/weapons/paintgun.tscn",
+		"res://scenes/weapons/sniper.tscn"].pick_random())
 	ply.respawn.rpc(spawnPoint)
 
 

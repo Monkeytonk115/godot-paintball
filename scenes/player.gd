@@ -10,7 +10,6 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var equipped_weapon
 
-var loadout = ["res://scenes/weapons/paintgun.tscn"]
 var player_health = 100
 
 func _enter_tree():
@@ -26,8 +25,6 @@ func _ready():
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Camera3D.current = true
-	
-	equip.rpc(loadout[0])
 
 
 func _process(_delta):
@@ -43,7 +40,8 @@ func _unhandled_input(event):
 		$humanoid/Eye.rotate_x(-event.relative.y * 0.005)
 		$humanoid/Eye.rotation.x = clamp($humanoid/Eye.rotation.x, -PI/2, PI/2)
 		
-		equipped_weapon.rotation.x = $humanoid/Eye.rotation.x
+		if equipped_weapon:
+			equipped_weapon.rotation.x = $humanoid/Eye.rotation.x
 
 
 func _physics_process(delta):
@@ -88,8 +86,10 @@ func _physics_process(delta):
 		take_damage(999, -1)
 
 
-@rpc("authority", "call_local")
+@rpc("any_peer", "call_local")
 func equip(wep : String):
+	if equipped_weapon:
+		equipped_weapon.queue_free()
 	print("equipping ", wep)
 	equipped_weapon = load(wep).instantiate()
 	$humanoid/hand_right.add_child(equipped_weapon)
