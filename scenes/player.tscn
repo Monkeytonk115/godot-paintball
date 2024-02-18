@@ -44,7 +44,6 @@ replication_config = SubResource("SceneReplicationConfig_8xwpn")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98221, 0)
-current = true
 fov = 90.0
 
 [node name="humanoid" parent="." instance=ExtResource("2_xk7k8")]
