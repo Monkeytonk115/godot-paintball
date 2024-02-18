@@ -106,7 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, -0.390327, -0.434483)
 surface_material_override/0 = SubResource("StandardMaterial3D_d4id6")
 
 [node name="Cylinder_002" parent="." index="2"]
-transform = Transform3D(6.49633e-16, -2.75398e-09, 0.34, -0.34, -2.75398e-09, 0, 1.48619e-08, -0.0630037, -1.48619e-08, 0.025, 0, -0.710385)
+transform = Transform3D(4.45547e-12, -2.28073e-07, 0.34, -0.34, -2.28073e-07, 0, 1.2308e-06, -0.0630037, -1.2308e-06, 0.025, 0, -0.710385)
 surface_material_override/0 = SubResource("StandardMaterial3D_o33om")
 
 [node name="Cube_003" parent="." index="3"]
