@@ -45,3 +45,4 @@ func animReload():
 	
 func animFire():
 	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 75, ply_id)
+	$AudioStreamPlayer3D.play()

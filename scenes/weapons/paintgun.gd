@@ -21,6 +21,8 @@ func PrimaryFire():
 	# shoot effects
 	# shoot bullet
 	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 35, ply_id)
+	$AudioStreamPlayer3D.pitch_scale = randf_range(0.9, 1.1)
+	$AudioStreamPlayer3D.play()
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
 	
 func animation(_firing):

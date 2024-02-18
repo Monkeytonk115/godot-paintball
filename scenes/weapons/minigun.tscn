@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgtjfre06aowo"]
+[gd_scene load_steps=20 format=3 uid="uid://bgtjfre06aowo"]
 
 [ext_resource type="PackedScene" uid="uid://dihbwdbf1b4hm" path="res://models/minigun.glb" id="1_1tikw"]
 [ext_resource type="Script" path="res://scenes/weapons/minigun.gd" id="2_2ks6o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://do56k6o4341ku" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="5_cmdtt"]
 [ext_resource type="Texture2D" uid="uid://ca1igsgmdho27" path="res://addons/kenney_prototype_textures/red/texture_02.png" id="6_nb3ne"]
 [ext_resource type="Texture2D" uid="uid://bxab1y7gbgja4" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="7_jkol6"]
+[ext_resource type="AudioStream" uid="uid://bx72fh5glreqx" path="res://audio/pop.wav" id="8_jewa5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wognu"]
 albedo_texture = ExtResource("3_u2453")
@@ -139,3 +140,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0262061, 0.193393, -1.89301
 libraries = {
 "": SubResource("AnimationLibrary_56nyv")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="11"]
+stream = ExtResource("8_jewa5")
