@@ -95,7 +95,10 @@ func player_hit(ply : Node3D, attacker_id : int):
 	else:
 		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
 	if attacker_id != -1:
-		PlayerData.add_player_score.rpc(attacker_id, 1)
+		if PlayerData.get_player_team(attacker_id) == PlayerData.get_player_team(victim_id):
+			PlayerData.add_player_score.rpc(attacker_id, -1)
+		else:
+			PlayerData.add_player_score.rpc(attacker_id, 1)
 	ply.equip.rpc([
 		"res://scenes/weapons/minigun.tscn",
 		"res://scenes/weapons/paintgun.tscn",
