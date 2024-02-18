@@ -12,12 +12,12 @@ func _process(_delta):
 		if x:
 			var score = PlayerData.get_player_score(peer_id)
 			green_score += score
-			x.text = "{1} {2}".format([PlayerData.get_player_name(peer_id), PlayerData.get_player_score(peer_id)])
+			x.text = "{0} {1}".format([PlayerData.get_player_name(peer_id), PlayerData.get_player_score(peer_id)])
 		else:
 			var y = Label.new()
 			y.set_name(str(peer_id))
 			$PanelContainer/MarginContainer/VBoxContainer/GridContainer/GreenScore.add_child(y)
-	$PanelContainer/MarginContainer/VBoxContainer/GridContainer/GreenScore/Label.text = "Green : {0}".format(green_score)
+	$PanelContainer/MarginContainer/VBoxContainer/GridContainer/GreenScore/Label.text = "Green : {0}".format([green_score])
 	
 	var purple_score = 0
 	for peer_id in Team.get_players(Team.PURPLE):
@@ -25,9 +25,9 @@ func _process(_delta):
 		if x:
 			var score = PlayerData.get_player_score(peer_id)
 			purple_score += score
-			x.text = "{1} {2}".format([PlayerData.get_player_name(peer_id), score])
+			x.text = "{0} {1}".format([PlayerData.get_player_name(peer_id), score])
 		else:
 			var y = Label.new()
 			y.set_name(str(peer_id))
 			$PanelContainer/MarginContainer/VBoxContainer/GridContainer/PurpleScore.add_child(y)
-	$PanelContainer/MarginContainer/VBoxContainer/GridContainer/PurpleScore/Label.text = "Purple : {0}".format(purple_score)
+	$PanelContainer/MarginContainer/VBoxContainer/GridContainer/PurpleScore/Label.text = "Purple : {0}".format([purple_score])
