@@ -37,6 +37,7 @@ func _on_control_host_game():
 func _on_control_join_game(address):
 	enet_peer.create_client(address, 5555)
 	multiplayer.multiplayer_peer = enet_peer
+	#multiplayer.connected_to_server.connect(connect_to_server)
 	$CanvasLayer/ScoreBoard.set_server_name("hosting")
 	$CanvasLayer/mainMenu.hide()
 
@@ -93,3 +94,9 @@ func player_hit(ply : Node3D, attacker_id : int):
 	if attacker_id != -1:
 		PlayerData.add_player_score.rpc(attacker_id, 1)
 	ply.respawn.rpc(spawnPoint)
+
+
+# When the client connects to a server -> send details to server
+func connect_to_server():
+	# Send our preferred name to all other clients
+	PlayerData.set_player_name.rpc(multiplayer.get_unique_id(), PlayerConfig.get_player_name())

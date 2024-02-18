@@ -52,5 +52,11 @@ layout_mode = 2
 placeholder_text = "enter address to join"
 alignment = 1
 
+[node name="LineEdit2" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Playername"
+alignment = 1
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/LineEdit2" to="." method="_on_line_edit_2_text_changed"]
