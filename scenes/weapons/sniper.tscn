@@ -1,89 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://nkltpq347f5c"]
+[gd_scene load_steps=11 format=3 uid="uid://nkltpq347f5c"]
 
 [ext_resource type="PackedScene" uid="uid://d1rn2kifdbxab" path="res://models/sniper.glb" id="1_jvl7q"]
 [ext_resource type="Script" path="res://scenes/weapons/sniper.gd" id="2_j3qaf"]
+[ext_resource type="Texture2D" uid="uid://bpyqwfe2qs2m4" path="res://addons/kenney_prototype_textures/dark/texture_06.png" id="3_pqiwl"]
+[ext_resource type="Texture2D" uid="uid://ca1igsgmdho27" path="res://addons/kenney_prototype_textures/red/texture_02.png" id="4_achmg"]
 
-[sub_resource type="Animation" id="Animation_maan1"]
-resource_name = "reload"
-length = 1.8
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("barrelEnd:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.37, 0.77, 1.27, 1.57),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -3.14159, 0), Vector3(0.610865, -3.14159, 0), Vector3(0.610865, -3.14159, 0), Vector3(0, -3.14159, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cube_004:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.35, 1.57, 1.77),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.0537628, 0.0158601, -0.24426), Vector3(-0.0537628, 0.0158601, -0.179798), Vector3(-0.0537628, 0.0158601, -0.179798), Vector3(-0.0537628, 0.0158601, -0.24426)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cube_002:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.35, 1.57, 1.77),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.0953919, 0.0160336, -0.212412), Vector3(-0.0953919, 0.0160336, -0.14795), Vector3(-0.0953919, 0.0160336, -0.14795), Vector3(-0.0953919, 0.0160336, -0.212412)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hammer:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.37, 0.77),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.52018, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(-1.52018, -3.14159, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Hammer:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.37, 0.77),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.000147693, 0.054959, -0.204363), Vector3(-0.000147693, 0.054959, -0.220535), Vector3(-0.000147693, 0.054959, -0.220535), Vector3(-0.000147693, 0.054959, -0.204363)]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.03, 1.78),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"animFire"
-}, {
-"args": [],
-"method": &"animReload"
-}]
-}
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6m1q"]
+albedo_texture = ExtResource("3_pqiwl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ijfrj"]
+albedo_texture = ExtResource("4_achmg")
+uv1_triplanar = true
 
 [sub_resource type="Animation" id="Animation_ghc5v"]
 length = 0.001
@@ -212,6 +140,88 @@ tracks/4/keys = {
 "values": [Vector3(-1.52018, -3.14159, 0), Vector3(0, -3.14159, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_maan1"]
+resource_name = "reload"
+length = 1.8
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("barrelEnd:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.37, 0.77, 1.27, 1.57),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0.610865, -3.14159, 0), Vector3(0.610865, -3.14159, 0), Vector3(0, -3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_004:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.35, 1.57, 1.77),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0537628, 0.0158601, -0.24426), Vector3(-0.0537628, 0.0158601, -0.179798), Vector3(-0.0537628, 0.0158601, -0.179798), Vector3(-0.0537628, 0.0158601, -0.24426)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cube_002:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.35, 1.57, 1.77),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0953919, 0.0160336, -0.212412), Vector3(-0.0953919, 0.0160336, -0.14795), Vector3(-0.0953919, 0.0160336, -0.14795), Vector3(-0.0953919, 0.0160336, -0.212412)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hammer:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.37, 0.77),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.52018, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(-1.52018, -3.14159, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hammer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.37, 0.77),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.000147693, 0.054959, -0.204363), Vector3(-0.000147693, 0.054959, -0.220535), Vector3(-0.000147693, 0.054959, -0.220535), Vector3(-0.000147693, 0.054959, -0.204363)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.03, 1.78),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"animFire"
+}, {
+"args": [],
+"method": &"animReload"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ya6nf"]
 _data = {
 "RESET": SubResource("Animation_ghc5v"),
@@ -224,9 +234,11 @@ script = ExtResource("2_j3qaf")
 
 [node name="stock" parent="." index="0"]
 transform = Transform3D(-0.05307, 0, -3.5258e-09, 0, 0.0403305, 0, 4.63952e-09, 0, -0.0403305, -0.020211, -0.00854149, 0.103037)
+surface_material_override/0 = SubResource("StandardMaterial3D_c6m1q")
 
 [node name="barrelEnd" parent="." index="1"]
-transform = Transform3D(-0.05307, 0, -6.08974e-09, 0, 0.0403305, 0, 8.01335e-09, 0, -0.0403305, -0.0476338, -0.0253896, -0.227688)
+transform = Transform3D(-0.05307, 0, -1.02245e-07, 0, 0.0403305, 0, 1.34542e-07, 0, -0.0403305, -0.0476338, -0.0253896, -0.227688)
+surface_material_override/0 = SubResource("StandardMaterial3D_ijfrj")
 
 [node name="Cylinder" parent="." index="2"]
 transform = Transform3D(0, -0.0474679, -1.51444e-09, -0.0173231, 0, 0, 0, 4.14977e-09, -0.0173231, -0.000147693, -0.0259146, -0.228142)
@@ -235,7 +247,7 @@ transform = Transform3D(0, -0.0474679, -1.51444e-09, -0.0173231, 0, 0, 0, 4.1497
 transform = Transform3D(-0.00724803, 0, -3.55539e-09, 0, 0.00724803, 0, 6.33643e-10, 0, -0.040669, -0.0537628, 0.0158601, -0.24426)
 
 [node name="Hammer" parent="." index="4"]
-transform = Transform3D(-0.00570374, 0, -7.26945e-10, 0, 0.0142137, 0, 8.61241e-10, 0, -0.00481434, -0.000147693, 0.054959, -0.220535)
+transform = Transform3D(-0.00570374, 0, -1.22052e-08, 0, 0.0142137, 0, 1.446e-08, 0, -0.00481434, -0.000147693, 0.054959, -0.220535)
 
 [node name="Cube" parent="." index="5"]
 transform = Transform3D(-0.00938326, 0, -8.20311e-10, 0, 0.00329951, 0, 8.20311e-10, 0, -0.00938326, -0.0508085, 0.0157351, -0.129658)
