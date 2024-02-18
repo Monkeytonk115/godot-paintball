@@ -94,6 +94,7 @@ func equip(wep : String):
 @rpc("any_peer", "call_local")
 func respawn(respawn_point):
 	global_transform.origin = respawn_point
+	velocity = Vector3.ZERO
 
 
 func take_damage(_damage : int):
