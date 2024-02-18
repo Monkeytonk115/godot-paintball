@@ -77,7 +77,7 @@ func shoot_bullet_client(origin : Transform3D, velocity : Vector3, attacker_id :
 	var new_bullet = bullet.instantiate()
 	new_bullet.global_transform = origin
 	new_bullet.linear_velocity = velocity
-	new_bullet.ply_id = attacker_id
+	new_bullet.set_shooter(attacker_id)
 	$bullets.add_child(new_bullet, true)
 
 

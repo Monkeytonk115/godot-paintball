@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://eal31l7vkx1k"]
+[gd_scene load_steps=7 format=3 uid="uid://eal31l7vkx1k"]
 
 [ext_resource type="Script" path="res://scenes/weapons/paintball.gd" id="1_lpndq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ltjc"]
+specular_mode = 2
+albedo_color = Color(0.0823529, 1, 0.188235, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfhb3"]
+albedo_color = Color(0.901961, 0.317647, 0.933333, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3be3"]
 albedo_color = Color(1, 0.0823529, 1, 1)
@@ -17,6 +24,8 @@ radius = 0.05
 
 [node name="Paintball" type="RigidBody3D"]
 script = ExtResource("1_lpndq")
+GreenMaterial = SubResource("StandardMaterial3D_7ltjc")
+PurpleMaterial = SubResource("StandardMaterial3D_cfhb3")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_s8h1v")
