@@ -44,5 +44,9 @@ func animFunction():
 	aimcone = aimcone.rotated(aimcone.basis.y, randf_range(-0.05, 0.05))
 	aimcone = aimcone.rotated(aimcone.basis.x, randf_range(-0.05, 0.05))
 	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 20, ply_id)
+	fireSound.rpc()
+
+@rpc("any_peer", "call_local")
+func fireSound():
 	$AudioStreamPlayer3D.pitch_scale = firingSpeed / 10.0
 	$AudioStreamPlayer3D.play()
