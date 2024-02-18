@@ -48,5 +48,6 @@ func animFunction():
 
 @rpc("any_peer", "call_local")
 func fireSound():
-	$AudioStreamPlayer3D.pitch_scale = firingSpeed / 10.0
+	$AudioStreamPlayer3D.pitch_scale = firingSpeed / randf_range(11, 12)
+	$AudioStreamPlayer3D.max_db = randf_range(-3, -6)
 	$AudioStreamPlayer3D.play()
