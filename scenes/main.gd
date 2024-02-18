@@ -86,7 +86,7 @@ func shoot_bullet_client(origin : Transform3D, velocity : Vector3):
 func player_hit(ply : Node3D):
 	print(ply, " was hit")
 	var spawnPoint = Vector3.ZERO
-	if PlayerData.get_player_team(ply.name) == Team.GREEN:
+	if PlayerData.get_player_team(int(ply.name)) == Team.GREEN:
 		spawnPoint = new_arena.find_child("greenSpawn").get_children().pick_random().transform.origin
 	else:
 		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
