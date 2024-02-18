@@ -43,5 +43,8 @@ func animation(firing):
 
 # for minigun, firing is moved to being called from the animation instead, so that firing is timed to the animation speed
 func animFunction():
-	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 20)
+	var aimcone:Transform3D = $attachment_muzzle.global_transform
+	aimcone = aimcone.rotated(aimcone.basis.y, randf_range(-0.1, 0.1))
+	aimcone = aimcone.rotated(aimcone.basis.x, randf_range(-0.1, 0.1))
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 20)
 
