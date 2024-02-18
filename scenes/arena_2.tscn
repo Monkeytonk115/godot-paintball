@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://h8dy883vishh"]
 
-[ext_resource type="PackedScene" uid="uid://cdqixyjyqlo56" path="res://models/arena_2.glb" id="1_0cdxq"]
+[ext_resource type="PackedScene" uid="uid://df6iaw0shd3ak" path="res://models/arena_2.glb" id="1_0cdxq"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
 [ext_resource type="Texture2D" uid="uid://1u8gasqegplp" path="res://addons/kenney_prototype_textures/orange/texture_02.png" id="3_5ys0b"]
 [ext_resource type="Texture2D" uid="uid://dqirwf4akvfwd" path="res://addons/kenney_prototype_textures/purple/texture_02.png" id="4_ej5tm"]
@@ -100,18 +100,44 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="purpleSpawn" type="Node3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 2, 0)
 
 [node name="spawnPoint" type="Marker3D" parent="purpleSpawn" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.87327)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -20)
 
-[node name="spawnPoint2" type="Marker3D" parent="purpleSpawn" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.74655)
+[node name="spawnPoint3" type="Marker3D" parent="purpleSpawn" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -14)
+
+[node name="spawnPoint4" type="Marker3D" parent="purpleSpawn" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -8)
+
+[node name="spawnPoint5" type="Marker3D" parent="purpleSpawn" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 5)
+
+[node name="spawnPoint6" type="Marker3D" parent="purpleSpawn" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 12)
+
+[node name="spawnPoint7" type="Marker3D" parent="purpleSpawn" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 18)
 
 [node name="greenSpawn" type="Node3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 2, 0)
 
 [node name="spawnPoint" type="Marker3D" parent="greenSpawn" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, -20)
+
+[node name="spawnPoint2" type="Marker3D" parent="greenSpawn" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, -13)
+
+[node name="spawnPoint3" type="Marker3D" parent="greenSpawn" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, -6)
+
+[node name="spawnPoint4" type="Marker3D" parent="greenSpawn" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, 7)
+
+[node name="spawnPoint5" type="Marker3D" parent="greenSpawn" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, 14)
+
+[node name="spawnPoint6" type="Marker3D" parent="greenSpawn" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, 21)
 
 [node name="Cube" parent="." index="4"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qm21k")
