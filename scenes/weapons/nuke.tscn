@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cav2sdiin6fol"]
+[gd_scene load_steps=6 format=3 uid="uid://cav2sdiin6fol"]
 
 [ext_resource type="PackedScene" uid="uid://crpo5hr8axvbi" path="res://models/nuke.glb" id="1_t4v68"]
-[ext_resource type="AudioStream" uid="uid://cg64ujhvuknk1" path="res://audio/nuke.wav" id="2_eujfu"]
 [ext_resource type="Texture2D" uid="uid://csm7mxp1dnp5j" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="2_ojglg"]
 [ext_resource type="Texture2D" uid="uid://nrxu0876or0f" path="res://addons/kenney_prototype_textures/red/texture_09.png" id="3_1ljc6"]
 
@@ -20,9 +19,3 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wpn2u")
 
 [node name="Sphere" parent="." index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ivrpp")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="2"]
-stream = ExtResource("2_eujfu")
-
-[node name="Camera3D" type="Camera3D" parent="." index="3"]
-transform = Transform3D(0.982025, 0.182831, -0.0469012, 0.0110823, 0.192203, 0.981293, 0.188426, -0.964174, 0.186722, 0, 7.64, 2.5)

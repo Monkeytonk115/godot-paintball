@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://gss3tlkwgkoq"]
+
+[ext_resource type="AudioStream" uid="uid://cg64ujhvuknk1" path="res://audio/nuke.wav" id="1_256oy"]
+[ext_resource type="Script" path="res://scenes/weapons/rigidNuke.gd" id="1_287ld"]
+[ext_resource type="PackedScene" uid="uid://cav2sdiin6fol" path="res://scenes/weapons/nuke.tscn" id="2_gvq3s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yun4l"]
+radius = 2.28121
+height = 6.93499
+
+[node name="Node3D" type="RigidBody3D"]
+script = ExtResource("1_287ld")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_256oy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.982025, 0.182831, -0.0469012, 0.0110823, 0.192203, 0.981293, 0.188426, -0.964174, 0.186722, 0, 7.64, 2.5)
+
+[node name="nuke" parent="." instance=ExtResource("2_gvq3s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.567997, 0)
+shape = SubResource("CapsuleShape3D_yun4l")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

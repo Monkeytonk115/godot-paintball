@@ -99,6 +99,8 @@ func player_hit(ply : Node3D, attacker_id : int):
 			PlayerData.add_player_score.rpc(attacker_id, -1)
 		else:
 			PlayerData.add_player_score.rpc(attacker_id, 1)
+			if PlayerData.get_player_score(attacker_id) >= 25:
+				pass
 	ply.equip.rpc([
 		"res://scenes/weapons/minigun.tscn",
 		"res://scenes/weapons/paintgun.tscn",
@@ -110,3 +112,7 @@ func player_hit(ply : Node3D, attacker_id : int):
 func connect_to_server():
 	# Send our preferred name to all other clients
 	PlayerData.set_player_name.rpc(multiplayer.get_unique_id(), PlayerConfig.get_player_name())
+	
+func spawn_nuke():
+	var new_nuke = load("res://scenes/weapons/rigidNuke.tscn").instantiate
+	pass
