@@ -43,7 +43,7 @@ func animFunction():
 	var aimcone:Transform3D = $attachment_muzzle.global_transform
 	aimcone = aimcone.rotated(aimcone.basis.y, randf_range(-0.05, 0.05))
 	aimcone = aimcone.rotated(aimcone.basis.x, randf_range(-0.05, 0.05))
-	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 20, ply_id)
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 25, ply_id)
 	fireSound.rpc()
 
 @rpc("any_peer", "call_local")
