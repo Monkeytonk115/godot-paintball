@@ -6,8 +6,9 @@ func _ready():
 	self.max_contacts_reported = 1
 
 
-func _process(delta):
-	pass
+func _physics_process(delta):
+	if position.y <= -10:
+		queue_free()
 
 
 func _on_body_entered(body):
