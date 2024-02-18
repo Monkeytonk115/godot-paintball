@@ -62,6 +62,8 @@ func add_player(peer_id):
 	PlayerData.set_player_score.rpc(peer_id, 0)
 	PlayerData.set_player_team.rpc(peer_id, team)
 	
+	new_player.player_hit.connect(player_hit)
+	
 	await get_tree().create_timer(1.0).timeout
 	new_player.respawn.rpc(spawnPoint)
 
@@ -79,3 +81,13 @@ func shoot_bullet_client(origin : Transform3D, velocity : Vector3):
 	new_bullet.global_transform = origin
 	new_bullet.linear_velocity = velocity
 	$bullets.add_child(new_bullet, true)
+
+
+func player_hit(ply : Node3D):
+	print(ply, " was hit")
+	var spawnPoint = Vector3.ZERO
+	if PlayerData.get_player_team(ply.name) == Team.GREEN:
+		spawnPoint = new_arena.find_child("greenSpawn").get_children().pick_random().transform.origin
+	else:
+		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
+	ply.respawn.rpc(spawnPoint)

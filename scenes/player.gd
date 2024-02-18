@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal player_hit(this : Node)
+
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -9,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var equipped_weapon
 
 var loadout = ["res://scenes/weapons/paintgun.tscn"]
+var player_health = 100
 
 func _enter_tree():
 	# Can only change multiplayer authority from inside _enter_tree()
@@ -91,3 +94,7 @@ func equip(wep : String):
 @rpc("any_peer", "call_local")
 func respawn(respawn_point):
 	global_transform.origin = respawn_point
+
+
+func take_damage(_damage : int):
+	player_hit.emit(self)
