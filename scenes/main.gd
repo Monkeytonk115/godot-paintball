@@ -66,6 +66,8 @@ func add_player(peer_id):
 	
 	await get_tree().create_timer(1.0).timeout
 	new_player.respawn.rpc(spawnPoint)
+	
+	PlayerData.send_new_player_stats(peer_id)
 
 
 func remove_player(peer_id):

@@ -48,3 +48,13 @@ func player_disconnect(peer_id):
 	_playerNames.erase(peer_id)
 	_scores.erase(peer_id)
 	_teams.erase(peer_id)
+
+
+# This function sends all currently connected player infos to new connected player
+func send_new_player_stats(peer_id):
+	for k in _playerNames.keys():
+		set_player_name.rpc_id(peer_id, k, _playerNames[k])
+	for k in _scores.keys():
+		set_player_score.rpc_id(peer_id, k, _scores[k])
+	for k in _teams.keys():
+		set_player_team.rpc_id(peer_id, k, _teams[k])
