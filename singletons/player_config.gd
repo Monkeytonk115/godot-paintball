@@ -9,5 +9,5 @@ func get_player_name():
 
 func set_player_name(new_name):
 	var config = ConfigFile.new()
-	config.set_value("player", "player_name", new_text)
+	config.set_value("player", "player_name", new_name)
 	config.save("user://paintball_playersettings.cfg")
