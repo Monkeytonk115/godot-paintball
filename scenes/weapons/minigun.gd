@@ -31,7 +31,7 @@ func animation(firing):
 		if !$AnimationPlayer.is_playing():
 			$AnimationPlayer.play("fire", -0.5, firingSpeed)
 			if firingSpeed < 5:
-				firingSpeed = firingSpeed + 0.1
+				firingSpeed = firingSpeed + 0.2
 				#print(firingSpeed)
 	if firing == 0:
 		if !$AnimationPlayer.is_playing():
