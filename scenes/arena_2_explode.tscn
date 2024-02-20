@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfj8c40x7s5mb"]
+
+[ext_resource type="PackedScene" uid="uid://cjtnionpemibl" path="res://models/arena2_explode.glb" id="1_6apqq"]
+[ext_resource type="Script" path="res://scenes/arena_2_explode.gd" id="2_4bxhh"]
+
+[node name="arena2_explode" instance=ExtResource("1_6apqq")]
+script = ExtResource("2_4bxhh")

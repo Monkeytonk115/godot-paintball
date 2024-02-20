@@ -15,6 +15,8 @@ var enet_peer = ENetMultiplayerPeer.new()
 func _ready():
 	new_arena = arena.instantiate()
 	add_child(new_arena)
+	#spawn_nuke.rpc(1)
+
 
 
 func _input(_event):
@@ -125,5 +127,6 @@ func spawn_nuke(attacker_id : int):
 
 func nuke_over():
 	$CanvasLayer/GameOver.show()
+	var nuked_arena = load("res://scenes/arena_2_explode.tscn").instantiate()
 	await get_tree().create_timer(5).timeout
 	get_tree().quit()
