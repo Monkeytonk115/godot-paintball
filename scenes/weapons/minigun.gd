@@ -31,7 +31,7 @@ func animation(firing):
 		if !$AnimationPlayer.is_playing():
 			$AnimationPlayer.play("fire", -0.5, firingSpeed)
 			if firingSpeed < 5:
-				firingSpeed = firingSpeed + 0.2
+				firingSpeed = firingSpeed + 0.1
 				#print(firingSpeed)
 	if firing == 0:
 		if !$AnimationPlayer.is_playing():
@@ -43,7 +43,7 @@ func animFunction():
 	var aimcone:Transform3D = $attachment_muzzle.global_transform
 	aimcone = aimcone.rotated(aimcone.basis.y, randf_range(-0.05, 0.05))
 	aimcone = aimcone.rotated(aimcone.basis.x, randf_range(-0.05, 0.05))
-	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 25, ply_id)
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 20, ply_id)
 	fireSound.rpc()
 
 @rpc("any_peer", "call_local")
