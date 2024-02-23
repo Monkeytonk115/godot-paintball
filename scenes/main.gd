@@ -15,7 +15,8 @@ var enet_peer = ENetMultiplayerPeer.new()
 func _ready():
 	new_arena = arena.instantiate()
 	add_child(new_arena)
-	#spawn_nuke.rpc(1)
+	
+
 
 
 
@@ -101,7 +102,7 @@ func player_hit(ply : Node3D, attacker_id : int):
 			PlayerData.add_player_score.rpc(attacker_id, -1)
 		else:
 			PlayerData.add_player_score.rpc(attacker_id, 1)
-			if PlayerData.get_player_score(attacker_id) >= 25:
+			if PlayerData.get_player_score(attacker_id) >= 2:
 				spawn_nuke.rpc(attacker_id)
 	ply.equip.rpc([
 		"res://scenes/weapons/minigun.tscn",
@@ -128,5 +129,7 @@ func spawn_nuke(attacker_id : int):
 func nuke_over():
 	$CanvasLayer/GameOver.show()
 	var nuked_arena = load("res://scenes/arena_2_explode.tscn").instantiate()
+	add_child(nuked_arena)
+	$arena_2.visible = false
 	await get_tree().create_timer(5).timeout
 	get_tree().quit()
