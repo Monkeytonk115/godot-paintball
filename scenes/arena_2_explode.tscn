@@ -1,5 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjtkwl0666m7t"]
+[gd_scene load_steps=3 format=3 uid="uid://cjtkwl0666m7t"]
 
 [ext_resource type="PackedScene" uid="uid://dxi0eei5rmsvv" path="res://models/arena2animAllNLA.glb" id="1_q6uyt"]
+[ext_resource type="AnimationLibrary" uid="uid://d0623o0dmxamm" path="res://anim/nukedMapAnim/anim1.tres" id="2_58btj"]
 
 [node name="arena2animAllNLA" instance=ExtResource("1_q6uyt")]
+
+[node name="AnimationPlayer" parent="." index="245"]
+libraries = {
+"": ExtResource("2_58btj")
+}
