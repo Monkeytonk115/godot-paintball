@@ -15,6 +15,11 @@ var player_health = 100
 func _enter_tree():
 	# Can only change multiplayer authority from inside _enter_tree()
 	set_multiplayer_authority(str(name).to_int())
+	
+	var config = ConfigFile.new()
+	config.load("user://paintball_playersettings.cfg")
+	
+	$Label3D.set_text(config.get_value("player", "player_name", ""))
 
 
 func _ready():

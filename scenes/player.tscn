@@ -47,3 +47,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98221, 0)
 fov = 90.0
 
 [node name="humanoid" parent="." instance=ExtResource("2_xk7k8")]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.3296, 0)
+billboard = 1
+text = "test
+"
+font_size = 48
