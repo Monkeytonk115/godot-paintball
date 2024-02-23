@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvqsk4w6c24r5"]
+
+[ext_resource type="PackedScene" uid="uid://cwmdon41rbaq7" path="res://models/arena2_noAnim.glb" id="1_o84ta"]
+
+[node name="arena2_noAnim" instance=ExtResource("1_o84ta")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="245"]

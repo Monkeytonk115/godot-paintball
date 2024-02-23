@@ -1,0 +1,9 @@
+When exporting a large physics sim as an animation to be used in godot.
+e.g. I made a nuke animation in blender, rigid bodies colliding ect.
+to export correctly to godot, make sure under animation settings, the "Scene" option is selected.
+
+This will merge all the animations for all the objects in the scene into a single animation file in godot.
+
+knowing this will greatly decrease the time it takes to do this kind of thing in the future.
+
+say thanks to past me
