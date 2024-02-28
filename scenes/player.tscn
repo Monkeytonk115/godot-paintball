@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c506d8u0j15j2"]
+[gd_scene load_steps=9 format=3 uid="uid://c506d8u0j15j2"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_dno3v"]
+[ext_resource type="Texture2D" uid="uid://b6flhxdtvuoq4" path="res://art/hud/crosshair.png" id="2_nttgy"]
 [ext_resource type="PackedScene" uid="uid://0r2hqrc77w5h" path="res://scenes/humanoid.tscn" id="2_xk7k8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_l300u"]
@@ -45,6 +46,13 @@ replication_config = SubResource("SceneReplicationConfig_8xwpn")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98221, 0)
 fov = 90.0
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D"]
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 976.0
+offset_bottom = 556.0
+texture = ExtResource("2_nttgy")
 
 [node name="humanoid" parent="." instance=ExtResource("2_xk7k8")]
 

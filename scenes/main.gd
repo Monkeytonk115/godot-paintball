@@ -66,11 +66,12 @@ func add_player(peer_id):
 
 	await get_tree().create_timer(1.0).timeout
 	new_player.equip.rpc([
-		"res://scenes/weapons/minigun.tscn",
 		"res://scenes/weapons/paintgun.tscn",
-		"res://scenes/weapons/sniper.tscn"].pick_random())
+		"res://scenes/weapons/paintgun.tscn",
+		"res://scenes/weapons/paintgun.tscn"].pick_random())
 	new_player.respawn.rpc(spawnPoint)
 
+	#^^^^^^^^ CHANGE THIS BACK TO ALL THREE WEAPONS
 
 func remove_player(peer_id):
 	PlayerData.player_disconnect.rpc(peer_id)
