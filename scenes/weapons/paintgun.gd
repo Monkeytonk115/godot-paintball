@@ -19,7 +19,8 @@ func PrimaryFire():
 		# Can't fire right now, need to wait
 		return
 	
-	
+	#$RayCast3D.force_raycast_update()
+	#$attachment_muzzle.look_at($RayCast3D.get_collision_point())
 	$attachment_muzzle.look_at($z_intercept.global_position)
 	
 	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 35, ply_id)

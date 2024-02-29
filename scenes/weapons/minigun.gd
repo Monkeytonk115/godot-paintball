@@ -21,8 +21,8 @@ func PrimaryFire():
 		# Can't fire right now, need to wait
 		return
 	
-	# shoot effects
-	# shoot bullet
+	$attachment_muzzle.look_at($z_intercept.global_position)
+	
 	#get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 15)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
 	

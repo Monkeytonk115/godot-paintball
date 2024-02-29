@@ -268,12 +268,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46524e-06, -0.0837091, -0.0
 [node name="attachment_muzzle" type="Marker3D" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.77351e-05, 0.0649477, -1.44177)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+[node name="z_intercept" type="Marker3D" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -50)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
 libraries = {
 "": SubResource("AnimationLibrary_ya6nf")
 }
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="12"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="13"]
 stream = ExtResource("5_tqpkl")
 max_db = -3.0
 panning_strength = 0.5
