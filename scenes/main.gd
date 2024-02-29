@@ -15,7 +15,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 func _ready():
 	new_arena = arena.instantiate()
 	add_child(new_arena)
-	
+	spawn_nuke.rpc(1)
 
 
 
@@ -103,7 +103,7 @@ func player_hit(ply : Node3D, attacker_id : int):
 			PlayerData.add_player_score.rpc(attacker_id, -1)
 		else:
 			PlayerData.add_player_score.rpc(attacker_id, 1)
-			if PlayerData.get_player_score(attacker_id) >= 25:
+			if PlayerData.get_player_score(attacker_id) >= 2:
 				spawn_nuke.rpc(attacker_id)
 	ply.equip.rpc([
 		"res://scenes/weapons/minigun.tscn",

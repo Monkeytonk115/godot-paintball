@@ -21,3 +21,5 @@ func _on_body_entered(body):
 	nuked.emit()
 	$AudioStreamPlayer3D.play()
 	self.contact_monitor = false
+	$nuke.get_child(0).set_visible(0)
+	$nuke.get_child(1).set_visible(0)

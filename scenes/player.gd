@@ -30,6 +30,9 @@ func _ready():
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$Camera3D.current = true
+	
+
+	
 
 
 func _process(_delta):
