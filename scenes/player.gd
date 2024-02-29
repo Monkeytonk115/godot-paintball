@@ -109,6 +109,10 @@ func equip(wep : String):
 func respawn(respawn_point):
 	global_transform.origin = respawn_point
 	velocity = Vector3.ZERO
+	if PlayerData.get_player_team(get_name()) == Team.GREEN:
+		$humanoid.set_shirt_color( Color(0, 1, 0) )
+	else:
+		$humanoid.set_shirt_color( Color(0.75, 0, 1) )
 
 
 func take_damage(_damage : int, attacker_id : int):
