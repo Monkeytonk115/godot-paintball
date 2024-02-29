@@ -33,6 +33,7 @@ func _on_control_host_game():
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 	$CanvasLayer/ScoreBoard.set_server_name("hosting")
+	PlayerData.set_player_name.rpc(multiplayer.get_unique_id(), PlayerConfig.get_player_name())
 	add_player(multiplayer.get_unique_id())
 	$CanvasLayer/mainMenu.hide()
 
@@ -40,8 +41,8 @@ func _on_control_host_game():
 func _on_control_join_game(address):
 	enet_peer.create_client(address, 5555)
 	multiplayer.multiplayer_peer = enet_peer
-	#multiplayer.connected_to_server.connect(connect_to_server)
-	$CanvasLayer/ScoreBoard.set_server_name("hosting")
+	multiplayer.connected_to_server.connect(connect_to_server)
+	$CanvasLayer/ScoreBoard.set_server_name("server: " + address)
 	$CanvasLayer/mainMenu.hide()
 
 func add_player(peer_id):
@@ -56,15 +57,15 @@ func add_player(peer_id):
 		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
 		
 	add_child(new_player)
-	PlayerData.set_player_name.rpc(peer_id, ["Alfa", "Bravo", "Charlie", "Delta", "Echo"].pick_random())
+	#PlayerData.set_player_name.rpc(peer_id, ["Alfa", "Bravo", "Charlie", "Delta", "Echo"].pick_random())
 	PlayerData.set_player_score.rpc(peer_id, 0)
 	PlayerData.set_player_team.rpc(peer_id, team)
-
-	PlayerData.send_new_player_stats(peer_id)
 
 	new_player.player_hit.connect(player_hit)
 
 	await get_tree().create_timer(1.0).timeout
+	PlayerData.send_new_player_stats(peer_id)
+	
 	new_player.equip.rpc([
 		"res://scenes/weapons/paintgun.tscn",
 		"res://scenes/weapons/minigun.tscn",
