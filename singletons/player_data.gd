@@ -27,6 +27,7 @@ func get_player_name(peer_id):
 
 @rpc("any_peer", "call_local")
 func set_player_name(peer_id, new_name):
+	print("got new player name ", new_name, " for peer ", peer_id)
 	_playerNames[peer_id] = new_name
 
 
