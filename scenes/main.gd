@@ -15,7 +15,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 func _ready():
 	new_arena = arena.instantiate()
 	add_child(new_arena)
-	spawn_nuke.rpc(1)
+
 
 
 
