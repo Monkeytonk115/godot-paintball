@@ -12,6 +12,7 @@
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.738209, -0.0696032, 0.670971, -0.0878337, 0.976277, 0.19791, -0.668829, -0.205033, 0.714583, -4.78449, 3.59368, 15.0739)
+current = true
 fov = 65.0
 
 [node name="humanoid" parent="." instance=ExtResource("2_2susl")]

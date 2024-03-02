@@ -1,23 +1,68 @@
 extends Node3D
 
-const arena = preload("res://scenes/arena_2.tscn")
-
 const player = preload("res://scenes/player.tscn")
-const gun = preload("res://scenes/weapons/paintgun.tscn")
 const bullet = preload("res://scenes/weapons/paintball.tscn")
 
-var new_arena
-
-var player_list = {}
+var current_level = null
 
 var enet_peer = ENetMultiplayerPeer.new()
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	new_arena = arena.instantiate()
-	add_child(new_arena)
+	# Emitted when this MultiplayerAPI's multiplayer_peer successfully connected to a server. Only emitted on clients.
+	multiplayer.connected_to_server.connect(connected_to_server)
+	
+	# Emitted when this MultiplayerAPI's multiplayer_peer fails to establish a connection to a server. Only emitted on clients.
+	multiplayer.connection_failed.connect(connection_failed)
+	
+	# Emitted when this MultiplayerAPI's multiplayer_peer connects with a new peer. ID is the peer ID of the new peer. Clients get notified when other clients connect to the same server. Upon connecting to a server, a client also receives this signal for the server (with ID being 1).
+	multiplayer.peer_connected.connect(peer_connected)
+	
+	# Emitted when this MultiplayerAPI's multiplayer_peer disconnects from a peer. Clients get notified when other clients disconnect from the same server.
+	multiplayer.peer_disconnected.connect(peer_disconnected)
+	
+	#Emitted when this MultiplayerAPI's multiplayer_peer disconnects from server. Only emitted on clients.
+	multiplayer.server_disconnected.connect(server_disconnected)
 
 
+func connected_to_server():
+	# Send our preferred name to all other clients
+	PlayerData.set_player_name.rpc(multiplayer.get_unique_id(), PlayerConfig.get_player_name())
 
+
+# Connection to server failed
+# Show the main menu again
+func connection_failed():
+	print("connection failed")
+	$CanvasLayer/mainMenu.show()
+
+
+func peer_connected(peer_id):
+	print("peer connected ", peer_id)
+	#PlayerData.set_player_name.rpc(peer_id, ["Alfa", "Bravo", "Charlie", "Delta", "Echo"].pick_random())
+	PlayerData.set_player_score.rpc(peer_id, 0)
+	PlayerData.set_player_team.rpc(peer_id, Team.SPECTATOR)
+	# Update the peer with the existing player data
+	PlayerData.send_new_player_stats(peer_id)
+	changelevel.rpc_id(peer_id, "res://scenes/arena_2.tscn")
+
+
+func peer_disconnected(peer_id):
+	print("peer disconnected ", peer_id)
+
+
+# Server has disconnected - show main menu
+func server_disconnected():
+	current_level.queue_free()
+	$CanvasLayer/mainMenu.show()
+
+
+@rpc("authority", "call_local")
+func changelevel(new_level : String):
+	print("changelevel ", new_level)
+	if current_level:
+		current_level.queue_free()
+	current_level = load(new_level).instantiate()
+	add_child(current_level)
 
 
 func _input(_event):
@@ -30,36 +75,32 @@ func _input(_event):
 func _on_control_host_game():
 	enet_peer.create_server(5555)
 	multiplayer.multiplayer_peer = enet_peer
-	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(remove_player)
 	$CanvasLayer/ScoreBoard.set_server_name("hosting")
 	PlayerData.set_player_name.rpc(multiplayer.get_unique_id(), PlayerConfig.get_player_name())
-	add_player(multiplayer.get_unique_id())
 	$CanvasLayer/mainMenu.hide()
+	changelevel("res://scenes/arena_2.tscn")
 
 
 func _on_control_join_game(address):
 	enet_peer.create_client(address, 5555)
 	multiplayer.multiplayer_peer = enet_peer
-	multiplayer.connected_to_server.connect(connect_to_server)
 	$CanvasLayer/ScoreBoard.set_server_name("server: " + address)
 	$CanvasLayer/mainMenu.hide()
 
+
 func add_player(peer_id):
-	print("add player ", peer_id)
+	
 	var team = [Team.PURPLE, Team.GREEN][multiplayer.get_peers().size() % 2]
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
 	var spawnPoint = Vector3.ZERO
 	if team == Team.GREEN:
-		spawnPoint = new_arena.find_child("greenSpawn").get_children().pick_random().transform.origin
+		spawnPoint = current_level.find_child("greenSpawn").get_children().pick_random().transform.origin
 	else:
-		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
+		spawnPoint = current_level.find_child("purpleSpawn").get_children().pick_random().transform.origin
 		
 	add_child(new_player)
-	#PlayerData.set_player_name.rpc(peer_id, ["Alfa", "Bravo", "Charlie", "Delta", "Echo"].pick_random())
-	PlayerData.set_player_score.rpc(peer_id, 0)
-	PlayerData.set_player_team.rpc(peer_id, team)
+	
 
 	new_player.player_hit.connect(player_hit)
 
@@ -96,9 +137,9 @@ func player_hit(ply : Node3D, attacker_id : int):
 	$CanvasLayer/KillFeed.add_kill.rpc(attacker_id, victim_id, "")
 	var spawnPoint = Vector3.ZERO
 	if PlayerData.get_player_team(victim_id) == Team.GREEN:
-		spawnPoint = new_arena.find_child("greenSpawn").get_children().pick_random().transform.origin
+		spawnPoint = current_level.find_child("greenSpawn").get_children().pick_random().transform.origin
 	else:
-		spawnPoint = new_arena.find_child("purpleSpawn").get_children().pick_random().transform.origin
+		spawnPoint = current_level.find_child("purpleSpawn").get_children().pick_random().transform.origin
 	if attacker_id != -1:
 		if PlayerData.get_player_team(attacker_id) == PlayerData.get_player_team(victim_id):
 			PlayerData.add_player_score.rpc(attacker_id, -1)
@@ -106,24 +147,18 @@ func player_hit(ply : Node3D, attacker_id : int):
 			PlayerData.add_player_score.rpc(attacker_id, 1)
 			if PlayerData.get_player_score(attacker_id) >= 25:
 				spawn_nuke.rpc(attacker_id)
-	ply.equip.rpc([
-		"res://scenes/weapons/minigun.tscn",
-		"res://scenes/weapons/paintgun.tscn",
-		"res://scenes/weapons/sniper.tscn"].pick_random())
-	ply.respawn.rpc(spawnPoint)
-
-
-# When the client connects to a server -> send details to server
-func connect_to_server():
-	# Send our preferred name to all other clients
-	PlayerData.set_player_name.rpc(multiplayer.get_unique_id(), PlayerConfig.get_player_name())
+	ply.queue_free()
+	deathcam.rpc_id(victim_id)
+	# respawn timer
+	await get_tree().create_timer(4).timeout
+	add_player(victim_id)
 
 
 @rpc("any_peer", "call_local")
 func spawn_nuke(attacker_id : int):
 	$CanvasLayer/GameOver.set_winner(attacker_id)
 	var new_nuke = load("res://scenes/weapons/rigidNuke.tscn").instantiate()
-	new_nuke.transform = new_arena.find_child("nuke_spawn").transform
+	new_nuke.transform = current_level.find_child("nuke_spawn").transform
 	new_nuke.nuked.connect(nuke_over)
 	add_child(new_nuke)
 
@@ -135,3 +170,8 @@ func nuke_over():
 	$arena_2.visible = false
 	await get_tree().create_timer(5).timeout
 	get_tree().quit()
+
+
+@rpc("any_peer")
+func deathcam():
+	(current_level.find_child("spectator_01") as Camera3D).make_current()
