@@ -8,7 +8,7 @@ func set_server_name(server_name : String):
 func _process(_delta):
 	var green_score = 0
 	for peer_id in Team.get_players(Team.GREEN):
-		var x = $PanelContainer/MarginContainer/VBoxContainer/GridContainer/GreenScore.get_node(str(peer_id))
+		var x = $PanelContainer/MarginContainer/VBoxContainer/GridContainer/GreenScore.get_node_or_null(str(peer_id))
 		if x:
 			var score = PlayerData.get_player_score(peer_id)
 			green_score += score
@@ -21,7 +21,7 @@ func _process(_delta):
 	
 	var purple_score = 0
 	for peer_id in Team.get_players(Team.PURPLE):
-		var x = $PanelContainer/MarginContainer/VBoxContainer/GridContainer/PurpleScore.get_node(str(peer_id))
+		var x = $PanelContainer/MarginContainer/VBoxContainer/GridContainer/PurpleScore.get_node_or_null(str(peer_id))
 		if x:
 			var score = PlayerData.get_player_score(peer_id)
 			purple_score += score
