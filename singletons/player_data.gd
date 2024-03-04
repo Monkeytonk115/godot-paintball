@@ -3,6 +3,7 @@ extends Node
 var _playerNames = {}
 var _scores = {}
 var _teams = {}
+var _ready = {}
 
 
 func get_player_score(peer_id):
@@ -53,6 +54,16 @@ func player_disconnect(peer_id):
 	_teams.erase(peer_id)
 
 
+func get_player_ready(peer_id):
+	return _ready.get(peer_id, false)
+
+
+@rpc("any_peer", "call_local")
+func set_player_ready(peer_id, ready : bool):
+	print(peer_id, " is ready")
+	_ready[peer_id] = ready
+
+
 # This function sends all currently connected player infos to new connected player
 func send_new_player_stats(peer_id):
 	for k in _playerNames.keys():
@@ -61,3 +72,5 @@ func send_new_player_stats(peer_id):
 		set_player_score.rpc_id(peer_id, k, _scores[k])
 	for k in _teams.keys():
 		set_player_team.rpc_id(peer_id, k, _teams[k])
+	for k in _ready.keys():
+		set_player_ready.rpc_id(peer_id, k, _ready[k])
