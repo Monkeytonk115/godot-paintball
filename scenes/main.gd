@@ -7,6 +7,15 @@ var current_level = null
 
 var enet_peer = ENetMultiplayerPeer.new()
 
+var ready_players = {}
+
+enum GameState {
+	TITLE,
+	LOBBY,
+	GAME,
+}
+var game_state = GameState.TITLE
+
 func _ready():
 	# Emitted when this MultiplayerAPI's multiplayer_peer successfully connected to a server. Only emitted on clients.
 	multiplayer.connected_to_server.connect(connected_to_server)
@@ -22,6 +31,20 @@ func _ready():
 	
 	#Emitted when this MultiplayerAPI's multiplayer_peer disconnects from server. Only emitted on clients.
 	multiplayer.server_disconnected.connect(server_disconnected)
+
+
+func _process(delta):
+	if game_state == GameState.LOBBY:
+		var ready = true
+		for peer_id in PlayerData.get_connected_peers():
+			ready = ready and PlayerData.get_player_ready(peer_id)
+		if ready:
+			print("all players ready")
+			$CanvasLayer/TeamSelect.hide()
+			game_state = GameState.GAME
+			PlayerData._ready.clear()
+			for peer_id in PlayerData.get_connected_peers():
+				spawn_player(peer_id)
 
 
 func connected_to_server():
@@ -78,6 +101,8 @@ func _on_control_host_game():
 	$CanvasLayer/ScoreBoard.set_server_name("hosting")
 	PlayerData.set_player_name.rpc(multiplayer.get_unique_id(), PlayerConfig.get_player_name())
 	$CanvasLayer/mainMenu.hide()
+	$CanvasLayer/TeamSelect.show()
+	game_state = GameState.LOBBY
 	changelevel("res://scenes/arena_2.tscn")
 
 
@@ -85,39 +110,39 @@ func _on_control_join_game(address):
 	enet_peer.create_client(address, 5555)
 	multiplayer.multiplayer_peer = enet_peer
 	$CanvasLayer/ScoreBoard.set_server_name("server: " + address)
+	$CanvasLayer/TeamSelect.show()
 	$CanvasLayer/mainMenu.hide()
+	game_state = GameState.LOBBY
 
 
-func add_player(peer_id):
-	
-	var team = [Team.PURPLE, Team.GREEN][multiplayer.get_peers().size() % 2]
-	var new_player = player.instantiate()
-	new_player.set_name(str(peer_id))
+func spawn_player(peer_id):
+	print("spawning a player for ", peer_id)
 	var spawnPoint = Vector3.ZERO
+	var team = PlayerData.get_player_team(peer_id)
 	if team == Team.GREEN:
 		spawnPoint = current_level.find_child("greenSpawn").get_children().pick_random().transform.origin
-	else:
+	elif team == Team.PURPLE:
 		spawnPoint = current_level.find_child("purpleSpawn").get_children().pick_random().transform.origin
-		
-	add_child(new_player)
-	
+	else:
+		print("can't spawn ", peer_id, " they are on spectate")
+		return
 
+	var new_player = player.instantiate()
+	new_player.set_name(str(peer_id))
+
+	$Players.add_child(new_player)
 	new_player.player_hit.connect(player_hit)
 
-	await get_tree().create_timer(1.0).timeout
-	PlayerData.send_new_player_stats(peer_id)
-	
 	new_player.equip.rpc([
 		"res://scenes/weapons/paintgun.tscn",
 		"res://scenes/weapons/minigun.tscn",
 		"res://scenes/weapons/sniper.tscn"].pick_random())
 	new_player.respawn.rpc(spawnPoint)
 
-	#^^^^^^^^ CHANGE THIS BACK TO ALL THREE WEAPONS
 
 func remove_player(peer_id):
 	PlayerData.player_disconnect.rpc(peer_id)
-	var x = get_node(str(peer_id))
+	var x = $Players.get_node(str(peer_id))
 	x.queue_free()
 
 
@@ -135,11 +160,7 @@ func player_hit(ply : Node3D, attacker_id : int):
 	var victim_id = ply.name.to_int()
 	print(ply, " was hit by ", attacker_id)
 	$CanvasLayer/KillFeed.add_kill.rpc(attacker_id, victim_id, "")
-	var spawnPoint = Vector3.ZERO
-	if PlayerData.get_player_team(victim_id) == Team.GREEN:
-		spawnPoint = current_level.find_child("greenSpawn").get_children().pick_random().transform.origin
-	else:
-		spawnPoint = current_level.find_child("purpleSpawn").get_children().pick_random().transform.origin
+
 	if attacker_id != -1:
 		if PlayerData.get_player_team(attacker_id) == PlayerData.get_player_team(victim_id):
 			PlayerData.add_player_score.rpc(attacker_id, -1)
@@ -151,7 +172,7 @@ func player_hit(ply : Node3D, attacker_id : int):
 	deathcam.rpc_id(victim_id)
 	# respawn timer
 	await get_tree().create_timer(4).timeout
-	add_player(victim_id)
+	spawn_player(victim_id)
 
 
 @rpc("any_peer", "call_local")
@@ -175,3 +196,4 @@ func nuke_over():
 @rpc("any_peer")
 func deathcam():
 	(current_level.find_child("spectator_01") as Camera3D).make_current()
+
