@@ -62,3 +62,6 @@ billboard = 1
 text = "test
 "
 font_size = 48
+
+[node name="flagCarryPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25766, 0.40801)
