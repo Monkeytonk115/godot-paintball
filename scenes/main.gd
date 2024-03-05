@@ -196,5 +196,12 @@ func nuke_over():
 
 @rpc("any_peer")
 func deathcam():
-	(current_level.find_child("spectator_01") as Camera3D).make_current()
+	match PlayerData.get_player_team(multiplayer.get_unique_id()):
+		Team.GREEN:
+			(current_level.find_child("green_01") as Camera3D).make_current()
+		Team.PURPLE:
+			(current_level.find_child("purple_01") as Camera3D).make_current()
+		Team.SPECTATOR:
+			print("why have we deathcammed on spectate?")
+			(current_level.find_child("spectator_01") as Camera3D).make_current()
 
