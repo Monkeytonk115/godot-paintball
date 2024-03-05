@@ -194,7 +194,7 @@ func nuke_over():
 	get_tree().quit()
 
 
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func deathcam():
 	match PlayerData.get_player_team(multiplayer.get_unique_id()):
 		Team.GREEN:
