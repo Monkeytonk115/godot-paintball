@@ -44,6 +44,7 @@ func get_player_team(peer_id):
 
 @rpc("any_peer", "call_local")
 func set_player_team(peer_id, team):
+	print("setting new team name ", team, " for peer ", peer_id)
 	_teams[peer_id] = team
 
 
