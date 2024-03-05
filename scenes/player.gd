@@ -104,10 +104,15 @@ func equip(wep : String):
 func respawn(respawn_point):
 	global_transform.origin = respawn_point
 	velocity = Vector3.ZERO
-	if PlayerData.get_player_team(get_name().to_int()) == Team.GREEN:
-		$humanoid.set_shirt_color( Color(0, 1, 0) )
-	else:
-		$humanoid.set_shirt_color( Color(0.75, 0, 1) )
+	match PlayerData.get_player_team(get_name().to_int()):
+		Team.GREEN:
+			$humanoid.set_shirt_color( Color(0, 1, 0) )
+			self.collision_layer = 2
+		Team.PURPLE:
+			$humanoid.set_shirt_color( Color(0.75, 0, 1) )
+			self.collision_layer = 4
+		Team.SPECTATOR:
+			assert(0, "should not have spawned a player on spectate")
 
 	# Update player name
 	$Label3D.set_text(PlayerData.get_player_name(get_name().to_int()))

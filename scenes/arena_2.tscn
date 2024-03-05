@@ -154,10 +154,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, 21)
 [node name="flagSpawn" type="Node3D" parent="." index="4"]
 
 [node name="greenFlag" type="Marker3D" parent="flagSpawn" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 1, 0)
 
 [node name="purpleFlag" type="Marker3D" parent="flagSpawn" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 1, 0)
 
 [node name="spectator_cameras" type="Node3D" parent="." index="5"]
 

@@ -33,6 +33,12 @@ visible = false
 _spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
 spawn_path = NodePath("..")
 
+[node name="Flags" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Flags"]
+_spawnable_scenes = PackedStringArray("res://scenes/flag.tscn")
+spawn_path = NodePath("..")
+
 [connection signal="hostGame" from="CanvasLayer/mainMenu" to="." method="_on_control_host_game"]
 [connection signal="joinGame" from="CanvasLayer/mainMenu" to="." method="_on_control_join_game"]
 [connection signal="player_ready" from="CanvasLayer/TeamSelect" to="." method="_on_team_select_player_ready"]

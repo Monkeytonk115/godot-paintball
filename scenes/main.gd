@@ -2,6 +2,7 @@ extends Node3D
 
 const player = preload("res://scenes/player.tscn")
 const bullet = preload("res://scenes/weapons/paintball.tscn")
+const flag = preload("res://scenes/flag.tscn")
 
 var current_level = null
 
@@ -46,6 +47,8 @@ func _process(delta):
 			if multiplayer.is_server():
 				for peer_id in PlayerData.get_connected_peers():
 					spawn_player(peer_id)
+			spawn_flag(Team.GREEN)
+			spawn_flag(Team.PURPLE)
 
 
 func connected_to_server():
@@ -174,6 +177,22 @@ func player_hit(ply : Node3D, attacker_id : int):
 	# respawn timer
 	await get_tree().create_timer(4).timeout
 	spawn_player(victim_id)
+
+
+func spawn_flag(team):
+	var new_flag = flag.instantiate()
+	new_flag.set_team(team)
+	match team:
+		Team.GREEN:
+			new_flag.transform = current_level.get_node("flagSpawn/greenFlag").transform
+		Team.PURPLE:
+			new_flag.transform = current_level.get_node("flagSpawn/purpleFlag").transform
+	new_flag.captured.connect(flag_captured)
+	$Flags.add_child(new_flag)
+
+
+func flag_captured(team):
+	print("flag captured: ", team)
 
 
 @rpc("any_peer", "call_local")
