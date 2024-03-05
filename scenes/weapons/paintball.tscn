@@ -20,7 +20,7 @@ radial_segments = 6
 rings = 6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_usj5e"]
-radius = 0.05
+radius = 0.1
 
 [node name="Paintball" type="RigidBody3D"]
 script = ExtResource("1_lpndq")
