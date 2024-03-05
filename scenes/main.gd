@@ -43,8 +43,9 @@ func _process(delta):
 			$CanvasLayer/TeamSelect.hide()
 			game_state = GameState.GAME
 			PlayerData._ready.clear()
-			for peer_id in PlayerData.get_connected_peers():
-				spawn_player(peer_id)
+			if multiplayer.is_server():
+				for peer_id in PlayerData.get_connected_peers():
+					spawn_player(peer_id)
 
 
 func connected_to_server():
