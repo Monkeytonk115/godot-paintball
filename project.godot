@@ -73,3 +73,5 @@ scoreboard={
 3d_physics/layer_5="PurpleProjectiles"
 3d_physics/layer_6="GreenWalls"
 3d_physics/layer_7="PurpleWalls"
+3d_physics/layer_8="GreenCapture"
+3d_physics/layer_9="PurpleCapture"
