@@ -164,19 +164,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 1, 0)
 
 [node name="flagCapture" type="Node3D" parent="." index="5"]
 
-[node name="greenCapture" type="Area3D" parent="flagCapture" index="0"]
+[node name="greenFlagCapture" type="Area3D" parent="flagCapture" index="0"]
 collision_layer = 128
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="flagCapture/greenCapture" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="flagCapture/greenFlagCapture" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 6, 0)
 shape = SubResource("BoxShape3D_7jxog")
 
-[node name="purpleCapture" type="Area3D" parent="flagCapture" index="1"]
+[node name="purpleFlagCapture" type="Area3D" parent="flagCapture" index="1"]
 collision_layer = 256
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="flagCapture/purpleCapture" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="flagCapture/purpleFlagCapture" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 6, 0)
 shape = SubResource("BoxShape3D_7jxog")
 
