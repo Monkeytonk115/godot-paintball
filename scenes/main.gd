@@ -10,6 +10,9 @@ var enet_peer = ENetMultiplayerPeer.new()
 
 var ready_players = {}
 
+var voices = DisplayServer.tts_get_voices_for_language("en")
+var voice_id = voices[0]
+
 enum GameState {
 	TITLE,
 	LOBBY,
@@ -215,6 +218,10 @@ func flag_returned(team):
 # team is the team of the flag, not the team of the player
 func flag_captured(team):
 	print("flag captured: ", team)
+	if team == PlayerData.get_player_team(multiplayer.get_unique_id()):
+		DisplayServer.tts_speak("We have captured the enemy flag", voice_id)
+	else:
+		DisplayServer.tts_speak("The enemy have captured our flag", voice_id)
 
 
 @rpc("any_peer", "call_local")
