@@ -59,7 +59,7 @@ func _on_timer_timeout():
 
 
 func _on_area_3d_area_entered(area):
+	print(area)
 	captured.emit(self._team)
 	self.global_transform.origin = Vector3(0, -10, 0)
-	self.hide()
 	$Timer.start(8)
