@@ -184,13 +184,35 @@ func spawn_flag(team):
 	new_flag.set_team(team)
 	match team:
 		Team.GREEN:
-			new_flag.transform = current_level.get_node("flagSpawn/greenFlag").transform
+			new_flag.set_spawn(current_level.get_node("flagSpawn/greenFlag").transform)
 		Team.PURPLE:
-			new_flag.transform = current_level.get_node("flagSpawn/purpleFlag").transform
+			new_flag.set_spawn(current_level.get_node("flagSpawn/purpleFlag").transform)
+			
+	new_flag.picked.connect(flag_picked)
+	new_flag.dropped.connect(flag_dropped)
+	new_flag.returned.connect(flag_returned)
 	new_flag.captured.connect(flag_captured)
 	$Flags.add_child(new_flag)
 
+# Called when a player picks up the flag
+# team is the team of the flag, not the team of the player
+func flag_picked(team):
+	pass
 
+# Called when a player dies and drops the flag
+# team is the team of the flag, not the team of the player
+func flag_dropped(team):
+	pass
+
+# Called when a flag returns to it's base
+# - either 30s on the ground, or
+# - 8s after being captured
+# team is the team of the flag, not the team of the player
+func flag_returned(team):
+	pass
+
+# Called when a player captures the flag
+# team is the team of the flag, not the team of the player
 func flag_captured(team):
 	print("flag captured: ", team)
 

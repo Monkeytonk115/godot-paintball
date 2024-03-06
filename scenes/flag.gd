@@ -1,8 +1,13 @@
 extends Node3D
 
-
+signal picked(team)
+signal dropped(team)
+signal returned(team)
 signal captured(team)
+
+
 var _team
+var _spawn : Vector3
 
 var holder
 
@@ -22,19 +27,39 @@ func set_team(team):
 	match team:
 		Team.GREEN:
 			new_m.albedo_texture = load("res://addons/kenney_prototype_textures/green/texture_08.png")
-			$Area3D.collision_mask = 4
+			$Area3D.collision_mask = 4 + 256
 		Team.PURPLE:
 			new_m.albedo_texture = load("res://addons/kenney_prototype_textures/purple/texture_08.png")
-			$Area3D.collision_mask = 2
+			$Area3D.collision_mask = 2 + 128
 	$flag.set_surface_override_material(0, new_m)
+
+
+func set_spawn(pos : Vector3):
+	self._spawn = pos
 
 
 func _on_area_3d_body_entered(body):
 	if not self.holder:
 		print("new holder ", body)
+		picked.emit(self._team)
 		self.holder = body
 		self.holder.player_hit.connect(drop_flag)
+		$Timer.stop()
 
 
 func drop_flag(_a, _b):
 	self.holder = null
+	dropped.emit(self._team)
+	$Timer.start(30)
+
+
+func _on_timer_timeout():
+	self.global_transform.origin = self._spawn
+	returned.emit()
+
+
+func _on_area_3d_area_entered(area):
+	captured.emit(self._team)
+	self.global_transform.origin = Vector3(0, -10, 0)
+	self.hide()
+	$Timer.start(8)
