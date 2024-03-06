@@ -203,19 +203,28 @@ func spawn_flag(team):
 # Called when a player picks up the flag
 # team is the team of the flag, not the team of the player
 func flag_picked(team):
-	pass
+	if team == PlayerData.get_player_team(multiplayer.get_unique_id()):
+		DisplayServer.tts_speak("We have taken the enemy flag", voice_id)
+	else:
+		DisplayServer.tts_speak("The enemy have taken our flag", voice_id)
 
 # Called when a player dies and drops the flag
 # team is the team of the flag, not the team of the player
 func flag_dropped(team):
-	pass
+	if team == PlayerData.get_player_team(multiplayer.get_unique_id()):
+		DisplayServer.tts_speak("We have dropped the enemy flag", voice_id)
+	else:
+		DisplayServer.tts_speak("The enemy have dropped our flag", voice_id)
 
 # Called when a flag returns to it's base
 # - either 30s on the ground, or
 # - 8s after being captured
 # team is the team of the flag, not the team of the player
 func flag_returned(team):
-	pass
+	if team == PlayerData.get_player_team(multiplayer.get_unique_id()):
+		DisplayServer.tts_speak("Our flag has returned to out base", voice_id)
+	else:
+		DisplayServer.tts_speak("The enemy flag has returned to their base", voice_id)
 
 # Called when a player captures the flag
 # team is the team of the flag, not the team of the player
