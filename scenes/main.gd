@@ -10,8 +10,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 
 var ready_players = {}
 
-var voices = DisplayServer.tts_get_voices_for_language("en")
-var voice_id = voices[0]
+var voice_id : String = ""
 
 enum GameState {
 	TITLE,
@@ -35,6 +34,10 @@ func _ready():
 	
 	#Emitted when this MultiplayerAPI's multiplayer_peer disconnects from server. Only emitted on clients.
 	multiplayer.server_disconnected.connect(server_disconnected)
+	
+	var voices = DisplayServer.tts_get_voices_for_language("en")
+	if len(voices) > 0:
+		voice_id = voices[0]
 
 
 func _process(delta):
