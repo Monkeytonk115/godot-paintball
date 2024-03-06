@@ -7,7 +7,7 @@ signal captured(team)
 
 
 var _team
-var _spawn : Vector3
+var _spawn : Transform3D
 
 var holder
 
@@ -34,7 +34,7 @@ func set_team(team):
 	$flag.set_surface_override_material(0, new_m)
 
 
-func set_spawn(pos : Vector3):
+func set_spawn(pos : Transform3D):
 	self._spawn = pos
 
 
@@ -54,8 +54,8 @@ func drop_flag(_a, _b):
 
 
 func _on_timer_timeout():
-	self.global_transform.origin = self._spawn
-	returned.emit()
+	self.global_transform = self._spawn
+	returned.emit(self._team)
 
 
 func _on_area_3d_area_entered(area):
