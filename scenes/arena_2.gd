@@ -1,11 +1,22 @@
 extends Node3D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+var ticketsGreen
+var ticketsPurple
+
+func game_start():
+	ticketsGreen = 100
+	ticketsPurple = 100
+
+
+func _on_caputure_point_entered(node):
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_caputure_point_exited(node):
+	pass # Replace with function body.
+
+
+# Timer runs every 1 second
+func _on_timer_timeout():
+	pass # Replace with function body.
