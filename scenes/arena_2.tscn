@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://h8dy883vishh"]
+[gd_scene load_steps=38 format=3 uid="uid://h8dy883vishh"]
 
 [ext_resource type="PackedScene" uid="uid://cdqixyjyqlo56" path="res://models/arena_2.glb" id="1_0cdxq"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
@@ -97,6 +97,9 @@ size = Vector3(65, 15, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f846y"]
 size = Vector3(65, 15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uaryn"]
+size = Vector3(102.36, 1, 63.5652)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aa7fh"]
 albedo_texture = ExtResource("8_7e7pl")
@@ -284,6 +287,10 @@ shape = SubResource("BoxShape3D_gneoq")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="invisibleWalls" index="3"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 50.5, 5, 2.20743e-06)
 shape = SubResource("BoxShape3D_f846y")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="invisibleWalls" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221191, 12.9095, -0.33223)
+shape = SubResource("BoxShape3D_uaryn")
 
 [node name="nuke_spawn" type="Marker3D" parent="." index="19"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
