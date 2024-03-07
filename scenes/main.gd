@@ -2,7 +2,6 @@ extends Node3D
 
 const player = preload("res://scenes/player.tscn")
 const bullet = preload("res://scenes/weapons/paintball.tscn")
-const flag = preload("res://scenes/flag.tscn")
 
 var current_level = null
 
@@ -53,8 +52,7 @@ func _process(delta):
 			if multiplayer.is_server():
 				for peer_id in PlayerData.get_connected_peers():
 					spawn_player(peer_id)
-			spawn_flag(Team.GREEN)
-			spawn_flag(Team.PURPLE)
+			
 
 
 func connected_to_server():
@@ -184,56 +182,6 @@ func player_hit(ply : Node3D, attacker_id : int):
 	await get_tree().create_timer(4).timeout
 	spawn_player(victim_id)
 
-
-func spawn_flag(team):
-	var new_flag = flag.instantiate()
-	new_flag.set_team(team)
-	match team:
-		Team.GREEN:
-			new_flag.set_spawn(current_level.get_node("flagSpawn/greenFlag").transform)
-		Team.PURPLE:
-			new_flag.set_spawn(current_level.get_node("flagSpawn/purpleFlag").transform)
-			
-	new_flag.picked.connect(flag_picked)
-	new_flag.dropped.connect(flag_dropped)
-	new_flag.returned.connect(flag_returned)
-	new_flag.captured.connect(flag_captured)
-	$Flags.add_child(new_flag)
-
-# Called when a player picks up the flag
-# team is the team of the flag, not the team of the player
-func flag_picked(team):
-	if team == PlayerData.get_player_team(multiplayer.get_unique_id()):
-		DisplayServer.tts_speak("We have taken the enemy flag", voice_id)
-	else:
-		DisplayServer.tts_speak("The enemy have taken our flag", voice_id)
-
-# Called when a player dies and drops the flag
-# team is the team of the flag, not the team of the player
-func flag_dropped(team):
-	if team == PlayerData.get_player_team(multiplayer.get_unique_id()):
-		DisplayServer.tts_speak("We have dropped the enemy flag", voice_id)
-	else:
-		DisplayServer.tts_speak("The enemy have dropped our flag", voice_id)
-
-# Called when a flag returns to it's base
-# - either 30s on the ground, or
-# - 8s after being captured
-# team is the team of the flag, not the team of the player
-func flag_returned(team):
-	if team == PlayerData.get_player_team(multiplayer.get_unique_id()):
-		DisplayServer.tts_speak("Our flag has returned to out base", voice_id)
-	else:
-		DisplayServer.tts_speak("The enemy flag has returned to their base", voice_id)
-
-# Called when a player captures the flag
-# team is the team of the flag, not the team of the player
-func flag_captured(team):
-	print("flag captured: ", team)
-	if team == PlayerData.get_player_team(multiplayer.get_unique_id()):
-		DisplayServer.tts_speak("We have captured the enemy flag", voice_id)
-	else:
-		DisplayServer.tts_speak("The enemy have captured our flag", voice_id)
 
 
 @rpc("any_peer", "call_local")
