@@ -20,16 +20,14 @@ func _process(delta):
 	pass
 
 
-func PrimaryFire():
+func PrimaryFire(hitPoint):
 	#print("PrimaryFire")
 	#print(Time.get_ticks_msec())
 	if !reloaded:
 		# Can't fire right now, need to wait
 		return
-	
-	$attachment_muzzle.look_at($z_intercept.global_position)
-	
-	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
+	$attachment_muzzle.look_at(hitPoint)
+	#_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
 	
 func animation(firing):
 	if firing == 1:

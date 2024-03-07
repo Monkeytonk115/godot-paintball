@@ -15,14 +15,12 @@ func _ready():
 	_next_fire_time = Time.get_ticks_msec()
 
 
-func PrimaryFire():
+func PrimaryFire(hitPoint):
 	#print("PrimaryFire")
 	if _next_fire_time >= Time.get_ticks_msec():
 		# Can't fire right now, need to wait
 		return
-	
-	$attachment_muzzle.look_at($z_intercept.global_position)
-	
+	$attachment_muzzle.look_at(hitPoint)
 	#get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 15)
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
 	
@@ -48,6 +46,6 @@ func animFunction():
 
 @rpc("any_peer", "call_local")
 func fireSound():
-	$AudioStreamPlayer3D.pitch_scale = firingSpeed / randf_range(11, 12)
+	$AudioStreamPlayer3D.pitch_scale = firingSpeed / randf_range(12, 12.5)
 	$AudioStreamPlayer3D.max_db = randf_range(-3, -6)
 	$AudioStreamPlayer3D.play()

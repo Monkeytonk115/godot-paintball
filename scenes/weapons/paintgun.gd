@@ -17,11 +17,8 @@ func PrimaryFire(hitPoint):
 	if _next_fire_time >= Time.get_ticks_msec():
 		# Can't fire right now, need to wait
 		return
-	
-	
 	$attachment_muzzle.look_at(hitPoint)
 	#$attachment_muzzle.look_at($z_intercept.global_position)
-	
 	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -$attachment_muzzle.global_transform.basis.z * 35, ply_id)
 	fireSound.rpc()
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
