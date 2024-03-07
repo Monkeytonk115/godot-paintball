@@ -32,5 +32,6 @@ func animation(_firing):
 
 @rpc("any_peer", "call_local")
 func fireSound():
-	$AudioStreamPlayer3D.pitch_scale = randf_range(0.9, 1.1)
+	$AudioStreamPlayer3D.pitch_scale = randf_range(0.95, 1.05)
+	$AudioStreamPlayer3D.volume_db = randf_range(0.95, 1.05)
 	$AudioStreamPlayer3D.play()
