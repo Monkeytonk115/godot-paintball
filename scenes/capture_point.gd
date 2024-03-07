@@ -1,5 +1,8 @@
 extends Node3D
 
+signal entered(node)
+signal exited(node)
+
 @export var GreenMaterial : Texture2D
 @export var PurpleMaterial : Texture2D
 
@@ -19,10 +22,12 @@ func _ready():
 
 func _on_area_3d_body_entered(body):
 	print("entered capture point", body)
+	entered.emit(body)
 
 
 func _on_area_3d_body_exited(body):
 	print("exited capture point", body)
+	exited.emit(body)
 
 
 func team_captured(team):
