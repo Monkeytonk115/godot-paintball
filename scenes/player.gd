@@ -77,13 +77,15 @@ func _physics_process(delta):
 	move_and_slide()
 
 	if equipped_weapon:
+		$Camera3D/RayCast3D.force_raycast_update()
+		var hitPoint = $Camera3D/RayCast3D.get_collision_point()
 		if equipped_weapon.automatic:
 			if Input.is_action_pressed("primary_fire"):
-				equipped_weapon.PrimaryFire()
+				equipped_weapon.PrimaryFire(hitPoint)
 				equipped_weapon.animation(1)
 		else:
 			if Input.is_action_just_pressed("primary_fire"):
-				equipped_weapon.PrimaryFire()
+				equipped_weapon.PrimaryFire(hitPoint)
 				equipped_weapon.animation(1)
 		if !Input.is_action_pressed("primary_fire"):
 			equipped_weapon.animation(0)

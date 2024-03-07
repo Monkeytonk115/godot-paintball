@@ -143,8 +143,8 @@ func spawn_player(peer_id):
 
 	new_player.equip.rpc([
 		"res://scenes/weapons/paintgun.tscn",
-		"res://scenes/weapons/minigun.tscn",
-		"res://scenes/weapons/sniper.tscn"].pick_random())
+		"res://scenes/weapons/paintgun.tscn",
+		"res://scenes/weapons/paintgun.tscn"].pick_random())
 	new_player.respawn.rpc(spawnPoint)
 
 

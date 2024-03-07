@@ -56,6 +56,9 @@ offset_right = 976.0
 offset_bottom = 556.0
 texture = ExtResource("2_nttgy")
 
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -50)
+
 [node name="humanoid" parent="." instance=ExtResource("2_xk7k8")]
 
 [node name="Label3D" type="Label3D" parent="."]
