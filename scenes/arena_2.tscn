@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://h8dy883vishh"]
+[gd_scene load_steps=37 format=3 uid="uid://h8dy883vishh"]
 
 [ext_resource type="PackedScene" uid="uid://cdqixyjyqlo56" path="res://models/arena_2.glb" id="1_0cdxq"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bot0y3bytmupt" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="5_gfu5v"]
 [ext_resource type="Texture2D" uid="uid://ca1igsgmdho27" path="res://addons/kenney_prototype_textures/red/texture_02.png" id="6_hyya4"]
 [ext_resource type="Texture2D" uid="uid://o3uswiy87moa" path="res://addons/kenney_prototype_textures/green/texture_09.png" id="8_7e7pl"]
+[ext_resource type="PackedScene" uid="uid://c8rxt7617vao1" path="res://scenes/capture_point.tscn" id="9_5xvhm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_knfit"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -289,3 +290,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
 
 [node name="Cube_012b" parent="." index="20"]
 surface_material_override/0 = SubResource("StandardMaterial3D_aa7fh")
+
+[node name="CaputurePoint" parent="." index="21" instance=ExtResource("9_5xvhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
