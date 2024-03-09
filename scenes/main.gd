@@ -1,6 +1,5 @@
 extends Node3D
 
-const player = preload("res://scenes/player.tscn")
 const bullet = preload("res://scenes/weapons/paintball.tscn")
 
 var current_level = null
@@ -48,8 +47,6 @@ func _process(delta):
 			game_state = GameState.GAME
 			PlayerData._ready.clear()
 			if multiplayer.is_server():
-				for peer_id in PlayerData.get_connected_peers():
-					spawn_player(peer_id)
 				current_level.game_start.rpc()
 
 
@@ -132,31 +129,6 @@ func _on_control_join_game(address):
 	game_state = GameState.LOBBY
 
 
-func spawn_player(peer_id):
-	print("spawning a player for ", peer_id)
-	var spawnPoint = Vector3.ZERO
-	var team = PlayerData.get_player_team(peer_id)
-	if team == Team.GREEN:
-		spawnPoint = current_level.find_child("greenSpawn").get_children().pick_random().transform.origin
-	elif team == Team.PURPLE:
-		spawnPoint = current_level.find_child("purpleSpawn").get_children().pick_random().transform.origin
-	else:
-		print("can't spawn ", peer_id, " they are on spectate")
-		return
-
-	var new_player = player.instantiate()
-	new_player.set_name(str(peer_id))
-
-	$Players.add_child(new_player)
-	new_player.player_hit.connect(player_hit)
-
-	new_player.equip.rpc([
-		"res://scenes/weapons/paintgun.tscn",
-		"res://scenes/weapons/minigun.tscn",
-		"res://scenes/weapons/sniper.tscn"].pick_random())
-	new_player.respawn.rpc(spawnPoint)
-
-
 func remove_player(peer_id):
 	PlayerData.player_disconnect.rpc(peer_id)
 	var x = $Players.get_node(str(peer_id))
@@ -171,54 +143,3 @@ func shoot_bullet_client(origin : Transform3D, velocity : Vector3, attacker_id :
 	new_bullet.linear_velocity = velocity
 	new_bullet.set_shooter(attacker_id)
 	$bullets.add_child(new_bullet, true)
-
-
-func player_hit(ply : Node3D, attacker_id : int):
-	var victim_id = ply.name.to_int()
-	print(ply, " was hit by ", attacker_id)
-	$CanvasLayer/KillFeed.add_kill.rpc(attacker_id, victim_id, "")
-
-	if attacker_id != -1:
-		if PlayerData.get_player_team(attacker_id) == PlayerData.get_player_team(victim_id):
-			PlayerData.add_player_score.rpc(attacker_id, -1)
-		else:
-			PlayerData.add_player_score.rpc(attacker_id, 1)
-			if PlayerData.get_player_score(attacker_id) >= 25:
-				spawn_nuke.rpc(attacker_id)
-	ply.queue_free()
-	deathcam.rpc_id(victim_id)
-	# respawn timer
-	await get_tree().create_timer(4).timeout
-	spawn_player(victim_id)
-
-
-
-@rpc("any_peer", "call_local")
-func spawn_nuke(attacker_id : int):
-	$CanvasLayer/GameOver.set_winner(attacker_id)
-	var new_nuke = load("res://scenes/weapons/rigidNuke.tscn").instantiate()
-	new_nuke.transform = current_level.find_child("nuke_spawn").transform
-	new_nuke.nuked.connect(nuke_over)
-	add_child(new_nuke)
-
-
-func nuke_over():
-	$CanvasLayer/GameOver.show()
-	var nuked_arena = load("res://scenes/arena_2_explode.tscn").instantiate()
-	add_child(nuked_arena)
-	$arena_2.visible = false
-	await get_tree().create_timer(5).timeout
-	get_tree().quit()
-
-
-@rpc("any_peer", "call_local")
-func deathcam():
-	match PlayerData.get_player_team(multiplayer.get_unique_id()):
-		Team.GREEN:
-			(current_level.find_child("green_01") as Camera3D).make_current()
-		Team.PURPLE:
-			(current_level.find_child("purple_01") as Camera3D).make_current()
-		Team.SPECTATOR:
-			print("why have we deathcammed on spectate?")
-			(current_level.find_child("spectator_01") as Camera3D).make_current()
-

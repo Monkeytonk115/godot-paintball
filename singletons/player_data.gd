@@ -27,6 +27,17 @@ func add_player_score(peer_id, score):
 	_scores[peer_id] += score
 
 
+func get_highest_scorer(team):
+	var highest_score = -1
+	var scorer = 0
+	for k in _scores:
+		if _teams.get(k, Team.SPECTATOR) == team:
+			if _scores.get(k, -1) > highest_score:
+				highest_score = _scores.get(k, -1)
+				scorer = k
+	return scorer
+
+
 func get_player_name(peer_id):
 	if peer_id == -1:
 		return "<World>"
