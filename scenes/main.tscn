@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://j8r38w003035"]
+[gd_scene load_steps=8 format=3 uid="uid://j8r38w003035"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_5s3o4"]
 [ext_resource type="PackedScene" uid="uid://cmqucatgwf030" path="res://scenes/mainMenu.tscn" id="2_pc3wx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjpjfowj4axh0" path="res://scenes/kill_feed.tscn" id="4_aludu"]
 [ext_resource type="PackedScene" uid="uid://ygdgfsqp524p" path="res://scenes/game_over.tscn" id="5_2wq7o"]
 [ext_resource type="PackedScene" uid="uid://cavocjrmwpquv" path="res://scenes/team_select.tscn" id="6_v28wv"]
+[ext_resource type="PackedScene" uid="uid://cl6a7xd7m7g8i" path="res://scenes/capture_point_hud.tscn" id="7_y8k0l"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_5s3o4")
@@ -25,6 +26,9 @@ visible = false
 [node name="TeamSelect" parent="CanvasLayer" instance=ExtResource("6_v28wv")]
 visible = false
 
+[node name="CapturePointHud" parent="CanvasLayer" instance=ExtResource("7_y8k0l")]
+visible = false
+
 [node name="bullets" type="Node3D" parent="."]
 
 [node name="Players" type="Node3D" parent="."]
@@ -35,4 +39,3 @@ spawn_path = NodePath("..")
 
 [connection signal="hostGame" from="CanvasLayer/mainMenu" to="." method="_on_control_host_game"]
 [connection signal="joinGame" from="CanvasLayer/mainMenu" to="." method="_on_control_join_game"]
-[connection signal="player_ready" from="CanvasLayer/TeamSelect" to="." method="_on_team_select_player_ready"]

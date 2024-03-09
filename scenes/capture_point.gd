@@ -18,6 +18,8 @@ var purpleCapture = 0
 
 var _team = Team.SPECTATOR
 
+var capture_hud
+
 func _ready():
 	DebugOverlay.add_property(self, "greenCount", "")
 	DebugOverlay.add_property(self, "purpleCount", "")
@@ -25,6 +27,9 @@ func _ready():
 	DebugOverlay.add_property(self, "greenCapture", "")
 	DebugOverlay.add_property(self, "purpleCapture", "")
 	
+	# WARNING: SCUFFED
+	capture_hud = get_node_or_null("/root/Main/CanvasLayer/CapturePointHud")
+	assert(capture_hud, "could not find capture point HUD")
 
 	_team = Team.SPECTATOR
 
@@ -116,6 +121,12 @@ func _process(delta):
 		[var g, var p]:
 			# If both teams are standing then capture progress does not change
 			pass
+	if greenCapture > 0.01:
+		capture_hud.set_capture_value(greenCapture * 5, self._team, Team.GREEN)
+	elif purpleCapture > 0.01:
+		capture_hud.set_capture_value(purpleCapture * 5, self._team, Team.PURPLE)
+	else:
+		capture_hud.set_capture_value(0, self._team, Team.SPECTATOR)
 
 
 func _exit_tree():

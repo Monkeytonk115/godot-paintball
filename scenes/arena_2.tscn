@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://h8dy883vishh"]
+[gd_scene load_steps=42 format=3 uid="uid://h8dy883vishh"]
 
 [ext_resource type="PackedScene" uid="uid://cdqixyjyqlo56" path="res://models/arena_2.glb" id="1_0cdxq"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
@@ -114,6 +114,17 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_py0cg"]
 albedo_texture = ExtResource("4_xar4x")
 uv1_triplanar = true
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7vwp5"]
+properties/0/path = NodePath(".:ticketsGreen")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:ticketsPurple")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:cp_team")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="arena_2" instance=ExtResource("1_0cdxq")]
 script = ExtResource("2_irexd")
@@ -314,7 +325,11 @@ GreenMaterial = SubResource("StandardMaterial3D_5pcdy")
 PurpleMaterial = SubResource("StandardMaterial3D_py0cg")
 
 [node name="Timer" type="Timer" parent="." index="22"]
+wait_time = 2.0
 autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="23"]
+replication_config = SubResource("SceneReplicationConfig_7vwp5")
 
 [connection signal="captured" from="CapturePoint" to="." method="_on_caputure_point_captured"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

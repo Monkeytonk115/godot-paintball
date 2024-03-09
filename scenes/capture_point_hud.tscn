@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://cl6a7xd7m7g8i"]
+
+[ext_resource type="Script" path="res://scenes/capture_point_hud.gd" id="1_qqyvy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cv7th"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a65q"]
+bg_color = Color(0, 0.72549, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x7mx"]
+bg_color = Color(0.807843, 0.352941, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_so1rs"]
+bg_color = Color(0, 0.729412, 0.0313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtvfy"]
+bg_color = Color(0.745098, 0.00392157, 0.976471, 1)
+
+[node name="CapturePointHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_qqyvy")
+neutral = SubResource("StyleBoxFlat_cv7th")
+green = SubResource("StyleBoxFlat_1a65q")
+purple = SubResource("StyleBoxFlat_1x7mx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -106.0
+offset_right = 106.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="GreenTickets" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_so1rs")
+step = 1.0
+value = 100.0
+rounded = true
+fill_mode = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CapturePoint" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+step = 0.5
+value = 20.0
+rounded = true
+fill_mode = 3
+show_percentage = false
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PurpleTickets" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_xtvfy")
+step = 1.0
+value = 100.0
+rounded = true
