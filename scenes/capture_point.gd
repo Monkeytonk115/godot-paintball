@@ -41,7 +41,6 @@ func _ready():
 
 # Called when a player enters the capture point
 func _on_area_3d_body_entered(body):
-	print("entered capture point", body)
 	# Player node name is their peer id
 	var peer_id = body.get_name().to_int()
 	pointPlayers[peer_id] = true
@@ -50,7 +49,6 @@ func _on_area_3d_body_entered(body):
 
 # Called when a player leaves the capture point
 func _on_area_3d_body_exited(body):
-	print("exited capture point", body)
 	# Player node name is their peer id
 	var peer_id = body.get_name().to_int()
 	pointPlayers.erase(peer_id)
@@ -82,8 +80,8 @@ func team_captured(team):
 		Team.PURPLE:
 			$capture_point/Circle.set_surface_override_material(1, PurpleMaterial)
 		Team.SPECTATOR:
-			print("spectator capturing the point - neither team has the point")
 			$capture_point/Circle.set_surface_override_material(1, UncapturedMaterial)
+	captured.emit(team)
 
 
 func _process(delta):
