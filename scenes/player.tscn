@@ -50,11 +50,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98221, 0)
 fov = 90.0
 
 [node name="TextureRect" type="TextureRect" parent="Camera3D"]
-offset_left = 960.0
-offset_top = 540.0
-offset_right = 976.0
-offset_bottom = 556.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_nttgy")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -50)
