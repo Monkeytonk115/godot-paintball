@@ -2,8 +2,8 @@ extends Node3D
 
 signal captured(team)
 
-@export var GreenMaterial : Texture2D
-@export var PurpleMaterial : Texture2D
+@export var GreenMaterial : StandardMaterial3D
+@export var PurpleMaterial : StandardMaterial3D
 
 var UncapturedMaterial : StandardMaterial3D
 

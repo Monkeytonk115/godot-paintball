@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://h8dy883vishh"]
+[gd_scene load_steps=41 format=3 uid="uid://h8dy883vishh"]
 
 [ext_resource type="PackedScene" uid="uid://cdqixyjyqlo56" path="res://models/arena_2.glb" id="1_0cdxq"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
@@ -106,6 +106,14 @@ size = Vector3(102.36, 1, 63.5652)
 albedo_texture = ExtResource("8_7e7pl")
 uv1_triplanar = true
 uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pcdy"]
+albedo_texture = ExtResource("8_7e7pl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_py0cg"]
+albedo_texture = ExtResource("4_xar4x")
+uv1_triplanar = true
 
 [node name="arena_2" instance=ExtResource("1_0cdxq")]
 script = ExtResource("2_irexd")
@@ -302,8 +310,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_aa7fh")
 
 [node name="CapturePoint" parent="." index="21" instance=ExtResource("9_5xvhm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-GreenMaterial = ExtResource("8_7e7pl")
-PurpleMaterial = ExtResource("4_xar4x")
+GreenMaterial = SubResource("StandardMaterial3D_5pcdy")
+PurpleMaterial = SubResource("StandardMaterial3D_py0cg")
 
 [node name="Timer" type="Timer" parent="." index="22"]
 autostart = true
