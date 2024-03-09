@@ -42,6 +42,7 @@ var props = []
 
 func add_property(object, property, display):
 	var label = Label.new()
+	label.set_name(str(hash(object.name + property)))
 	#label.set("custom_fonts/font", preload("res://fonts/mono.tres"))
 	label.set("custom_colors/font_color", "#FF0000")
 	$PropertyInspector.add_child(label)
@@ -51,6 +52,9 @@ func remove_property(object, property):
 	for prop in props:
 		if prop.object == object and prop.property == property:
 			props.erase(prop)
+			var label = $PropertyInspector.get_node(str(hash(object.name + property)))
+			if label:
+				label.queue_free()
 
 
 func _process(_delta):
