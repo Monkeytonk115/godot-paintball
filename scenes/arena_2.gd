@@ -42,7 +42,7 @@ func game_start():
 	ticketsPurple = START_TICKETS
 	cp_team = Team.SPECTATOR
 	for peer_id in PlayerData.get_connected_peers():
-		spawn_player(peer_id)
+		dead_players[peer_id] = 1
 	$RespawnWaveTimer.start()
 
 # Timer runs every 2 seconds
