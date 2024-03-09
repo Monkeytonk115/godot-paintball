@@ -20,11 +20,15 @@ func _ready():
 
 	DebugOverlay.add_property(self, "ticketsGreen", "")
 	DebugOverlay.add_property(self, "ticketsPurple", "")
+	DebugOverlay.add_property(self, "dead_players", "")
+	DebugOverlay.add_property($RespawnWaveTimer, "time_left", "")
 
 
 func _exit_tree():
 	DebugOverlay.remove_property(self, "ticketsGreen")
 	DebugOverlay.remove_property(self, "ticketsPurple")
+	DebugOverlay.remove_property(self, "dead_players")
+	DebugOverlay.remove_property($RespawnWaveTimer, "time_left")
 
 
 func _process(_delta):
@@ -39,7 +43,7 @@ func game_start():
 	cp_team = Team.SPECTATOR
 	for peer_id in PlayerData.get_connected_peers():
 		spawn_player(peer_id)
-
+	$RespawnWaveTimer.start()
 
 # Timer runs every 2 seconds
 func _on_timer_timeout():
@@ -59,6 +63,7 @@ func _on_caputure_point_captured(team):
 	cp_team = team
 
 
+@rpc("authority", "call_local")
 func spawn_player(peer_id):
 	print("spawning a player for ", peer_id)
 	var spawnPoint = Vector3.ZERO
@@ -66,10 +71,12 @@ func spawn_player(peer_id):
 	if team == Team.GREEN:
 		if ticketsGreen < 0:
 			print("not spawning player because green has no remaining tickets")
+		ticketsGreen = max(0, ticketsGreen - 1)
 		spawnPoint = $greenSpawn.get_children().pick_random().transform.origin
 	elif team == Team.PURPLE:
 		if ticketsPurple < 0:
 			print("not spawning player because purple has no remaining tickets")
+		ticketsPurple = max(0, ticketsPurple - 1)
 		spawnPoint = $purpleSpawn.get_children().pick_random().transform.origin
 	else:
 		print("can't spawn ", peer_id, " they are on spectate")
@@ -91,7 +98,7 @@ func spawn_player(peer_id):
 func player_hit(ply : Node3D, attacker_id : int):
 	var victim_id = ply.name.to_int()
 	print(ply, " was hit by ", attacker_id)
-	$CanvasLayer/KillFeed.add_kill.rpc(attacker_id, victim_id, "")
+	get_node("/root/Main/CanvasLayer/KillFeed").add_kill.rpc(attacker_id, victim_id, "")
 
 	if attacker_id != -1:
 		if PlayerData.get_player_team(attacker_id) == PlayerData.get_player_team(victim_id):
@@ -135,7 +142,7 @@ func deathcam():
 
 func _on_respawn_wave_timer_timeout():
 	for id in dead_players.keys():
-		dead_players[id] = min(-1, dead_players[id] - 1)
+		dead_players[id] = max(-1, dead_players[id] - 1)
 		if dead_players[id] == 0:
 			spawn_player(id)
 			dead_players.erase(id)

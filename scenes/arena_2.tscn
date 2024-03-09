@@ -189,6 +189,10 @@ transform = Transform3D(-5.65142e-08, -0.707107, 0.707107, 3.09086e-08, 0.707107
 
 [node name="Players" type="Node3D" parent="." index="5"]
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Players" index="0"]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
+spawn_path = NodePath("..")
+
 [node name="CapturePoint" parent="." index="6" instance=ExtResource("9_5xvhm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 GreenMaterial = SubResource("StandardMaterial3D_5pcdy")
@@ -335,7 +339,6 @@ replication_config = SubResource("SceneReplicationConfig_7vwp5")
 
 [node name="RespawnWaveTimer" type="Timer" parent="." index="25"]
 wait_time = 6.0
-autostart = true
 
 [connection signal="captured" from="CapturePoint" to="." method="_on_caputure_point_captured"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
