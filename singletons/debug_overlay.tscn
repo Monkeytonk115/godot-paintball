@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://x6u6d6uawvg6"]
+
+[ext_resource type="Script" path="res://singletons/debug_overlay.gd" id="1_sja3y"]
+
+[node name="DebugOverlay" type="MarginContainer"]
+mouse_filter = 2
+script = ExtResource("1_sja3y")
+
+[node name="PropertyInspector" type="VBoxContainer" parent="."]
+layout_mode = 2
