@@ -81,11 +81,13 @@ func peer_disconnected(peer_id):
 	if (peer_id == 1):
 		# If we disconnect from server, set the multiplayer_peer to null
 		# This disconnects networking and we can return to the main menu
+		multiplayer.multiplayer_peer.close()
 		multiplayer.multiplayer_peer = null
 		
 		# Close the current level and return to the main menu
 		if current_level:
 			current_level.queue_free()
+		PlayerData.clear_data()
 		$CanvasLayer/TeamSelect.hide()
 		$CanvasLayer/GameOver.hide()
 		$CanvasLayer/ScoreBoard.hide()

@@ -1,9 +1,16 @@
 extends Node
 
+
 var _playerNames = {}
 var _scores = {}
 var _teams = {}
 var _ready = {}
+
+func clear_data():
+	_playerNames = {}
+	_scores = {}
+	_teams = {}
+	_ready = {}	
 
 
 func get_player_score(peer_id):
