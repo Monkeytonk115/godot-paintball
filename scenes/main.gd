@@ -30,10 +30,8 @@ func _ready():
 	
 	# Emitted when this MultiplayerAPI's multiplayer_peer disconnects from a peer. Clients get notified when other clients disconnect from the same server.
 	multiplayer.peer_disconnected.connect(peer_disconnected)
-	
-	#Emitted when this MultiplayerAPI's multiplayer_peer disconnects from server. Only emitted on clients.
-	multiplayer.server_disconnected.connect(server_disconnected)
-	
+
+
 	var voices = DisplayServer.tts_get_voices_for_language("en")
 	if len(voices) > 0:
 		voice_id = voices[0]
@@ -79,12 +77,19 @@ func peer_connected(peer_id):
 
 func peer_disconnected(peer_id):
 	print("peer disconnected ", peer_id)
-
-
-# Server has disconnected - show main menu
-func server_disconnected():
-	current_level.queue_free()
-	$CanvasLayer/mainMenu.show()
+	# Server has peer id 1
+	if (peer_id == 1):
+		# If we disconnect from server, set the multiplayer_peer to null
+		# This disconnects networking and we can return to the main menu
+		multiplayer.multiplayer_peer = null
+		
+		# Close the current level and return to the main menu
+		if current_level:
+			current_level.queue_free()
+		$CanvasLayer/TeamSelect.hide()
+		$CanvasLayer/GameOver.hide()
+		$CanvasLayer/ScoreBoard.hide()
+		$CanvasLayer/mainMenu.show()
 
 
 @rpc("authority", "call_local")
