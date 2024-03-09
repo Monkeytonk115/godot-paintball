@@ -13,6 +13,9 @@ var greenCount = 0
 var purpleCount = 0
 
 func _ready():
+	DebugOverlay.add_property(self, "pointPoints", "")
+	DebugOverlay.add_property(self, "greenCount", "")
+	DebugOverlay.add_property(self, "purpleCount", "")
 	var base = StandardMaterial3D.new()
 	base.albedo_texture = preload("res://addons/kenney_prototype_textures/light/texture_07.png")
 	base.uv1_triplanar = true
@@ -71,16 +74,24 @@ func team_captured(team):
 func _process(delta):
 	match [greenCount, purpleCount]:
 		[0, 0]:
-			print("nobody on point")
+			#print("nobody on point")
+			pass
 		[var g, 0]:
-			print(g, " green players")
+			#print(g, " green players")
 			pointPoints = min(pointPoints + (_player_to_speed(g) * delta), 20)
 		[0, var p]:
-			print(p, " purple players")
+			#print(p, " purple players")
 			pointPoints = max(pointPoints - (_player_to_speed(p) * delta), -20)
 		[var g, var p]:
-			print(g, " green players and ", p, " purple players")
-	print(pointPoints)
+			#print(g, " green players and ", p, " purple players")
+			pass
+	#print(pointPoints)
+
+
+func _exit_tree():
+	DebugOverlay.remove_property(self, "pointPoints")
+	DebugOverlay.remove_property(self, "greenCount")
+	DebugOverlay.remove_property(self, "purpleCount")
 
 
 func _player_to_speed(player_count : int):
