@@ -63,7 +63,6 @@ func _on_caputure_point_captured(team):
 	cp_team = team
 
 
-@rpc("authority", "call_local")
 func spawn_player(peer_id):
 	print("spawning a player for ", peer_id)
 	var spawnPoint = Vector3.ZERO
@@ -110,9 +109,9 @@ func player_hit(ply : Node3D, attacker_id : int):
 	dead_players[victim_id] = 2
 
 
-@rpc("any_peer", "call_local")
+@rpc("authority", "call_local")
 func spawn_nuke(attacker_id : int):
-	$CanvasLayer/GameOver.set_winner(attacker_id)
+	get_node("/root/Main/CanvasLayer/GameOver").set_winner(attacker_id)
 	var new_nuke = load("res://scenes/weapons/rigidNuke.tscn").instantiate()
 	new_nuke.transform = $nuke_spawn.transform
 	new_nuke.nuked.connect(nuke_over)
@@ -120,10 +119,11 @@ func spawn_nuke(attacker_id : int):
 
 
 func nuke_over():
-	$CanvasLayer/GameOver.show()
+	get_node("/root/Main/CanvasLayer/GameOver").show()
 	var nuked_arena = load("res://scenes/arena_2_explode.tscn").instantiate()
 	add_child(nuked_arena)
-	$arena_2.visible = false
+	for x in [$Cube_012b, $Cube, $Cube_011, $Cube_010, $Cube_012, $Cube_013, $Cube_014, $Cube_015, $Cube_016, $Cube_017, $Cube_018, $Cube_019, $Cube_020, $Cube_021]:
+		x.hide()
 	await get_tree().create_timer(5).timeout
 	get_tree().quit()
 
@@ -141,6 +141,8 @@ func deathcam():
 
 
 func _on_respawn_wave_timer_timeout():
+	if !is_multiplayer_authority(): return
+
 	for id in dead_players.keys():
 		dead_players[id] = max(-1, dead_players[id] - 1)
 		if dead_players[id] == 0:
