@@ -115,6 +115,7 @@ func _on_control_host_game():
 	$CanvasLayer/mainMenu.hide()
 	$CanvasLayer/TeamSelect.show()
 	$CanvasLayer/CapturePointHud.show()
+	$CanvasLayer/TeammateHud.show()
 	game_state = GameState.LOBBY
 	changelevel("res://scenes/arena_2.tscn")
 
@@ -126,6 +127,7 @@ func _on_control_join_game(address):
 	$CanvasLayer/TeamSelect.show()
 	$CanvasLayer/mainMenu.hide()
 	$CanvasLayer/CapturePointHud.show()
+	$CanvasLayer/TeammateHud.show()
 	game_state = GameState.LOBBY
 
 

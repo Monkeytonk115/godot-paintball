@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://j8r38w003035"]
+[gd_scene load_steps=9 format=3 uid="uid://j8r38w003035"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_5s3o4"]
 [ext_resource type="PackedScene" uid="uid://cmqucatgwf030" path="res://scenes/mainMenu.tscn" id="2_pc3wx"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ygdgfsqp524p" path="res://scenes/game_over.tscn" id="5_2wq7o"]
 [ext_resource type="PackedScene" uid="uid://cavocjrmwpquv" path="res://scenes/team_select.tscn" id="6_v28wv"]
 [ext_resource type="PackedScene" uid="uid://cl6a7xd7m7g8i" path="res://scenes/capture_point_hud.tscn" id="7_y8k0l"]
+[ext_resource type="PackedScene" uid="uid://ddix3j5wwxcat" path="res://scenes/teammate_hud.tscn" id="8_u1gev"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_5s3o4")
@@ -27,6 +28,9 @@ visible = false
 visible = false
 
 [node name="CapturePointHud" parent="CanvasLayer" instance=ExtResource("7_y8k0l")]
+visible = false
+
+[node name="TeammateHud" parent="CanvasLayer" instance=ExtResource("8_u1gev")]
 visible = false
 
 [node name="bullets" type="Node3D" parent="."]
