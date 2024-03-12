@@ -8,15 +8,20 @@ const START_TICKETS : int = 100
 @export var cp_team : int
 
 var capture_hud
+var teammate_hud
 
 const player = preload("res://scenes/player.tscn")
 
 @export var dead_players = {}
 
+
 func _ready():
 	# WARNING: SCUFFED
 	capture_hud = get_node_or_null("/root/Main/CanvasLayer/CapturePointHud")
 	assert(capture_hud, "could not find capture point HUD")
+
+	teammate_hud = get_node_or_null("/root/Main/CanvasLayer/TeammateHud")
+	assert(teammate_hud, "could not find teammate HUD")
 
 	DebugOverlay.add_property(self, "ticketsGreen", "")
 	DebugOverlay.add_property(self, "ticketsPurple", "")
@@ -149,6 +154,8 @@ func _on_respawn_wave_timer_timeout():
 			spawn_player(id)
 			dead_players.erase(id)
 	
+	teammate_hud.update_hud(dead_players)
+	
 	# Check for green losing
 	if ticketsGreen == 0:
 		var all_dead = true
@@ -167,3 +174,10 @@ func _on_respawn_wave_timer_timeout():
 			spawn_nuke.rpc(PlayerData.get_highest_scorer(Team.GREEN))
 			$RespawnWaveTimer.stop()
 
+
+func _on_multiplayer_synchronizer_delta_synchronized():
+	teammate_hud.update_hud(dead_players)
+
+
+func _on_multiplayer_synchronizer_synchronized():
+	teammate_hud.update_hud(dead_players)

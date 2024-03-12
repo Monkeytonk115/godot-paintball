@@ -345,4 +345,6 @@ wait_time = 6.0
 
 [connection signal="captured" from="CapturePoint" to="." method="_on_caputure_point_captured"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="delta_synchronized" from="MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_delta_synchronized"]
+[connection signal="synchronized" from="MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_synchronized"]
 [connection signal="timeout" from="RespawnWaveTimer" to="." method="_on_respawn_wave_timer_timeout"]
