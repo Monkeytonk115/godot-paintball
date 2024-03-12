@@ -33,7 +33,7 @@ func animation(firing):
 	if firing == 1:
 		if reloaded:
 			if !$AnimationPlayer.is_playing():
-				$AnimationPlayer.play("reload")
+				$AnimationPlayer.play("reload", -1, 1.25)
 	if firing == 0:
 		return
 		
@@ -47,4 +47,5 @@ func animFire():
 @rpc("any_peer", "call_local")
 func fireSound():
 	$AudioStreamPlayer3D.pitch_scale = randf_range(1, 1.2)
+	$AudioStreamPlayer3D.max_db = -2
 	$AudioStreamPlayer3D.play()
