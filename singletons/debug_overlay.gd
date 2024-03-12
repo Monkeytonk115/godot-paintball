@@ -2,6 +2,10 @@ extends MarginContainer
 
 var _visible = false
 
+func _ready():
+	_visible = false
+	hide()
+
 # https://kidscancode.org/godot_recipes/ui/debug_overlay/
 # A class to contain each of the Properties we want to display
 # in the debug overlay
