@@ -11,7 +11,7 @@ var capture_hud
 
 const player = preload("res://scenes/player.tscn")
 
-var dead_players = {}
+@export var dead_players = {}
 
 func _ready():
 	# WARNING: SCUFFED
