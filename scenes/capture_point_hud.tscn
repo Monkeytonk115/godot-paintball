@@ -47,7 +47,7 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 
 [node name="GreenTickets" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(180, 30)
+custom_minimum_size = Vector2(240, 60)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_so1rs")
 step = 1.0
@@ -59,7 +59,7 @@ fill_mode = 1
 layout_mode = 2
 
 [node name="CapturePoint" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 step = 0.5
 value = 20.0
@@ -71,7 +71,7 @@ show_percentage = false
 layout_mode = 2
 
 [node name="PurpleTickets" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(180, 30)
+custom_minimum_size = Vector2(240, 60)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_xtvfy")
 step = 1.0
