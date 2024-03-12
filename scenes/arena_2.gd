@@ -72,19 +72,24 @@ func spawn_player(peer_id):
 	print("spawning a player for ", peer_id)
 	var spawnPoint = Vector3.ZERO
 	var team = PlayerData.get_player_team(peer_id)
-	if team == Team.GREEN:
-		if ticketsGreen < 0:
-			print("not spawning player because green has no remaining tickets")
-		ticketsGreen = max(0, ticketsGreen - 1)
-		spawnPoint = $greenSpawn.get_children().pick_random().transform.origin
-	elif team == Team.PURPLE:
-		if ticketsPurple < 0:
-			print("not spawning player because purple has no remaining tickets")
-		ticketsPurple = max(0, ticketsPurple - 1)
-		spawnPoint = $purpleSpawn.get_children().pick_random().transform.origin
-	else:
-		print("can't spawn ", peer_id, " they are on spectate")
-		return
+	match team:
+		Team.GREEN:
+			if ticketsGreen <= 0:
+				print("not spawning player because green has no remaining tickets")
+				return
+			ticketsGreen = max(0, ticketsGreen - 1)
+			spawnPoint = $greenSpawn.get_children().pick_random().transform.origin
+		Team.PURPLE:
+			if ticketsPurple <= 0:
+				print("not spawning player because purple has no remaining tickets")
+				return
+			ticketsPurple = max(0, ticketsPurple - 1)
+			spawnPoint = $purpleSpawn.get_children().pick_random().transform.origin
+		Team.SPECTATOR:
+			print("can't spawn ", peer_id, " they are on spectate")
+			return
+
+	dead_players.erase(peer_id)
 
 	var new_player = player.instantiate()
 	new_player.set_name(str(peer_id))
@@ -152,8 +157,7 @@ func _on_respawn_wave_timer_timeout():
 		dead_players[id] = max(-1, dead_players[id] - 1)
 		if dead_players[id] == 0:
 			spawn_player(id)
-			dead_players.erase(id)
-	
+
 	teammate_hud.update_hud(dead_players)
 	
 	# Check for green losing
