@@ -39,13 +39,13 @@ func animation(firing):
 # for minigun, firing is moved to being called from the animation instead, so that firing is timed to the animation speed
 func animFunction():
 	var aimcone:Transform3D = $attachment_muzzle.global_transform
-	aimcone = aimcone.rotated(aimcone.basis.y, randf_range(-0.05, 0.05))
-	aimcone = aimcone.rotated(aimcone.basis.x, randf_range(-0.05, 0.05))
-	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 20, ply_id)
+	aimcone = aimcone.rotated(aimcone.basis.y, randf_range(-0.04, 0.04))
+	aimcone = aimcone.rotated(aimcone.basis.x, randf_range(-0.04, 0.04))
+	get_node("/root/Main/").shoot_bullet_client.rpc($attachment_muzzle.global_transform, -aimcone.basis.z * 17, ply_id)
 	fireSound.rpc()
 
 @rpc("any_peer", "call_local")
 func fireSound():
 	$AudioStreamPlayer3D.pitch_scale = firingSpeed / randf_range(12, 12.5)
-	$AudioStreamPlayer3D.max_db = randf_range(-3, -6)
+	$AudioStreamPlayer3D.max_db = randf_range(-4, -6)
 	$AudioStreamPlayer3D.play()
