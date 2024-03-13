@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://h8dy883vishh"]
+[gd_scene load_steps=44 format=3 uid="uid://h8dy883vishh"]
 
 [ext_resource type="PackedScene" uid="uid://cdqixyjyqlo56" path="res://models/arena_2.glb" id="1_0cdxq"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
@@ -109,6 +109,12 @@ size = Vector3(65, 15, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uaryn"]
 size = Vector3(102.36, 1, 63.5652)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjsln"]
+size = Vector3(60, 12, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1wt67"]
+size = Vector3(60, 12, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aa7fh"]
 albedo_texture = ExtResource("8_7e7pl")
@@ -327,29 +333,47 @@ shape = SubResource("BoxShape3D_f846y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221191, 12.9095, -0.33223)
 shape = SubResource("BoxShape3D_uaryn")
 
-[node name="nuke_spawn" type="Marker3D" parent="." index="21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
-
-[node name="Cube_012b" parent="." index="22"]
-surface_material_override/0 = SubResource("StandardMaterial3D_aa7fh")
-
-[node name="Timer" type="Timer" parent="." index="23"]
-wait_time = 2.0
-autostart = true
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="24"]
-replication_config = SubResource("SceneReplicationConfig_7vwp5")
-
-[node name="RespawnWaveTimer" type="Timer" parent="." index="25"]
-wait_time = 6.0
-
-[node name="nukeCollider" type="StaticBody3D" parent="." index="26"]
+[node name="nukeCollider" type="StaticBody3D" parent="." index="21"]
 collision_layer = 512
 collision_mask = 512
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="nukeCollider" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221191, 0.443245, -0.33223)
 shape = SubResource("BoxShape3D_uaryn")
+
+[node name="nuke_spawn" type="Marker3D" parent="." index="22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
+
+[node name="spawnProtection" type="Node3D" parent="." index="23"]
+
+[node name="spawnProtectionGreen" type="StaticBody3D" parent="spawnProtection" index="0"]
+collision_layer = 32
+collision_mask = 32
+
+[node name="greenSpawnWall" type="CollisionShape3D" parent="spawnProtection/spawnProtectionGreen" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -40, 7, 0)
+shape = SubResource("BoxShape3D_mjsln")
+
+[node name="spawnProtectionPurple" type="StaticBody3D" parent="spawnProtection" index="1"]
+collision_layer = 64
+collision_mask = 64
+
+[node name="purpleSpawnWall" type="CollisionShape3D" parent="spawnProtection/spawnProtectionPurple" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 40, 7, 0)
+shape = SubResource("BoxShape3D_1wt67")
+
+[node name="Cube_012b" parent="." index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_aa7fh")
+
+[node name="Timer" type="Timer" parent="." index="25"]
+wait_time = 2.0
+autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="26"]
+replication_config = SubResource("SceneReplicationConfig_7vwp5")
+
+[node name="RespawnWaveTimer" type="Timer" parent="." index="27"]
+wait_time = 6.0
 
 [connection signal="captured" from="CapturePoint" to="." method="_on_caputure_point_captured"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
