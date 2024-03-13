@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bot0y3bytmupt" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="5_gfu5v"]
 [ext_resource type="Texture2D" uid="uid://ca1igsgmdho27" path="res://addons/kenney_prototype_textures/red/texture_02.png" id="6_hyya4"]
 [ext_resource type="Texture2D" uid="uid://o3uswiy87moa" path="res://addons/kenney_prototype_textures/green/texture_09.png" id="8_7e7pl"]
-[ext_resource type="PackedScene" uid="uid://c8rxt7617vao1" path="res://scenes/capture_point.tscn" id="9_5xvhm"]
+[ext_resource type="PackedScene" path="res://scenes/capture_point.tscn" id="9_5xvhm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_knfit"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -342,6 +342,14 @@ replication_config = SubResource("SceneReplicationConfig_7vwp5")
 
 [node name="RespawnWaveTimer" type="Timer" parent="." index="25"]
 wait_time = 6.0
+
+[node name="nukeCollider" type="StaticBody3D" parent="." index="26"]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="nukeCollider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221191, 0.443245, -0.33223)
+shape = SubResource("BoxShape3D_uaryn")
 
 [connection signal="captured" from="CapturePoint" to="." method="_on_caputure_point_captured"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -80,3 +80,4 @@ scoreboard={
 3d_physics/layer_7="PurpleWalls"
 3d_physics/layer_8="GreenCapture"
 3d_physics/layer_9="PurpleCapture"
+3d_physics/layer_10="NukeCollider"
