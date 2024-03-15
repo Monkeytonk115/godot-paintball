@@ -1,29 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7veshyatxwfd"]
+[gd_scene load_steps=4 format=3 uid="uid://c7veshyatxwfd"]
 
 [ext_resource type="PackedScene" uid="uid://d0e1xtbi1tb45" path="res://models/paintgun.glb" id="1_uarvb"]
 [ext_resource type="Script" path="res://scenes/weapons/paintgun.gd" id="2_2pul5"]
-[ext_resource type="Texture2D" uid="uid://p8y7qt0se123" path="res://addons/kenney_prototype_textures/purple/texture_01.png" id="2_anj0p"]
 [ext_resource type="AudioStream" uid="uid://dp5c87p8l4s0h" path="res://audio/paintgun.wav" id="4_bvjoc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1lfa"]
-albedo_texture = ExtResource("2_anj0p")
-uv1_triplanar = true
 
 [node name="PaintGun" instance=ExtResource("1_uarvb")]
 script = ExtResource("2_2pul5")
 
-[node name="Plane" parent="." index="0"]
-transform = Transform3D(2.18557e-09, -0.05, -4.37114e-09, -0.05, -2.18557e-09, 0, -1.91069e-16, 4.37114e-09, -0.05, -0.0990947, 0, 0.436511)
-surface_material_override/0 = SubResource("StandardMaterial3D_m1lfa")
+[node name="Cylinder_009" parent="." index="0"]
+transform = Transform3D(-0.07, -7.8941e-09, -1.03538e-08, 0, 0.25469, -0.0140755, 1.05697e-08, -0.0522803, -0.0685703, 0, -0.365428, 0.100331)
 
 [node name="attachment_0" type="Marker3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0267507, -0.331789, 0.929971)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0267507, -0.322912, 0.0938724)
 
 [node name="attachment_muzzle" type="Marker3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227967, 0.0021358, -0.711715)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0108769, -1.5481)
 
 [node name="z_intercept" type="Marker3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -20)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.55069)
 stream = ExtResource("4_bvjoc")
