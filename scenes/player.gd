@@ -91,6 +91,12 @@ func _physics_process(delta):
 				equipped_weapon.animation(1)
 		if !Input.is_action_pressed("primary_fire"):
 			equipped_weapon.animation(0)
+			
+	if equipped_weapon:
+		if Input.is_action_just_pressed("secondary_fire"):
+			equipped_weapon.SecondaryFire(1)
+		if Input.is_action_just_released("secondary_fire"):
+			equipped_weapon.SecondaryFire(0)
 
 
 @rpc("any_peer", "call_local")

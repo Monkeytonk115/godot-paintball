@@ -38,7 +38,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0537628, 0.0158601, -0.24426)]
+"values": [Vector3(0, 0.016, -0.244)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -50,7 +50,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0953919, 0.0160336, -0.212412)]
+"values": [Vector3(-0.04, 0.016, -0.212)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -62,7 +62,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -3.14159, 0)]
+"values": [Vector3(-1.52018, -3.14159, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -74,7 +74,19 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.000147693, 0.054959, -0.220535)]
+"values": [Vector3(0.05, 0.055, -0.16)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Barrel:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, -3.14159, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_bs7j4"]
@@ -167,7 +179,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.1, 0.35, 1.57, 1.77),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.0537628, 0.0158601, -0.24426), Vector3(-0.0537628, 0.0158601, -0.179798), Vector3(-0.0537628, 0.0158601, -0.179798), Vector3(-0.0537628, 0.0158601, -0.24426)]
+"values": [Vector3(0, 0.025, -0.204), Vector3(0, 0.025, -0.139), Vector3(0, 0.025, -0.139), Vector3(0, 0.025, -0.204)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -179,7 +191,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.1, 0.35, 1.57, 1.77),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.0953919, 0.0160336, -0.212412), Vector3(-0.0953919, 0.0160336, -0.14795), Vector3(-0.0953919, 0.0160336, -0.14795), Vector3(-0.0953919, 0.0160336, -0.212412)]
+"values": [Vector3(-0.04, 0.025, -0.18), Vector3(-0.04, 0.025, -0.115), Vector3(-0.04, 0.025, -0.115), Vector3(-0.04, 0.025, -0.18)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -188,7 +200,7 @@ tracks/3/path = NodePath("Hammer:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.37, 0.77),
+"times": PackedFloat32Array(0, 0.02, 0.37, 0.77),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-1.52018, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(-1.52018, -3.14159, 0)]
@@ -200,10 +212,10 @@ tracks/4/path = NodePath("Hammer:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.37, 0.77),
+"times": PackedFloat32Array(0, 0.02, 0.37, 0.77),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.000147693, 0.054959, -0.204363), Vector3(-0.000147693, 0.054959, -0.220535), Vector3(-0.000147693, 0.054959, -0.220535), Vector3(-0.000147693, 0.054959, -0.204363)]
+"values": [Vector3(0.05, 0.055, -0.160384), Vector3(0.05, 0.0677657, -0.179512), Vector3(0.05, 0.0677657, -0.179512), Vector3(0.05, 0.055, -0.160384)]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -212,15 +224,30 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.03, 1.78),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.02, 0.09, 1.78),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"animFire"
 }, {
+"args": [null],
+"method": &"SecondaryFire"
+}, {
 "args": [],
 "method": &"animReload"
 }]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Barrel:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.37),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, -3.14159, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ya6nf"]
@@ -234,39 +261,39 @@ _data = {
 script = ExtResource("2_j3qaf")
 
 [node name="stock" parent="." index="0"]
-transform = Transform3D(-0.05307, 0, -3.5258e-09, 0, 0.0403305, 0, 4.63952e-09, 0, -0.0403305, -0.020211, -0.00854149, 0.103037)
+transform = Transform3D(-0.05307, 0, -3.5258e-09, 0, 0.0403305, 0, 4.63952e-09, 0, -0.0403305, 0.0284948, -0.000481389, 0.143606)
 surface_material_override/0 = SubResource("StandardMaterial3D_c6m1q")
 
 [node name="barrelEnd" parent="." index="1"]
-transform = Transform3D(-0.05307, 0, -1.02245e-07, 0, 0.0403305, 0, 1.34542e-07, 0, -0.0403305, -0.0476338, -0.0253896, -0.227688)
+transform = Transform3D(-0.05307, 0, -1.02245e-07, 0, 0.0403305, 0, 1.34542e-07, 0, -0.0403305, 0.00107201, -0.0173295, -0.187119)
 surface_material_override/0 = SubResource("StandardMaterial3D_ijfrj")
 
 [node name="Cylinder" parent="." index="2"]
-transform = Transform3D(0, -0.0474679, -1.51444e-09, -0.0173231, 0, 0, 0, 4.14977e-09, -0.0173231, -0.000147693, -0.0259146, -0.228142)
+transform = Transform3D(7.57218e-10, -0.0474679, -1.51444e-09, -0.0173231, -2.07489e-09, 0, -6.61981e-17, 4.14977e-09, -0.0173231, 0.0485581, -0.0178545, -0.187574)
 
 [node name="Cube_004" parent="." index="3"]
-transform = Transform3D(-0.00724803, 0, -3.55539e-09, 0, 0.00724803, 0, 6.33643e-10, 0, -0.040669, -0.0537628, 0.0158601, -0.24426)
+transform = Transform3D(-0.00724803, 0, -3.55539e-09, 0, 0.00724803, 0, 6.33643e-10, 0, -0.040669, 0, 0.016, -0.244)
 
 [node name="Hammer" parent="." index="4"]
-transform = Transform3D(-0.00570374, 0, -1.22052e-08, 0, 0.0142137, 0, 1.446e-08, 0, -0.00481434, -0.000147693, 0.054959, -0.220535)
+transform = Transform3D(-0.00570374, -1.24101e-09, 2.12937e-11, 0, 0.000719111, 0.00480818, -4.98637e-10, 0.0141955, -0.000243572, 0.05, 0.055, -0.16)
 
 [node name="Cube" parent="." index="5"]
-transform = Transform3D(-0.00938326, 0, -8.20311e-10, 0, 0.00329951, 0, 8.20311e-10, 0, -0.00938326, -0.0508085, 0.0157351, -0.129658)
+transform = Transform3D(-0.00938326, 0, -8.20311e-10, 0, 0.00329951, 0, 8.20311e-10, 0, -0.00938326, -0.00210271, 0.0237952, -0.0890899)
 
 [node name="Cube_002" parent="." index="6"]
-transform = Transform3D(-0.0193703, 0, -6.51987e-09, 0, 0.0193703, 0, 1.69341e-09, 0, -0.0745786, -0.0953919, 0.0160336, -0.212412)
+transform = Transform3D(-0.0193703, 0, -6.51987e-09, 0, 0.0193703, 0, 1.69341e-09, 0, -0.0745786, -0.04, 0.016, -0.212)
 
-[node name="Cube_003" parent="." index="7"]
-transform = Transform3D(-0.0187559, -1.41035e-09, -1.60559e-09, 0, 0.0780589, -0.00379567, 1.63969e-09, -0.0161325, -0.0183658, -0.000147678, -0.0761029, -0.100215)
+[node name="Cylinder_001" parent="." index="7"]
+transform = Transform3D(0.0201975, 1.48355e-09, 2.05168e-09, 0, -0.0798369, 0.00498839, -1.76573e-09, 0.0169699, 0.0234685, 0.0485581, -0.0973575, -0.0450311)
 
-[node name="Cube_005" parent="." index="8"]
-transform = Transform3D(-0.00635885, 1.28206e-10, -5.50944e-10, 0, 0.0109659, 0.000842799, 5.55908e-10, 0.00146651, -0.00630206, -0.000147685, -0.0333948, -0.145644)
+[node name="Cylinder_003" parent="." index="8"]
+transform = Transform3D(0.00638186, -7.76475e-11, 5.52491e-10, 0, -0.00631976, -0.000888184, -5.5792e-10, -0.000888184, 0.00631976, 0.0485581, -0.0300113, -0.105738)
 
 [node name="attachment_0" type="Marker3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46524e-06, -0.0837091, -0.098506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46524e-06, -0.0596206, -0.0517458)
 
 [node name="attachment_muzzle" type="Marker3D" parent="." index="10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.77351e-05, 0.0649477, -1.44177)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.77351e-05, 0.0720326, -1.39076)
 
 [node name="z_intercept" type="Marker3D" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -50)
@@ -277,6 +304,10 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0736827, -1.39005)
 stream = ExtResource("5_tqpkl")
 max_db = -3.0
 panning_strength = 0.5
+
+[node name="stock_001" parent="." index="14"]
+transform = Transform3D(-0.05307, 0, -3.5258e-09, 0, 0.0403305, 0, 4.63952e-09, 0, -0.0403305, 0.0485582, -0.0694237, 0.762195)

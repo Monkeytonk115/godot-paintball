@@ -29,6 +29,12 @@ func PrimaryFire(hitPoint):
 	$attachment_muzzle.look_at(hitPoint)
 	#_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
 	
+func SecondaryFire(secAction):
+	if secAction:
+		position = Vector3(-0.8,0.4,0)
+	if !secAction:
+		position = Vector3(-0.000006, 0.083709, 0.098506)
+	
 func animation(firing):
 	if firing == 1:
 		if reloaded:

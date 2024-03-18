@@ -23,6 +23,13 @@ func PrimaryFire(hitPoint):
 	fireSound.rpc()
 	_next_fire_time = Time.get_ticks_msec() + (fire_delay * 1000)
 	
+func SecondaryFire(secAction):
+	if secAction:
+		position = Vector3(-0.8,0.4,0)
+	if !secAction:
+		position = Vector3(0.026751, 0.322912, -0.093872)
+	
+	
 func animation(_firing):
 	pass
 
