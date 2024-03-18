@@ -76,18 +76,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector3(0.05, 0.055, -0.16)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Barrel:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.5708, -3.14159, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_bs7j4"]
 resource_name = "fire"
@@ -237,18 +225,6 @@ tracks/5/keys = {
 "method": &"animReload"
 }]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Barrel:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.37),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.5708, -3.14159, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ya6nf"]
 _data = {
@@ -290,10 +266,10 @@ transform = Transform3D(0.0201975, 1.48355e-09, 2.05168e-09, 0, -0.0798369, 0.00
 transform = Transform3D(0.00638186, -7.76475e-11, 5.52491e-10, 0, -0.00631976, -0.000888184, -5.5792e-10, -0.000888184, 0.00631976, 0.0485581, -0.0300113, -0.105738)
 
 [node name="attachment_0" type="Marker3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46524e-06, -0.0596206, -0.0517458)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0491154, -0.0596206, -0.0517458)
 
 [node name="attachment_muzzle" type="Marker3D" parent="." index="10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.77351e-05, 0.0720326, -1.39076)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0486546, 0.0720326, -1.39076)
 
 [node name="z_intercept" type="Marker3D" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -50)
@@ -304,7 +280,7 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0736827, -1.39005)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0479489, 0.0736827, -1.39005)
 stream = ExtResource("5_tqpkl")
 max_db = -3.0
 panning_strength = 0.5

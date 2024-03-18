@@ -31,7 +31,7 @@ func PrimaryFire(hitPoint):
 	
 func SecondaryFire(secAction):
 	if secAction:
-		position = Vector3(-0.8,0.4,0)
+		position = Vector3(-0.85,0.4,0)
 	if !secAction:
 		position = Vector3(-0.000006, 0.083709, 0.098506)
 	
