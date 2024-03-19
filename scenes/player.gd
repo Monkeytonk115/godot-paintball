@@ -117,10 +117,12 @@ func respawn(respawn_point):
 	match PlayerData.get_player_team(get_name().to_int()):
 		Team.GREEN:
 			$humanoid.set_shirt_color( Color(0, 1, 0) )
-			self.collision_layer = 2
+			self.collision_layer = 2 # Green Players
+			self.collision_mask = 1 + 4 + 64 # World, purple players, purple walls
 		Team.PURPLE:
 			$humanoid.set_shirt_color( Color(0.75, 0, 1) )
-			self.collision_layer = 4
+			self.collision_layer = 4 # Purple Players
+			self.collision_mask = 1 + 2 + 32 # World, green players, green walls
 		Team.SPECTATOR:
 			assert(0, "should not have spawned a player on spectate")
 
