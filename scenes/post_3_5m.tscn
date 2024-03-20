@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ox8sdvec1v1j"]
+
+[ext_resource type="PackedScene" uid="uid://vg3nvsbvafsx" path="res://models/post_3.5m.glb" id="1_vi4d4"]
+[ext_resource type="Texture2D" uid="uid://gby0yr7esp0n" path="res://textures/oreo_planks.png" id="2_0i7t4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6itj"]
+albedo_texture = ExtResource("2_0i7t4")
+uv1_triplanar = true
+
+[node name="post_3_5m" instance=ExtResource("1_vi4d4")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_x6itj")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdcvumqf0wc4f"]
+
+[ext_resource type="PackedScene" uid="uid://bnypf70xxtaof" path="res://models/wall_4x1.3.glb" id="1_q0t7f"]
+[ext_resource type="Texture2D" uid="uid://cu3p0fhl260dp" path="res://textures/bourbon_planks.png" id="2_sa5dy"]
+[ext_resource type="Texture2D" uid="uid://dcvi4326abmsr" path="res://textures/plywood.png" id="3_olnpu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abn52"]
+albedo_texture = ExtResource("2_sa5dy")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilhfh"]
+albedo_texture = ExtResource("3_olnpu")
+uv1_triplanar = true
+
+[node name="wall_4x1_3" instance=ExtResource("1_q0t7f")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_abn52")
+surface_material_override/1 = SubResource("StandardMaterial3D_ilhfh")
