@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2w6c880heg5m"]
+
+[ext_resource type="PackedScene" uid="uid://b7tvctfswvht4" path="res://models/platform_4x4.glb" id="1_pr0g5"]
+[ext_resource type="Texture2D" uid="uid://dcvi4326abmsr" path="res://textures/plywood.png" id="2_kgiwl"]
+[ext_resource type="Texture2D" uid="uid://cu3p0fhl260dp" path="res://textures/bourbon_planks.png" id="3_nrnar"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noryt"]
+albedo_texture = ExtResource("2_kgiwl")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j1km0"]
+albedo_texture = ExtResource("3_nrnar")
+uv1_scale = Vector3(1, 1.5, 1)
+uv1_triplanar = true
+
+[node name="platform_4x4" instance=ExtResource("1_pr0g5")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_noryt")
+surface_material_override/1 = SubResource("StandardMaterial3D_j1km0")
