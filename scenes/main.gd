@@ -48,6 +48,7 @@ func _process(delta):
 			PlayerData._ready.clear()
 			if multiplayer.is_server():
 				current_level.game_start.rpc()
+				
 
 
 func connected_to_server():

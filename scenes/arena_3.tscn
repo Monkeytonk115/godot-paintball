@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bufmv1jfp3b32"]
+
+[ext_resource type="PackedScene" uid="uid://dggk4ocn75ge0" path="res://models/arena_3.glb" id="1_ay6bk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0n7vk"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_mgi6n"]
+sky_material = SubResource("ProceduralSkyMaterial_0n7vk")
+
+[sub_resource type="Environment" id="Environment_txu5x"]
+background_mode = 2
+sky = SubResource("Sky_mgi6n")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="arena_3" instance=ExtResource("1_ay6bk")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_txu5x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="greenSpawn" type="Node3D" parent="." index="12"]
+
+[node name="spawnPoint" type="Marker3D" parent="greenSpawn" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93738, 0.2, -20)
+
+[node name="spawnPoint2" type="Marker3D" parent="greenSpawn" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93738, 0.2, -13)
+
+[node name="spawnPoint3" type="Marker3D" parent="greenSpawn" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93738, 0.2, -6)
+
+[node name="spawnPoint4" type="Marker3D" parent="greenSpawn" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93738, 0.2, 7)
+
+[node name="spawnPoint5" type="Marker3D" parent="greenSpawn" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93738, 0.2, 14)
+
+[node name="spawnPoint6" type="Marker3D" parent="greenSpawn" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93738, 0.2, 21)
