@@ -25,6 +25,7 @@ PlayerData="*res://singletons/player_data.gd"
 Team="*res://singletons/team.gd"
 PlayerConfig="*res://singletons/player_config.gd"
 DebugOverlay="*res://singletons/debug_overlay.tscn"
+GameData="*res://singletons/game_data.gd"
 
 [display]
 
