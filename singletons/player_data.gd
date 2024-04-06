@@ -5,6 +5,7 @@ var _playerNames = {}
 var _scores = {}
 var _teams = {}
 var _ready = {}
+var _loadout = {}
 
 func clear_data():
 	_playerNames = {}
@@ -82,6 +83,15 @@ func set_player_ready(peer_id, ready : bool):
 	print(peer_id, " is ready")
 	_ready[peer_id] = ready
 
+
+@rpc("any_peer", "call_local")
+func set_player_loadout(peer_id, primary : String):
+	_loadout[peer_id] = primary
+
+
+func get_player_loadout(peer_id):
+	return _ready.get(peer_id, "res://scenes/weapons/paintgun.tscn")
+	
 
 # This function sends all currently connected player infos to new connected player
 func send_new_player_stats(peer_id):
