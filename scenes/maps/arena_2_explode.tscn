@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://cjtkwl0666m7t"]
 
 [ext_resource type="PackedScene" uid="uid://c478ldb7w3mn7" path="res://models/arena2exportSceneMode.glb" id="1_qrs7k"]
-[ext_resource type="Script" path="res://scenes/arena_2_explode.gd" id="2_6rpsn"]
+[ext_resource type="Script" path="res://scenes/maps/arena_2_explode.gd" id="2_6rpsn"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_61p3c"]
 [ext_resource type="Texture2D" uid="uid://1u8gasqegplp" path="res://addons/kenney_prototype_textures/orange/texture_02.png" id="3_8lsio"]
 [ext_resource type="Texture2D" uid="uid://dqirwf4akvfwd" path="res://addons/kenney_prototype_textures/purple/texture_02.png" id="4_eiin7"]

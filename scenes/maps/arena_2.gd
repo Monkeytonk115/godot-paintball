@@ -16,12 +16,7 @@ const player = preload("res://scenes/player.tscn")
 
 
 func _ready():
-	# WARNING: SCUFFED
-	capture_hud = get_node_or_null("/root/Main/CanvasLayer/CapturePointHud")
-	assert(capture_hud, "could not find capture point HUD")
-
-	teammate_hud = get_node_or_null("/root/Main/CanvasLayer/TeammateHud")
-	assert(teammate_hud, "could not find teammate HUD")
+	
 
 	DebugOverlay.add_property(self, "ticketsGreen", "")
 	DebugOverlay.add_property(self, "ticketsPurple", "")

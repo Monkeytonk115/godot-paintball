@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cl6a7xd7m7g8i"]
 
-[ext_resource type="Script" path="res://scenes/capture_point_hud.gd" id="1_qqyvy"]
+[ext_resource type="Script" path="res://scenes/interface/capture_point_hud.gd" id="1_qqyvy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cv7th"]
 

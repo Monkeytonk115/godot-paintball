@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cavocjrmwpquv"]
 
-[ext_resource type="Script" path="res://scenes/team_select.gd" id="1_alt04"]
+[ext_resource type="Script" path="res://scenes/interface/team_select.gd" id="1_alt04"]
 
 [node name="TeamSelect" type="Control"]
 layout_mode = 3

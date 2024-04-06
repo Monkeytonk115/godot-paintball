@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5hc3d6okkvna"]
 
-[ext_resource type="Script" path="res://scenes/loadout_menu.gd" id="1_k8k2o"]
+[ext_resource type="Script" path="res://scenes/interface/loadout_menu.gd" id="1_k8k2o"]
 [ext_resource type="Texture2D" uid="uid://1knxlxav152n" path="res://textures/paint_gun_icon.png" id="1_ujxe0"]
 [ext_resource type="Texture2D" uid="uid://cdc0fdaxdrjh6" path="res://textures/minigun_icon.png" id="2_h5ryv"]
 [ext_resource type="Texture2D" uid="uid://cxxkkfdhttxv7" path="res://textures/sniper_icon.png" id="3_slx1k"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cehikvgai1diw"]
 
-[ext_resource type="PackedScene" uid="uid://h8dy883vishh" path="res://scenes/arena_2.tscn" id="1_du68e"]
+[ext_resource type="PackedScene" uid="uid://h8dy883vishh" path="res://scenes/maps/arena_2.tscn" id="1_du68e"]
 [ext_resource type="PackedScene" uid="uid://0r2hqrc77w5h" path="res://scenes/humanoid.tscn" id="2_2susl"]
 [ext_resource type="PackedScene" uid="uid://c7veshyatxwfd" path="res://scenes/weapons/paintgun.tscn" id="3_oo8uq"]
 [ext_resource type="PackedScene" uid="uid://eal31l7vkx1k" path="res://scenes/weapons/paintball.tscn" id="4_kidai"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8rxt7617vao1"]
 
-[ext_resource type="Script" path="res://scenes/capture_point.gd" id="1_mqhir"]
+[ext_resource type="Script" path="res://scenes/game_entities/capture_point.gd" id="1_mqhir"]
 [ext_resource type="PackedScene" uid="uid://4ea1pkh7ycme" path="res://models/capture_point.glb" id="2_i8rm8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o3pvj"]

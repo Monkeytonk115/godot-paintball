@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bjpjfowj4axh0"]
 
-[ext_resource type="Script" path="res://scenes/kill_feed.gd" id="1_mt2wq"]
+[ext_resource type="Script" path="res://scenes/interface/kill_feed.gd" id="1_mt2wq"]
 
 [node name="KillFeed" type="Control"]
 layout_mode = 3

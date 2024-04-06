@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi6puoisxmy8v"]
+
+[ext_resource type="Script" path="res://scenes/game_entities/gamemode_koth.gd" id="1_mm0fp"]
+
+[node name="GamemodeKoth" type="Node3D"]
+script = ExtResource("1_mm0fp")
+
+[node name="RespawnWaveTimerGreen" type="Timer" parent="."]
+
+[node name="RespawnWaveTimerPurple" type="Timer" parent="."]
+
+[node name="TicketTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="RespawnWaveTimerGreen" to="." method="_on_respawn_wave_timer_green_timeout"]
+[connection signal="timeout" from="RespawnWaveTimerPurple" to="." method="_on_respawn_wave_timer_purple_timeout"]
+[connection signal="timeout" from="TicketTimer" to="." method="_on_ticket_timer_timeout"]

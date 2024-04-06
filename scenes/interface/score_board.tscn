@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cv6xn7b2qlxfn"]
 
-[ext_resource type="Script" path="res://scenes/score_board.gd" id="1_ebun1"]
+[ext_resource type="Script" path="res://scenes/interface/score_board.gd" id="1_ebun1"]
 
 [node name="ScoreBoard" type="Control"]
 layout_mode = 3

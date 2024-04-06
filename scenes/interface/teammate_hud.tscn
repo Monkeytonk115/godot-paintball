@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddix3j5wwxcat"]
 
-[ext_resource type="Script" path="res://scenes/teammate_hud.gd" id="1_mqx4c"]
+[ext_resource type="Script" path="res://scenes/interface/teammate_hud.gd" id="1_mqx4c"]
 
 [node name="TeammateHud" type="Control"]
 layout_mode = 3
