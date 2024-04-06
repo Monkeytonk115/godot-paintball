@@ -2,7 +2,7 @@ extends Control
 signal hostGame
 signal joinGame(address)
 
-const titleScreen = preload("res://scenes/titleScreen.tscn")
+const titleScreen = preload("res://scenes/interface/titleScreen.tscn")
 var new_titleScreen
 
 # Called when the node enters the scene tree for the first time.
