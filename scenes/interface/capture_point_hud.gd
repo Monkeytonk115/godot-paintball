@@ -6,6 +6,7 @@ extends Control
 @export var purple : StyleBoxFlat
 
 
+@rpc("authority", "call_local")
 func update_tickets(team, tickets):
 	match team:
 		Team.GREEN:

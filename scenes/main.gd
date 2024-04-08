@@ -101,7 +101,7 @@ func changelevel(new_level : String):
 	add_child(current_level)
 	var gamemode_koth = current_level.get_node("./GamemodeKoth")
 	print(gamemode_koth)
-	gamemode_koth.ticket_changed.connect($CanvasLayer/CapturePointHud.update_tickets)
+	gamemode_koth.ticket_changed.connect(func(team, tickets): $CanvasLayer/CapturePointHud.update_tickets.rpc(team, tickets))
 	GameData.current_level = current_level
 
 func _input(_event):
