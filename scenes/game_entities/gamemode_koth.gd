@@ -37,16 +37,15 @@ func game_start():
 func _on_respawn_wave_timer_green_timeout():
 	if !is_multiplayer_authority(): return
 
-	var all_dead = true
 	for id in Team.get_players(Team.GREEN):
 		if GameData.is_player_alive(id):
-			all_dead = false
+			pass
 		else:
 			GameData.reduce_spawn_wave(id)
 			if GameData.get_spawn_wave(id) == 0:
 				GameData.spawn_player(id)
 	
-	if (ticketsGreen == 0) and all_dead:
+	if ticketsGreen == 0:
 		team_win.emit(Team.PURPLE, PlayerData.get_highest_scorer(Team.PURPLE))
 		$RespawnWaveTimerGreen.stop()
 		$RespawnWaveTimerPurple.stop()
@@ -55,16 +54,15 @@ func _on_respawn_wave_timer_green_timeout():
 func _on_respawn_wave_timer_purple_timeout():
 	if !is_multiplayer_authority(): return
 
-	var all_dead = true
 	for id in Team.get_players(Team.PURPLE):
 		if GameData.is_player_alive(id):
-			all_dead = false
+			pass
 		else:
 			GameData.reduce_spawn_wave(id)
 			if GameData.get_spawn_wave(id) == 0:
 				GameData.spawn_player(id)
 
-	if (ticketsPurple == 0) and all_dead:
+	if ticketsPurple == 0:
 		team_win.emit(Team.GREEN, PlayerData.get_highest_scorer(Team.GREEN))
 		$RespawnWaveTimerGreen.stop()
 		$RespawnWaveTimerPurple.stop()
