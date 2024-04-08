@@ -8,15 +8,6 @@ func game_start():
 	$GamemodeKoth.game_start()
 
 
-@rpc("authority", "call_local")
-func spawn_nuke(attacker_id : int):
-	get_node("/root/Main/CanvasLayer/GameOver").set_winner(attacker_id)
-	var new_nuke = load("res://scenes/weapons/rigidNuke.tscn").instantiate()
-	new_nuke.transform = $nuke_spawn.transform
-	new_nuke.nuked.connect(nuke_over)
-	add_child(new_nuke)
-
-
 func nuke_over():
 	get_node("/root/Main/CanvasLayer/GameOver").show()
 	var nuked_arena = load("res://scenes/maps/arena_2_explode.tscn").instantiate()
@@ -28,4 +19,5 @@ func nuke_over():
 
 
 func _on_gamemode_koth_team_win(team, mvp):
-	spawn_nuke.rpc(mvp)
+	get_node("/root/Main/CanvasLayer/GameOver").set_winner.rpc(mvp)
+	$NukeSpawner.spawn_nuke.rpc()

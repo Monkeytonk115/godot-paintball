@@ -1,6 +1,7 @@
 extends Control
 
 
+@rpc("authority", "call_local")
 func set_winner(winning_player):
 	var winning_team = PlayerData.get_player_team(winning_player)
 	if winning_team == Team.GREEN:

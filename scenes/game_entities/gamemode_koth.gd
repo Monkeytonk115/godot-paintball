@@ -6,10 +6,8 @@ signal team_win(team, mvp)
 
 @export var capture_point_path : NodePath
 
-const START_TICKETS : int = 100
-
-@export var ticketsGreen : int
-@export var ticketsPurple : int
+@export var ticketsGreen : int = 100
+@export var ticketsPurple : int = 100
 
 var cp_team = Team.SPECTATOR
 

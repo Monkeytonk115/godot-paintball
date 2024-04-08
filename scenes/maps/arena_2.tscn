@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://h8dy883vishh"]
+[gd_scene load_steps=45 format=3 uid="uid://h8dy883vishh"]
 
 [ext_resource type="PackedScene" uid="uid://cdqixyjyqlo56" path="res://models/arena_2.glb" id="1_0cdxq"]
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cc0dp4fkqsum5" path="res://addons/kenney_prototype_textures/purple/texture_09.png" id="4_xar4x"]
 [ext_resource type="Texture2D" uid="uid://bot0y3bytmupt" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="5_gfu5v"]
 [ext_resource type="Texture2D" uid="uid://ca1igsgmdho27" path="res://addons/kenney_prototype_textures/red/texture_02.png" id="6_hyya4"]
+[ext_resource type="PackedScene" uid="uid://6j2hnk8r65j1" path="res://scenes/game_entities/nuke_spawner.tscn" id="7_24jo4"]
 [ext_resource type="Texture2D" uid="uid://o3uswiy87moa" path="res://addons/kenney_prototype_textures/green/texture_09.png" id="8_7e7pl"]
 [ext_resource type="PackedScene" uid="uid://c8rxt7617vao1" path="res://scenes/game_entities/capture_point.tscn" id="9_5xvhm"]
 
@@ -133,8 +134,6 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="GamemodeKoth" parent="." index="2" instance=ExtResource("3_i1eeh")]
-ticketsGreen = 100
-ticketsPurple = 100
 
 [node name="CapturePoint" parent="." index="3" instance=ExtResource("9_5xvhm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -199,7 +198,10 @@ transform = Transform3D(-5.65142e-08, -0.707107, 0.707107, 3.09086e-08, 0.707107
 _spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
 spawn_path = NodePath("..")
 
-[node name="Cube" parent="." index="8"]
+[node name="NukeSpawner" parent="." index="8" instance=ExtResource("7_24jo4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
+
+[node name="Cube" parent="." index="9"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qm21k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
@@ -207,7 +209,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qm21k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ydh04")
 
-[node name="Cube_011" parent="." index="9"]
+[node name="Cube_011" parent="." index="10"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_011" index="0"]
@@ -215,7 +217,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_011/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_tlccv")
 
-[node name="Cube_010" parent="." index="10"]
+[node name="Cube_010" parent="." index="11"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_010" index="0"]
@@ -223,7 +225,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_010/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_jytrl")
 
-[node name="Cube_012" parent="." index="11"]
+[node name="Cube_012" parent="." index="12"]
 surface_material_override/0 = SubResource("StandardMaterial3D_g330w")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_012" index="0"]
@@ -231,7 +233,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_g330w")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_012/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_u3bga")
 
-[node name="Cube_013" parent="." index="12"]
+[node name="Cube_013" parent="." index="13"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_013" index="0"]
@@ -239,7 +241,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_013/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_0eegi")
 
-[node name="Cube_014" parent="." index="13"]
+[node name="Cube_014" parent="." index="14"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hn64l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_014" index="0"]
@@ -247,7 +249,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hn64l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_014/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_pila5")
 
-[node name="Cube_015" parent="." index="14"]
+[node name="Cube_015" parent="." index="15"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_015" index="0"]
@@ -255,7 +257,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_015/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_qddkb")
 
-[node name="Cube_016" parent="." index="15"]
+[node name="Cube_016" parent="." index="16"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_016" index="0"]
@@ -263,7 +265,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_016/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_432bg")
 
-[node name="Cube_017" parent="." index="16"]
+[node name="Cube_017" parent="." index="17"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_017" index="0"]
@@ -271,7 +273,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_017/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_mdo6u")
 
-[node name="Cube_018" parent="." index="17"]
+[node name="Cube_018" parent="." index="18"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wb4j3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_018" index="0"]
@@ -279,7 +281,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wb4j3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_018/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_2cfye")
 
-[node name="Cube_019" parent="." index="18"]
+[node name="Cube_019" parent="." index="19"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hn64l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_019" index="0"]
@@ -287,7 +289,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hn64l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_019/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_d3y6h")
 
-[node name="Cube_020" parent="." index="19"]
+[node name="Cube_020" parent="." index="20"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wb4j3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_020" index="0"]
@@ -295,7 +297,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wb4j3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_020/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_apsf6")
 
-[node name="Cube_021" parent="." index="20"]
+[node name="Cube_021" parent="." index="21"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_021" index="0"]
@@ -303,7 +305,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_021/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_3brvr")
 
-[node name="invisibleWalls" type="StaticBody3D" parent="." index="21"]
+[node name="invisibleWalls" type="StaticBody3D" parent="." index="22"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="invisibleWalls" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 30.5)
@@ -325,16 +327,13 @@ shape = SubResource("BoxShape3D_f846y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221191, 12.9095, -0.33223)
 shape = SubResource("BoxShape3D_uaryn")
 
-[node name="nukeCollider" type="StaticBody3D" parent="." index="22"]
+[node name="nukeCollider" type="StaticBody3D" parent="." index="23"]
 collision_layer = 512
 collision_mask = 512
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="nukeCollider" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221191, 0.443245, -0.33223)
 shape = SubResource("BoxShape3D_uaryn")
-
-[node name="nuke_spawn" type="Marker3D" parent="." index="23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
 
 [node name="spawnProtection" type="Node3D" parent="." index="24"]
 
@@ -359,3 +358,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_aa7fh")
 
 [connection signal="team_win" from="GamemodeKoth" to="." method="_on_gamemode_koth_team_win"]
 [connection signal="captured" from="CapturePoint" to="GamemodeKoth" method="_on_caputure_point_captured"]
+[connection signal="nuke_over" from="NukeSpawner" to="." method="nuke_over"]
