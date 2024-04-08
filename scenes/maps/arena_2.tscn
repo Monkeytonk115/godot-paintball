@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://kb2jrg65bsix" path="res://addons/kenney_prototype_textures/dark/texture_04.png" id="2_a7rcg"]
 [ext_resource type="Script" path="res://scenes/maps/arena_2.gd" id="2_irexd"]
 [ext_resource type="Texture2D" uid="uid://1u8gasqegplp" path="res://addons/kenney_prototype_textures/orange/texture_02.png" id="3_5ys0b"]
+[ext_resource type="PackedScene" uid="uid://bi6puoisxmy8v" path="res://scenes/game_entities/gamemode_koth.tscn" id="3_i1eeh"]
 [ext_resource type="Texture2D" uid="uid://dqirwf4akvfwd" path="res://addons/kenney_prototype_textures/purple/texture_02.png" id="4_ej5tm"]
 [ext_resource type="Texture2D" uid="uid://cc0dp4fkqsum5" path="res://addons/kenney_prototype_textures/purple/texture_09.png" id="4_xar4x"]
 [ext_resource type="Texture2D" uid="uid://bot0y3bytmupt" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="5_gfu5v"]
@@ -121,20 +122,6 @@ albedo_texture = ExtResource("8_7e7pl")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7vwp5"]
-properties/0/path = NodePath(".:ticketsGreen")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:ticketsPurple")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:cp_team")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath(".:dead_players")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-
 [node name="arena_2" instance=ExtResource("1_0cdxq")]
 script = ExtResource("2_irexd")
 
@@ -145,7 +132,16 @@ environment = SubResource("Environment_efgxi")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="purpleSpawn" type="Node3D" parent="." index="2"]
+[node name="GamemodeKoth" parent="." index="2" instance=ExtResource("3_i1eeh")]
+ticketsGreen = 100
+ticketsPurple = 100
+
+[node name="CapturePoint" parent="." index="3" instance=ExtResource("9_5xvhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+GreenMaterial = SubResource("StandardMaterial3D_5pcdy")
+PurpleMaterial = SubResource("StandardMaterial3D_py0cg")
+
+[node name="purpleSpawn" type="Node3D" parent="." index="4"]
 
 [node name="spawnPoint" type="Marker3D" parent="purpleSpawn" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -20)
@@ -165,7 +161,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 12)
 [node name="spawnPoint7" type="Marker3D" parent="purpleSpawn" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 18)
 
-[node name="greenSpawn" type="Node3D" parent="." index="3"]
+[node name="greenSpawn" type="Node3D" parent="." index="5"]
 
 [node name="spawnPoint" type="Marker3D" parent="greenSpawn" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, -20)
@@ -185,7 +181,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, 14)
 [node name="spawnPoint6" type="Marker3D" parent="greenSpawn" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.2, 21)
 
-[node name="spectator_cameras" type="Node3D" parent="." index="4"]
+[node name="spectator_cameras" type="Node3D" parent="." index="6"]
 
 [node name="spectator_01" type="Camera3D" parent="spectator_cameras" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 33.958, 36.4112)
@@ -197,18 +193,13 @@ transform = Transform3D(-3.09086e-08, 0.707107, -0.707107, 3.09086e-08, 0.707107
 [node name="purple_01" type="Camera3D" parent="spectator_cameras" index="2"]
 transform = Transform3D(-5.65142e-08, -0.707107, 0.707107, 3.09086e-08, 0.707107, 0.707107, -1, 6.18172e-08, -1.81058e-08, 65, 24, 0)
 
-[node name="Players" type="Node3D" parent="." index="5"]
+[node name="Players" type="Node3D" parent="." index="7"]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Players" index="0"]
 _spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
 spawn_path = NodePath("..")
 
-[node name="CapturePoint" parent="." index="6" instance=ExtResource("9_5xvhm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-GreenMaterial = SubResource("StandardMaterial3D_5pcdy")
-PurpleMaterial = SubResource("StandardMaterial3D_py0cg")
-
-[node name="Cube" parent="." index="7"]
+[node name="Cube" parent="." index="8"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qm21k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
@@ -216,7 +207,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qm21k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ydh04")
 
-[node name="Cube_011" parent="." index="8"]
+[node name="Cube_011" parent="." index="9"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_011" index="0"]
@@ -224,7 +215,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_011/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_tlccv")
 
-[node name="Cube_010" parent="." index="9"]
+[node name="Cube_010" parent="." index="10"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_010" index="0"]
@@ -232,7 +223,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_010/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_jytrl")
 
-[node name="Cube_012" parent="." index="10"]
+[node name="Cube_012" parent="." index="11"]
 surface_material_override/0 = SubResource("StandardMaterial3D_g330w")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_012" index="0"]
@@ -240,7 +231,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_g330w")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_012/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_u3bga")
 
-[node name="Cube_013" parent="." index="11"]
+[node name="Cube_013" parent="." index="12"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_013" index="0"]
@@ -248,7 +239,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_013/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_0eegi")
 
-[node name="Cube_014" parent="." index="12"]
+[node name="Cube_014" parent="." index="13"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hn64l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_014" index="0"]
@@ -256,7 +247,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hn64l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_014/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_pila5")
 
-[node name="Cube_015" parent="." index="13"]
+[node name="Cube_015" parent="." index="14"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_015" index="0"]
@@ -264,7 +255,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_015/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_qddkb")
 
-[node name="Cube_016" parent="." index="14"]
+[node name="Cube_016" parent="." index="15"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_016" index="0"]
@@ -272,7 +263,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lrq6l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_016/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_432bg")
 
-[node name="Cube_017" parent="." index="15"]
+[node name="Cube_017" parent="." index="16"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_017" index="0"]
@@ -280,7 +271,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_017/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_mdo6u")
 
-[node name="Cube_018" parent="." index="16"]
+[node name="Cube_018" parent="." index="17"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wb4j3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_018" index="0"]
@@ -288,7 +279,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wb4j3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_018/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_2cfye")
 
-[node name="Cube_019" parent="." index="17"]
+[node name="Cube_019" parent="." index="18"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hn64l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_019" index="0"]
@@ -296,7 +287,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hn64l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_019/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_d3y6h")
 
-[node name="Cube_020" parent="." index="18"]
+[node name="Cube_020" parent="." index="19"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wb4j3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_020" index="0"]
@@ -304,7 +295,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wb4j3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_020/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_apsf6")
 
-[node name="Cube_021" parent="." index="19"]
+[node name="Cube_021" parent="." index="20"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_021" index="0"]
@@ -312,7 +303,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_obrkr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_021/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_3brvr")
 
-[node name="invisibleWalls" type="StaticBody3D" parent="." index="20"]
+[node name="invisibleWalls" type="StaticBody3D" parent="." index="21"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="invisibleWalls" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 30.5)
@@ -334,7 +325,7 @@ shape = SubResource("BoxShape3D_f846y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221191, 12.9095, -0.33223)
 shape = SubResource("BoxShape3D_uaryn")
 
-[node name="nukeCollider" type="StaticBody3D" parent="." index="21"]
+[node name="nukeCollider" type="StaticBody3D" parent="." index="22"]
 collision_layer = 512
 collision_mask = 512
 
@@ -342,10 +333,10 @@ collision_mask = 512
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221191, 0.443245, -0.33223)
 shape = SubResource("BoxShape3D_uaryn")
 
-[node name="nuke_spawn" type="Marker3D" parent="." index="22"]
+[node name="nuke_spawn" type="Marker3D" parent="." index="23"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
 
-[node name="spawnProtection" type="Node3D" parent="." index="23"]
+[node name="spawnProtection" type="Node3D" parent="." index="24"]
 
 [node name="spawnProtectionGreen" type="StaticBody3D" parent="spawnProtection" index="0"]
 collision_layer = 32
@@ -363,21 +354,8 @@ collision_mask = 64
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 40, 7, 0)
 shape = SubResource("BoxShape3D_1wt67")
 
-[node name="Cube_012b" parent="." index="24"]
+[node name="Cube_012b" parent="." index="25"]
 surface_material_override/0 = SubResource("StandardMaterial3D_aa7fh")
 
-[node name="Timer" type="Timer" parent="." index="25"]
-wait_time = 2.0
-autostart = true
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="26"]
-replication_config = SubResource("SceneReplicationConfig_7vwp5")
-
-[node name="RespawnWaveTimer" type="Timer" parent="." index="27"]
-wait_time = 6.0
-
-[connection signal="captured" from="CapturePoint" to="." method="_on_caputure_point_captured"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="delta_synchronized" from="MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_delta_synchronized"]
-[connection signal="synchronized" from="MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_synchronized"]
-[connection signal="timeout" from="RespawnWaveTimer" to="." method="_on_respawn_wave_timer_timeout"]
+[connection signal="team_win" from="GamemodeKoth" to="." method="_on_gamemode_koth_team_win"]
+[connection signal="captured" from="CapturePoint" to="GamemodeKoth" method="_on_caputure_point_captured"]

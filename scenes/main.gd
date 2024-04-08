@@ -70,7 +70,7 @@ func peer_connected(peer_id):
 	PlayerData.set_player_team.rpc(peer_id, Team.SPECTATOR)
 	# Update the peer with the existing player data
 	PlayerData.send_new_player_stats(peer_id)
-	changelevel.rpc_id(peer_id, "res://scenes/arena_2.tscn")
+	changelevel.rpc_id(peer_id, "res://scenes/maps/arena_2.tscn")
 
 
 func peer_disconnected(peer_id):
@@ -99,7 +99,10 @@ func changelevel(new_level : String):
 		current_level.queue_free()
 	current_level = load(new_level).instantiate()
 	add_child(current_level)
-
+	var gamemode_koth = current_level.get_node("./GamemodeKoth")
+	print(gamemode_koth)
+	gamemode_koth.ticket_changed.connect($CanvasLayer/CapturePointHud.update_tickets)
+	GameData.current_level = current_level
 
 func _input(_event):
 	if Input.is_action_pressed("scoreboard"):
@@ -118,7 +121,7 @@ func _on_control_host_game():
 	$CanvasLayer/CapturePointHud.show()
 	$CanvasLayer/TeammateHud.show()
 	game_state = GameState.LOBBY
-	changelevel("res://scenes/arena_2.tscn")
+	changelevel("res://scenes/maps/arena_2.tscn")
 
 
 func _on_control_join_game(address):

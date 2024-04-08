@@ -6,12 +6,12 @@ extends Control
 @export var purple : StyleBoxFlat
 
 
-func set_green_tickets(new_tickets):
-	$MarginContainer/HBoxContainer/GreenTickets.value = new_tickets
-
-
-func set_purple_tickets(new_tickets):
-	$MarginContainer/HBoxContainer/PurpleTickets.value = new_tickets
+func update_tickets(team, tickets):
+	match team:
+		Team.GREEN:
+			$MarginContainer/HBoxContainer/GreenTickets.value = tickets
+		Team.PURPLE:
+			$MarginContainer/HBoxContainer/PurpleTickets.value = tickets
 
 
 func set_capture_value(capture_value, current_team, new_team):

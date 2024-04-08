@@ -1,38 +1,101 @@
 extends Node3D
 
+signal ticket_changed(team, tickets)
+signal team_win(team, mvp)
+
+
 @export var capture_point_path : NodePath
 
-var capture_point = null
-var capture_hud = null
-var teammate_hud = null
+const START_TICKETS : int = 100
 
+@export var ticketsGreen : int
+@export var ticketsPurple : int
+
+var cp_team = Team.SPECTATOR
 
 func _ready():
-	capture_point = get_node_or_null(capture_point_path)
-	assert(capture_point, "could not find capture point")
-	
-	# WARNING: SCUFFED
-	capture_hud = get_node_or_null("/root/Main/CanvasLayer/CapturePointHud")
-	assert(capture_hud, "could not find capture point HUD")
+	DebugOverlay.add_property(self, "ticketsGreen", "")
+	DebugOverlay.add_property(self, "ticketsPurple", "")
+	DebugOverlay.add_property($RespawnWaveTimerGreen, "time_left", "")
+	DebugOverlay.add_property($RespawnWaveTimerPurple, "time_left", "")
 
-	teammate_hud = get_node_or_null("/root/Main/CanvasLayer/TeammateHud")
-	assert(teammate_hud, "could not find teammate HUD")
-	
+
+func _exit_tree():
+	DebugOverlay.remove_property(self, "ticketsGreen")
+	DebugOverlay.remove_property(self, "ticketsPurple")
+	DebugOverlay.remove_property($RespawnWaveTimerGreen, "time_left")
+	DebugOverlay.remove_property($RespawnWaveTimerPurple, "time_left")
+
+
+func game_start():
+	if not is_multiplayer_authority(): return
 	$RespawnWaveTimerGreen.start(6)
 	$RespawnWaveTimerPurple.start(6)
-
-
-func _process(delta):
-	pass
+	$TicketTimer.start(2)
 
 
 func _on_respawn_wave_timer_green_timeout():
-	pass # Replace with function body.
+	if !is_multiplayer_authority(): return
+
+	var all_dead = true
+	for id in Team.get_players(Team.GREEN):
+		if GameData.is_player_alive(id):
+			all_dead = false
+		else:
+			GameData.reduce_spawn_wave(id)
+			if GameData.get_spawn_wave(id) == 0:
+				GameData.spawn_player(id)
+	
+	if (ticketsGreen == 0) and all_dead:
+		team_win.emit(Team.PURPLE, PlayerData.get_highest_scorer(Team.PURPLE))
+		$RespawnWaveTimerGreen.stop()
+		$RespawnWaveTimerPurple.stop()
 
 
 func _on_respawn_wave_timer_purple_timeout():
-	pass # Replace with function body.
+	if !is_multiplayer_authority(): return
+
+	var all_dead = true
+	for id in Team.get_players(Team.PURPLE):
+		if GameData.is_player_alive(id):
+			all_dead = false
+		else:
+			GameData.reduce_spawn_wave(id)
+			if GameData.get_spawn_wave(id) == 0:
+				GameData.spawn_player(id)
+
+	if (ticketsPurple == 0) and all_dead:
+		team_win.emit(Team.GREEN, PlayerData.get_highest_scorer(Team.GREEN))
+		$RespawnWaveTimerGreen.stop()
+		$RespawnWaveTimerPurple.stop()
 
 
 func _on_ticket_timer_timeout():
-	pass # Replace with function body.
+	if not is_multiplayer_authority(): return
+
+	# Drain the OPPOSITE team's tickets
+	match cp_team:
+		Team.GREEN:
+			ticketsPurple = max(0, ticketsPurple - 1)
+			ticket_changed.emit(Team.PURPLE, ticketsPurple)
+		Team.PURPLE:
+			ticketsGreen = max(0, ticketsGreen - 1)
+			ticket_changed.emit(Team.GREEN, ticketsGreen)
+		Team.SPECTATOR:
+			pass
+
+
+func _on_caputure_point_captured(team):
+	print("_on_caputure_point_captured ", team)
+	if not is_multiplayer_authority(): return
+
+	cp_team = team
+	match team:
+		Team.GREEN:
+			$RespawnWaveTimerGreen.set_wait_time(6)
+			$RespawnWaveTimerPurple.set_wait_time(4)
+		Team.PURPLE:
+			$RespawnWaveTimerGreen.set_wait_time(4)
+			$RespawnWaveTimerPurple.set_wait_time(6)
+		Team.SPECTATOR:
+			pass

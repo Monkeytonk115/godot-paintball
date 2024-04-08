@@ -11,7 +11,8 @@ func clear_data():
 	_playerNames = {}
 	_scores = {}
 	_teams = {}
-	_ready = {}	
+	_ready = {}
+	_loadout = {}
 
 
 func get_player_score(peer_id):
@@ -91,7 +92,7 @@ func set_player_loadout(peer_id, primary : String):
 
 func get_player_loadout(peer_id):
 	return _ready.get(peer_id, "res://scenes/weapons/paintgun.tscn")
-	
+
 
 # This function sends all currently connected player infos to new connected player
 func send_new_player_stats(peer_id):
@@ -103,3 +104,5 @@ func send_new_player_stats(peer_id):
 		set_player_team.rpc_id(peer_id, k, _teams[k])
 	for k in _ready.keys():
 		set_player_ready.rpc_id(peer_id, k, _ready[k])
+	for k in _loadout.keys():
+		set_player_loadout.rpc_id(peer_id, k, _loadout[k])
