@@ -1,13 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8rxt7617vao1"]
+[gd_scene load_steps=8 format=3 uid="uid://c8rxt7617vao1"]
 
 [ext_resource type="Script" path="res://scenes/game_entities/capture_point.gd" id="1_mqhir"]
 [ext_resource type="PackedScene" uid="uid://4ea1pkh7ycme" path="res://models/capture_point.glb" id="2_i8rm8"]
+[ext_resource type="Texture2D" uid="uid://creq7c5no5v1t" path="res://addons/kenney_prototype_textures/green/texture_07.png" id="2_t53vm"]
+[ext_resource type="Texture2D" uid="uid://bxwt6ccgmwt6l" path="res://addons/kenney_prototype_textures/purple/texture_07.png" id="3_eqhsa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bi7i0"]
+albedo_texture = ExtResource("2_t53vm")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qh1e"]
+albedo_texture = ExtResource("3_eqhsa")
+uv1_triplanar = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o3pvj"]
 radius = 2.0
 
 [node name="CapturePoint" type="Node3D"]
 script = ExtResource("1_mqhir")
+GreenMaterial = SubResource("StandardMaterial3D_bi7i0")
+PurpleMaterial = SubResource("StandardMaterial3D_7qh1e")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0

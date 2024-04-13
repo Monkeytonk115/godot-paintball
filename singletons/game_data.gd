@@ -26,12 +26,18 @@ func reduce_spawn_wave(peer_id):
 	respawning_players[peer_id] = max(0, respawning_players.get(peer_id, 0) - 1)
 
 
+var _green_spawns = []
+var _purple_spawns = []
 func get_spawns_for_team(team):
 	match team:
 		Team.GREEN:
-			return current_level.get_node("greenSpawn").get_children()
+			if len(_green_spawns) == 0:
+				_green_spawns = current_level.find_child("greenSpawn", true).get_children()
+			return _green_spawns
 		Team.PURPLE:
-			return current_level.get_node("purpleSpawn").get_children()
+			if len(_purple_spawns) == 0:
+				_purple_spawns = current_level.find_child("purpleSpawn").get_children()
+			return _purple_spawns
 	return []
 
 

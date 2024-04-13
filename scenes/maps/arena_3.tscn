@@ -43,3 +43,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93738, 0.2, 14)
 
 [node name="spawnPoint6" type="Marker3D" parent="greenSpawn" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93738, 0.2, 21)
+
+[node name="purpleSpawn" type="Node3D" parent="." index="13"]
+
+[node name="spawnPoint" type="Marker3D" parent="purpleSpawn" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.2, -20)
+
+[node name="spawnPoint2" type="Marker3D" parent="purpleSpawn" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.2, -13)
+
+[node name="spawnPoint3" type="Marker3D" parent="purpleSpawn" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.2, -6)
+
+[node name="spawnPoint4" type="Marker3D" parent="purpleSpawn" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.2, 7)
+
+[node name="spawnPoint5" type="Marker3D" parent="purpleSpawn" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.2, 14)
+
+[node name="spawnPoint6" type="Marker3D" parent="purpleSpawn" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.2, 21)
