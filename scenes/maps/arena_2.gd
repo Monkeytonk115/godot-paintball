@@ -6,6 +6,7 @@ func game_start():
 	for peer_id in PlayerData.get_connected_peers():
 		GameData.set_player_spawn_wave(peer_id, 1)
 	$GamemodeKoth.game_start()
+	
 
 
 func nuke_over():

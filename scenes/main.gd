@@ -70,7 +70,7 @@ func peer_connected(peer_id):
 	PlayerData.set_player_team.rpc(peer_id, Team.SPECTATOR)
 	# Update the peer with the existing player data
 	PlayerData.send_new_player_stats(peer_id)
-	changelevel.rpc_id(peer_id, "res://scenes/maps/koth_forest.tscn")
+	changelevel.rpc_id(peer_id, "res://scenes/maps/arena_2.tscn")
 
 
 func peer_disconnected(peer_id):
@@ -121,7 +121,7 @@ func _on_control_host_game():
 	$CanvasLayer/CapturePointHud.show()
 	$CanvasLayer/TeammateHud.show()
 	game_state = GameState.LOBBY
-	changelevel("res://scenes/maps/koth_forest.tscn")
+	changelevel("res://scenes/maps/arena_2.tscn")
 
 
 func _on_control_join_game(address):
